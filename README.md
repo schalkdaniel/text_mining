@@ -15,6 +15,10 @@ This repository conatins:
 - paper and references I have used
 - the report written by me
 
+**Please Note:** The presentation and report will be in german since the whole seminar 
+is held in german. The code comments and every other stuff which does not appear within
+the presentation or report will be in english.
+
 ## ToDos
 
 - get into the topic
