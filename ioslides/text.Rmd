@@ -1,0 +1,80 @@
+---
+title: "GloVe: Global Vectors for Word Representation"
+subtitle: "Text Mining Seminar"
+author: "Daniel Schalk<span style='padding-left:620px;'>15. März 2017</span>"
+output: 
+  ioslides_presentation:
+    widescreen: true
+    css: ioslide.css
+    self_contained: no
+    includes:
+      in_header: header.html
+runtime: shiny
+---
+
+# Ideas
+
+## Todos Visualization
+
+- Shiny App, die Dokumente lädt und Darauf glove anwendet. Die Parameter sollen
+  verstellbar sein, Größeres Fenster etc. Die App speichert dann eine YAML Datei
+  ab, in welcher die Wortzusammenhänge drin sind.
+  
+- Nachdem man den Text ausgewertet hat sollen die Wörter analog zu
+  [diesem Beispiel](https://bl.ocks.org/mbostock/1044242) visualisiert werden.
+  Dabei sollen ähnliche Wörter zusammen geclustert sein nach GloVe oder SVD oder
+  sonst was. Geht man dann auf ein Wort sollen die "most frequent words" in dem
+  Kontext zu dem Wort auf dem die Maus ist angezeigt werden.
+
+# <i class="fa fa-sitemap"></i> Class System
+
+## <i class="fa fa-sitemap"></i> 2 Approaches
+
+<div class="cols">
+  <div class="box1">
+  <center>
+  <font size="7">C++</font>
+  </center>
+  </div>
+  <div class="box2">
+  <p>Solid <code>C++</code> base with </p>
+  <ul>
+  <li> Own class system for "frequently used" base learner </li>
+  <li> Give the opportunity to extend the the functionality with own 
+       <code>C++</code> functions </li>
+  </ul>
+  </div>
+</div>
+
+<br>
+
+<div class="cols">
+  <div class="box1">
+  <center>
+  <font size="7">R</font>
+  </center>
+  </div>
+  <div class="box2">
+  <p><code>R</code> API and wrapper around the core <code>C++</code> functionality:</p>
+  <ul>
+  <li> Basically the same as in <code>C++</code> but much more easier to extend 
+       with own base learner and loss/gradient </li>
+  <li> Functions to summarize, visualize the results and to refit the
+       model etc.</li>
+  </ul>
+  </div>
+</div>
+
+## <i class="fa fa-sitemap"></i> C++
+
+**Classes**
+
+- base learner (splines, trees, linear model, ...)
+- loss object (inherent with gradient, depends on the loss)
+- maybe a "mboost" object to fit everything?
+
+## <i class="fa fa-sitemap"></i> Structure
+
+```{r echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics('./images/classes/structure.png')
+```
