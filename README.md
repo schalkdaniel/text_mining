@@ -26,7 +26,6 @@ the presentation or report will be in english.
 ## ToDos
 
 - get into the topic
-- write a small *package* 
 - create fancy visualization (maybe with `d3.js`, should work perfectly with `ioslides`)
 - create the presentation with `ioslides`
 - write the report 
