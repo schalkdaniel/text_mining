@@ -1,0 +1,111 @@
+%% ==================================================== %%
+%% Set up the titlepage                                 %%
+%% ==================================================== %%
+
+
+%% x-Shift of the grey box with logos:
+%% -----------------------------------
+
+% Be careful! The hspace needs to be setted exactly above parbox 
+% without any blank line!!!
+% \hspace{-2cm}
+\hspace{-3.7cm}
+\parbox{21cm}{
+  %% y-Shift of the grey box with logos:
+  %% -----------------------------------
+  \vspace{-1.8cm}
+  
+  \colorbox{light-gray}{
+    %% Width of the box, should be the same as
+    %% in parbox above
+    %% ----------------------------------------
+    % \begin{minipage}{17.4cm}
+    \begin{minipage}{21cm}
+      \par
+%      \raisebox{-.5\height}{
+%        %% The x-Offset of the first logo to the left edge
+%        %% ------------------------------------------------
+%        % \hspace*{0.3cm}
+%        \hspace*{1cm}
+%        \includegraphics[width=4cm]{images/logos/MunichRe_logo.pdf}
+%      }
+      \hfill
+      \raisebox{-.5\height}{
+        \includegraphics[width=3cm]{images/logos/LMU_green_logo.png}
+        %% The x-Offset of the second logo to the left edge
+        %% ------------------------------------------------
+        \hspace*{1cm}
+      }
+      \par
+    \end{minipage}
+  }
+}
+
+
+\centering
+\huge 
+
+\vspace{2cm}
+
+\rule{\textwidth}{0.5pt}
+
+\vspace{0.2cm}
+
+%% TITLE
+%% ------------------
+\textbf{Master-Thesis}
+
+\vspace{0.1cm}
+
+\Large
+
+%% SUBTITLE
+%% ------------------
+\texttt{compboost}: A fast \texttt{C++} implementation of componentwise boosting
+
+\vspace{0.5cm}
+
+\LARGE
+
+%% DATE
+%% ------------------
+%\today
+Munich, 29.11.2017
+
+\rule{\textwidth}{0.5pt}
+
+\vspace{0.6cm}
+
+%% INSTITUTION
+%% ------------------
+\begin{center}
+\LARGE
+\textsc{Department of Statistics} \\
+\Large
+Ludwig Maximilian University of Munich
+\end{center}
+
+\vspace{0.5cm}
+
+\includegraphics[height=8cm]{images/logos/LMU_logo.pdf}
+
+\flushleft
+\Large
+\vspace*{\fill}
+\begin{center}
+Degree course: M.Sc. Statistics
+\end{center}
+\vspace{0.5cm}
+\normalsize
+
+%% Additional informations at the bottom
+%% -------------------------------------------
+\begin{tabbing}
+\=\textbf{Student:}  \hspace{3cm}  \=\textbf{Advisor:}          \hspace{4.5cm}\=\textbf{Subadvisor:} \\ \\ 
+\>Daniel Schalk       \> Prof. Dr. Bernd Bischl    \>Janek Thomas\\
+\>(11470019)
+\end{tabbing}
+
+\thispagestyle{empty}
+
+\normalsize

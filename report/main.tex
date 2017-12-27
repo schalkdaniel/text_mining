@@ -1,0 +1,89 @@
+%% ==================================================== %%
+%% Include header and verbatim/highlighting             %%
+%% ==================================================== %%
+\include{latex/header}
+\include{latex/highlights}
+
+%% ==================================================== %%
+%% Document Begin                                       %%
+%% ==================================================== %%
+\begin{document}
+
+%% ==================================================== %%
+%% Include Titlepage                                    %%
+%% ==================================================== %%
+\include{latex/titlepage}
+
+\justifying
+
+% Avoid indenting at every paragraph:
+\setlength{\parindent}{0pt}
+
+\newpage\null\thispagestyle{empty}\newpage
+
+\include{chapters/abstract}
+
+\newpage\null\thispagestyle{empty}\newpage
+
+\newpage
+
+% easy TOC
+
+\pagenumbering{roman}
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+
+%% ==================================================== %%
+%% Include chapters here                                %%
+%% ==================================================== %%
+
+%% Introduction:
+%% -------------
+\include{chapters/chapter01_intro}
+
+%% Introduction:
+%% -------------
+\include{chapters/chapter02_methodology}
+
+%% Introduction:
+%% -------------
+\include{chapters/chapter03_implementation}
+
+%% Introduction:
+%% -------------
+\include{chapters/chapter04_usecase}
+
+%% Introduction:
+%% -------------
+\include{chapters/chapter05_conclusion}
+
+\newpage
+
+%% ==================================================== %%
+%% List of figures and bibliography                     %%
+%% ==================================================== %%
+
+% References in phantom if they shoud just occur in the bibliography:
+\hphantom{\cite{RMain}}
+
+% Cite additionally:
+%   - Writing R extensions
+%   - Whole Rcpp + c++ stuff
+%   - All used R-Packages
+
+\listoffigures
+
+\newpage
+
+\listoftables
+
+\newpage
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+
+\include{chapters/chapterA_Appendix}
+
+\end{document}
