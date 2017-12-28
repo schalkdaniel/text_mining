@@ -8,28 +8,30 @@ if (! file.exists(text8_file)) {
 wiki = readLines("text8", n = 1, warn = FALSE)
 
 # Create iterator over tokens
-tokens <- space_tokenizer(wiki)
+tokens = space_tokenizer(wiki)
 
-# Create vocabulary. Terms will be unigrams (simple words).
+# Create vocabulary. Terms will be unigrams (simple words):
 it = itoken(tokens, progressbar = FALSE)
-vocab <- create_vocabulary(it)
+vocab = create_vocabulary(it)
 
-vocab <- prune_vocabulary(vocab, term_count_min = 5L)
+vocab = prune_vocabulary(vocab, term_count_min = 5L)
 
-# Use our filtered vocabulary
-vectorizer <- vocab_vectorizer(vocab)
+# Use filtered vocabulary:
+vectorizer = vocab_vectorizer(vocab)
 
-# use window of 5 for context words
-tcm <- create_tcm(it, vectorizer, skip_grams_window = 5L)
+# use window of 20 for context words:
+tcm = create_tcm(it, vectorizer, skip_grams_window = 20L)
 
-glove = GlobalVectors$new(word_vectors_size = 50, vocabulary = vocab, x_max = 10)
+glove = GlobalVectors$new(
+  word_vectors_size = 50, 
+  vocabulary        = vocab, 
+  x_max             = 10
+)
 
 # glove$fit doesn't work. Use fit_transform instead:
-time = proc.time()
-glove$fit_transform(tcm, n_iter = 20)
-time = proc.time() - time
+glove$fit_transform(tcm, n_iter = 50)
 
-word_vectors <- glove$components
+word_vectors = glove$components
 
 # berlin <- word_vectors[, "paris", drop = FALSE] - 
 #   word_vectors[, "france", drop = FALSE] + 
@@ -78,8 +80,10 @@ evaluateGloveOwn = function (word_vectors, a, b = NA, c = NA, norm, print.words 
   return (invisible(dists))
 }
 
+# Find nearest words:
 evaluateGloveOwn(word_vectors, a = "frog")
 evaluateGloveOwn(word_vectors, a = "sister")
 
+# Find word which behaves to c like b to a:
 evaluateGloveOwn(word_vectors, a = "france", b = "paris", c = "germany")
 evaluateGloveOwn(word_vectors, "queen", "women", "king")
