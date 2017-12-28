@@ -1,7 +1,7 @@
 ---
 title: "GloVe: Global Vectors for Word Representation"
 subtitle: "Text Mining Seminar"
-author: "Daniel Schalk<span style='padding-left:620px;'>15. MÃ¤rz 2017</span>"
+author: "Daniel Schalk<span style='padding-left:620px;'>15. März 2017</span>"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -9,20 +9,19 @@ output:
     self_contained: no
     includes:
       in_header: header.html
-runtime: shiny
 ---
 
 # Ideas
 
 ## Todos Visualization
 
-- Shiny App, die Dokumente lÃ¤dt und Darauf glove anwendet. Die Parameter sollen
-  verstellbar sein, GrÃ¶ÃŸeres Fenster etc. Die App speichert dann eine YAML Datei
+- Shiny App, die Dokumente lädt und Darauf glove anwendet. Die Parameter sollen
+  verstellbar sein, Größeres Fenster etc. Die App speichert dann eine YAML Datei
   ab, in welcher die WortzusammenhÃ¤nge drin sind.
   
-- Nachdem man den Text ausgewertet hat sollen die WÃ¶rter analog zu
+- Nachdem man den Text ausgewertet hat sollen die Wörter analog zu
   [diesem Beispiel](https://bl.ocks.org/mbostock/1044242) visualisiert werden.
-  Dabei sollen Ã¤hnliche WÃ¶rter zusammen geclustert sein nach GloVe oder SVD oder
+  Dabei sollen ännliche Wörter zusammen geclustert sein nach GloVe oder SVD oder
   sonst was. Geht man dann auf ein Wort sollen die "most frequent words" in dem
   Kontext zu dem Wort auf dem die Maus ist angezeigt werden.
 

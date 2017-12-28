@@ -1,12 +1,12 @@
 /* Change main font color*/
 slides > slide {
 	color: rgb(255, 255, 255);
-	/* font-family: "Century Gothic"; */++##
+	/* font-family: "Century Gothic"; */
 }
 
 /* Add own title image (background) */
 slides > slide.title-slide {
-	background-image: url(images/background/mboost_bg.png) !important;
+	background-image: url(images/background/text_mining_bg.png) !important;
 	background-size: 100% 100% !important;
 	
 }
@@ -88,7 +88,7 @@ pre {
 
 /* background image of the h2 extra slide introduced in front of the following content */
 slides > slide.dark {
- 	background-image: url(images/background/mboost_sc.png) !important;
+ 	background-image: url(images/background/text_mining_sc.png) !important;
 	background-size: 100% 100% !important;
 }
 

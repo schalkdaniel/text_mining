@@ -1,0 +1,7 @@
+---
+title: "Data"
+output: pdf_document
+---
+
+Use the wikipedia dump stuff (https://dumps.wikimedia.org/enwiki/20171220/) and
+search for this file: `enwiki-20171220-pages-articles.xml.bz2`
