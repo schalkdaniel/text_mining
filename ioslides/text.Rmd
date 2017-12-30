@@ -1,7 +1,7 @@
 ---
 title: "GloVe: Global Vectors for Word Representation"
 subtitle: "Text Mining Seminar"
-author: "Daniel Schalk<span style='padding-left:620px;'>15. März 2017</span>"
+author: "Daniel Schalk<span style='padding-left:620px;'>15. MÃ¤rz 2017</span>"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -11,17 +11,70 @@ output:
       in_header: header.html
 ---
 
+# Gliederung
+
+# Wieso WÃ¶rter als Vektoren darstellen?
+
+# GloVe Modell
+
+## Theorie
+
+- Wo startet man
+- Wo will man hin
+- Annahmen, Restriktionen etc. 
+- Welcher Algorithmus wird beim fitten verwendet?
+
+## Evaluierung
+
+- "Cosine Similarity" erklÃ¤ren
+- Was kann man noch machen?
+
+# `R` Implementierung `text2vec`
+
+## `text2vec`
+
+- Implementierung `R6`, `Rcpp` (`C++`), `RcppParallel` (moderne + sauber)
+- Wichtigste Befehle erklÃ¤ren
+
+# Daten und Usecase
+
+## Daten
+
+- Man brauch fucking viele WÃ¶rter (riesen Corpus, Wikipedia). Mega Hussle.
+
+- Man kÃ¶nnte andere sources nehmen, z. B. Statistik SachbÃ¼cher um Statistik
+  Vokabular zu lernen
+  
+- Was zum fitten sagen, welche hyperparameter (evtl. schon in Theorie und
+  referenzieren)
+  
+- Deutsch nicht so geil, zu viele WÃ¶rter die extrem selten vorkommen.
+
+## Usecase
+
+- Ã„hnlichkeiten: Leicht anfangen, d. h. einfach in euklidischer Norm 
+  illustrieren mit Bildern
+  
+- Ã„hnlichkeiten: women to queen wie men to ???
+
+- `d3` Visualisierungen raus ballern (clustern, ...)
+
+# Ausblick
+
+- Clustern von Artikeln nach WÃ¶rtern
+
+
 # Ideas
 
 ## Todos Visualization
 
-- Shiny App, die Dokumente lädt und Darauf glove anwendet. Die Parameter sollen
-  verstellbar sein, Größeres Fenster etc. Die App speichert dann eine YAML Datei
+- Shiny App, die Dokumente l?dt und Darauf glove anwendet. Die Parameter sollen
+  verstellbar sein, Gr??eres Fenster etc. Die App speichert dann eine YAML Datei
   ab, in welcher die WortzusammenhÃ¤nge drin sind.
   
-- Nachdem man den Text ausgewertet hat sollen die Wörter analog zu
+- Nachdem man den Text ausgewertet hat sollen die W?rter analog zu
   [diesem Beispiel](https://bl.ocks.org/mbostock/1044242) visualisiert werden.
-  Dabei sollen ännliche Wörter zusammen geclustert sein nach GloVe oder SVD oder
+  Dabei sollen ?nnliche W?rter zusammen geclustert sein nach GloVe oder SVD oder
   sonst was. Geht man dann auf ein Wort sollen die "most frequent words" in dem
   Kontext zu dem Wort auf dem die Maus ist angezeigt werden.
 
@@ -63,17 +116,3 @@ output:
   </ul>
   </div>
 </div>
-
-## <i class="fa fa-sitemap"></i> C++
-
-**Classes**
-
-- base learner (splines, trees, linear model, ...)
-- loss object (inherent with gradient, depends on the loss)
-- maybe a "mboost" object to fit everything?
-
-## <i class="fa fa-sitemap"></i> Structure
-
-```{r echo=FALSE, out.width='80%', fig.align='center'}
-knitr::include_graphics('./images/classes/structure.png')
-```
