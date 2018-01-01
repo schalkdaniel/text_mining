@@ -53,14 +53,24 @@ expressions.to.delete = c(
 )
 
 # The extraction (expected time ~10h, "n = -1" means all lines):
-time = proc.time()
+time.full = proc.time()
 extractTextBetweenTextTags(
   connection  = full.wiki, 
-  out_dir     = "E:/Multimedia/Datensätze/wikipedia_articles", 
+  out_file    = "E:/Multimedia/Datensätze/wikipedia_articles/extraction_fullwiki.txt", 
   expressions = expressions.to.delete, 
   n           = -1
 )
-time = proc.time() - time
+time.full = proc.time() - time.full
+
+# The extraction (expected time ~1h, "n = -1" means all lines):
+time.full = proc.time()
+extractTextBetweenTextTags(
+  connection  = simple.wiki, 
+  out_file    = "E:/Multimedia/Datensätze/wikipedia_articles/extraction_simplewiki.txt", 
+  expressions = expressions.to.delete, 
+  n           = -1
+)
+time.full = proc.time() - time.full
 
 # Some assumptions/drawbacks:
 
