@@ -163,7 +163,7 @@ void extractTextBetweenTextTags (std::string& connection, std::string& out_file,
   int k = 1;
   
   // Now iterate over all lines from connection:
-  while (std::getline(infile, line) && (k <= n))
+  while (std::getline(infile, line) && ((k <= n) || (n == -1)))
   {
     // If the line includes the end tag of text, then stop writing to
     // the stream:

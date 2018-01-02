@@ -5,13 +5,13 @@ if (! file.exists(text8_file)) {
   download.file("http://mattmahoney.net/dc/text8.zip", "~/text8.zip")
   unzip ("~/text8.zip")
 }
-wiki = readLines("text8", n = 1, warn = FALSE)
+wiki = readr::read_lines("text8")
 
 # Create iterator over tokens
 tokens = space_tokenizer(wiki)
 
 # Create vocabulary. Terms will be unigrams (simple words):
-it = itoken(tokens, progressbar = FALSE)
+it = itoken(tokens, progressbar = TRUE)
 vocab = create_vocabulary(it)
 
 vocab = prune_vocabulary(vocab, term_count_min = 5L)
@@ -23,13 +23,14 @@ vectorizer = vocab_vectorizer(vocab)
 tcm = create_tcm(it, vectorizer, skip_grams_window = 20L)
 
 glove = GlobalVectors$new(
-  word_vectors_size = 50, 
+  word_vectors_size = 300, 
   vocabulary        = vocab, 
-  x_max             = 10
+  learning_rate     = 0.03,
+  x_max             = 100
 )
 
 # glove$fit doesn't work. Use fit_transform instead:
-glove$fit_transform(tcm, n_iter = 50)
+glove$fit_transform(tcm, n_iter = 20)
 
 word_vectors = glove$components
 

@@ -24,6 +24,14 @@ output:
 - Annahmen, Restriktionen etc. 
 - Welcher Algorithmus wird beim fitten verwendet?
 
+We perform GloVe fitting using AdaGrad - stochastic gradient descend with 
+per-feature adaptive learning rate. Also, fitting is done in fully parallel 
+and asynchronous manner ( see Hogwild! paper ), so it can benefit from machines 
+with multiple cores. In my tests I achieved almost 8x speedup on 8 core machine 
+on the discribed above wikipedia dataset.
+
+- Welche hyperparameter werden empfohlen (steht in paper)
+
 ## Evaluierung
 
 - "Cosine Similarity" erklären
@@ -35,6 +43,7 @@ output:
 
 - Implementierung `R6`, `Rcpp` (`C++`), `RcppParallel` (moderne + sauber)
 - Wichtigste Befehle erklären
+- Leider nicht sehr gut gemaintained
 
 # Daten und Usecase
 
@@ -49,6 +58,8 @@ output:
   referenzieren)
   
 - Deutsch nicht so geil, zu viele Wörter die extrem selten vorkommen.
+
+- Stopwords from http://snowballstem.org
 
 ## Usecase
 
