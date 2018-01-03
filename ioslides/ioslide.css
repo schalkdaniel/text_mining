@@ -59,6 +59,7 @@ slides > slide:not(.nobackground):after {
 /* Change background of the slides: */
 body slides > slide {
     background: rgb(40, 40, 40);
+	vertical-align: middle;
 }
 
 /* Change color of the code output */
@@ -152,4 +153,82 @@ iframe {
 .qt pre, .qt code {
     color: #fff;
 	font-family: 'Source Code Pro', 'Courier New', monospace !important;
+}
+
+
+
+table { 
+   
+  /* Wenn die Zellen direkt nebeneinander stehen sollen */
+  border-collapse: collapse; 
+}
+
+table.rmdtable {
+	width: 80%;
+	border-collapse: initial;
+	border-spacing: 0px;
+	border-bottom: 2px solid #FFA500 !important;
+	margin-bottom: 15px;
+}
+
+/* Zebra Muster */
+tr:nth-of-type(odd) { 
+  font-weight: bold;
+}
+
+th { 
+
+  /* Hintergrund Farbe des "header" */
+  background: #FFA500 !important; 
+    
+  padding: 5px !important; 
+  border: 1px solid #FFA500; 
+  text-align: center; 
+}
+
+td { 
+
+  /* Abstand zu den Zellr?ndern in jeder Richtung */
+  padding: 5px !important; 
+  
+  /* Dicke Art und Farbe der Trennlinien */
+  border: 0px solid #FFA500 !important; 
+  
+  /* Textausrichtung innerhalb der Zellen */
+  text-align: center; 
+  
+  font-weight: normal !important;
+  
+  color: rgb(200, 200, 200) !important;
+}
+
+td:hover { 
+
+  /* Abstand zu den Zellr?ndern in jeder Richtung */
+  padding: 5px !important; 
+  
+  /* Dicke Art und Farbe der Trennlinien */
+  border: 0px solid #FFA500 !important; 
+  
+  /* Textausrichtung innerhalb der Zellen */
+  text-align: center; 
+  
+  font-weight: normal !important;
+  
+  color: rgb(255, 255, 255) !important;
+}
+
+table.rmdtable tr:nth-child(odd) {
+   /* background-color: rgba(255, 165, 0, 0.5); */
+   background-color: transparent;
+}
+
+
+.caption {
+	width: 90%;
+	font-size: 14px;
+	color: rgb(160, 160, 160);
+	font-weight: normal;
+	text-align: left ;
+	margin-bottom: 10px;
 }

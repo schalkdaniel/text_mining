@@ -1,0 +1,146 @@
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(plotly)
+
+# Words and values:
+# -----------------
+words = c("men", "king", "women", "queen", "daughter", "son", "cat", "dog", 
+          "munich", "berlin", "london", "paris", "germany", "france", 
+          "britain", "bird", "firenze", "venezia", "turin", "bear")
+
+colors = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 2, 4, 3, 1, 1, 1, 1, 1)
+
+opacities = c(0.4, 1)[as.integer(colors > 1) + 1]
+
+# Copied from GloVe model with word_vectors_size = 3, learning_rate = 0.05, 
+# alpha = 0.1 and x_max = 100:
+
+# x = word_vectors[1, words]
+# y = word_vectors[2, words]
+# z = word_vectors[3, words]
+
+x = c(-0.400214612483978, 0.155158400535583, -0.551183462142944, -0.0610131211578846, -0.042755912989378, 0.0447503961622715, -0.470899939537048, -0.402773648500443, -0.0487528331577778, -0.192662939429283, 0.00310734775848687, -0.0818405672907829, -0.124575987458229, 0.00203429372049868, -0.229007393121719, -0.356412202119827, 0.611625552177429, 0.408576637506485, 0.122585885226727, -0.49473211 )
+y = c(0.809867680072784, 1.54770350456238, 0.613207578659058, 1.01436102390289, 0.917889356613159, 1.28852820396423, 0.051154900342226, 0.273715287446976, 0.332228034734726, 0.731834948062897, 1.35951673984528, 1.0227769613266, 1.36418104171753, 1.44664418697357, 1.05902516841888, 0.149566367268562, -0.438074022531509, -0.349100410938263, 0.017778541892767, -0.09441595)
+z = c(-0.747694671154022, -0.449974983930588, -0.638655662536621, -0.0317355208098888, 0.363278985023499, -0.00060063402634114, 0.1646568775177, 0.125182867050171, 0.380007326602936, 0.186297029256821, -0.325228422880173, 0.170561000704765, -0.321435034275055, -0.347879141569138, -0.294686198234558, 0.0959524735808372, 0.0748170092701912, 0.353504478931427, 0.5331209897995, -0.14022741 )
+
+italian.cities = c("turin", "firenze", "venezia")
+animals = c("dog", "cat", "bird", "bear")
+
+centroid.x = c(mean(x[words %in% italian.cities]), mean(x[words %in% animals]))
+centroid.y = c(mean(y[words %in% italian.cities]), mean(y[words %in% animals]))
+centroid.z = c(mean(z[words %in% italian.cities]), mean(z[words %in% animals]))
+
+# Plot of Word Vectors:
+# ---------------------
+
+# Define fonts of plot:
+font = list(
+  family = "sans-serif",
+  size = 13,
+  color = "rgb(160, 160, 160)"
+)
+xlabel = list(
+  tickfont = font,
+  title = "w1",
+  color = "rgb(160, 160, 160)"
+)
+ylabel = list(
+  tickfont = font,
+  title = "w2",
+  color = "rgb(160, 160, 160)"
+)
+zlabel = list(
+  tickfont = font,
+  title = "w3",
+  color = "rgb(160, 160, 160)"
+)
+
+# Plot:
+plot_ly() %>% 
+  add_trace(x = x[colors > 1], 
+            y = y[colors > 1], 
+            z = z[colors > 1], 
+            type = "scatter3d", 
+            mode = "markers+text", 
+            text = words[colors > 1],
+            color     = as.factor(colors[colors > 1]),
+            colors    = c("#CD5B45", "#BC8F8F", "#8E388E"),
+            textfont  = list(color = "rgba(220, 220, 220, 1)"),
+            hoverinfo = "none") %>%
+  add_trace(x = x[colors == 1], 
+            y = y[colors == 1], 
+            z = z[colors == 1], 
+            type = "scatter3d", 
+            mode = "markers+text", 
+            text = words[colors == 1],
+            hoverinfo = "none",
+            marker   = list(color = "#00BFFF", opacity = 0.4),
+            textfont = list(color = "rgba(130, 130, 130, 0.4)")) %>%
+  add_trace(x = centroid.x, 
+            y = centroid.y, 
+            z = centroid.z,
+            type      = "scatter3d",
+            mode      = "markers",
+            hoverinfo = "none",
+            marker = list(
+              opacity = 0.1,
+              size = c(200, 120), 
+              color = "#800000",
+              line  = list(color = "#800000",
+                           width = 3)
+            )) %>%
+  # Lines from centroid to point (italian cities):
+  add_trace(x = c(centroid.x[1], x[words == "firenze"]), 
+            y = c(centroid.y[1], y[words == "firenze"]), 
+            z = c(centroid.z[1], z[words == "firenze"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  add_trace(x = c(centroid.x[1], x[words == "turin"]), 
+            y = c(centroid.y[1], y[words == "turin"]), 
+            z = c(centroid.z[1], z[words == "turin"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  add_trace(x = c(centroid.x[1], x[words == "venezia"]), 
+            y = c(centroid.y[1], y[words == "venezia"]), 
+            z = c(centroid.z[1], z[words == "venezia"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  # Lines from centroid to point (animals):
+  add_trace(x = c(centroid.x[2], x[words == "cat"]), 
+            y = c(centroid.y[2], y[words == "cat"]), 
+            z = c(centroid.z[2], z[words == "cat"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  add_trace(x = c(centroid.x[2], x[words == "dog"]), 
+            y = c(centroid.y[2], y[words == "dog"]), 
+            z = c(centroid.z[2], z[words == "dog"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  add_trace(x = c(centroid.x[2], x[words == "bird"]), 
+            y = c(centroid.y[2], y[words == "bird"]), 
+            z = c(centroid.z[2], z[words == "bird"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  add_trace(x = c(centroid.x[2], x[words == "bear"]), 
+            y = c(centroid.y[2], y[words == "bear"]), 
+            z = c(centroid.z[2], z[words == "bear"]), 
+            type = "scatter3d", 
+            mode = "lines",
+            line = list(color = "#00BFFF", opacity = 0.8)) %>%
+  # Layout
+  layout(showlegend = FALSE,
+         scene = list(
+           xaxis = xlabel,
+           yaxis = ylabel,
+           zaxis = zlabel),
+         title = "",
+         plot_bgcolor   = "transparent",
+         paper_bgcolor  = "transparent") %>%
+  config(displayModeBar = FALSE)
+
+```

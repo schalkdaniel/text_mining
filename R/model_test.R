@@ -43,4 +43,4 @@ question.list = prepareOwn(
 )
 
 # Run test:
-res = text2vec::check_analogy_accuracy(question.list, word_vectors)
+res = text2vec::check_analogy_accuracy(question.list, t(word_vectors))
