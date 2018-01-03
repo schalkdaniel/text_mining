@@ -167,7 +167,7 @@ table.rmdtable {
 	width: 80%;
 	border-collapse: initial;
 	border-spacing: 0px;
-	border-bottom: 2px solid #FFA500 !important;
+	border-bottom: 2px solid rgba(255, 165, 0, 0.8) !important;
 	margin-bottom: 15px;
 }
 
@@ -179,7 +179,7 @@ tr:nth-of-type(odd) {
 th { 
 
   /* Hintergrund Farbe des "header" */
-  background: #FFA500 !important; 
+  background: rgba(255, 165, 0, 0.8) !important; 
     
   padding: 5px !important; 
   border: 1px solid #FFA500; 
