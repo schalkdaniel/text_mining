@@ -18,10 +18,10 @@ This repository conatins:
 ### references
 
 - [Pennington et al.](https://www.aclweb.org/anthology/D14-1162)
-
-**Please Note:** The presentation and report will be in german since the whole seminar 
-is held in german. The code comments and every other stuff which does not appear within
-the presentation or report will be in english.
+- Wikipedia
+- Common Crawl
+- Grammar & Corpora 2009
+- text2vec vignette
 
 ## ToDos
 
@@ -29,6 +29,7 @@ the presentation or report will be in english.
 - create fancy visualization (maybe with `d3.js`, should work perfectly with `ioslides`)
 - create the presentation with `ioslides`
 - write the report 
+- clean list of references and references within the text
 
 ## Topics
 
