@@ -1,7 +1,7 @@
 ---
 title: "GloVe: Global Vectors for Word Representation"
 subtitle: "Text Mining Seminar"
-author: "Daniel Schalk<span style='padding-left:620px;'>15. März 2017</span>"
+author: "Daniel Schalk<span style='padding-left:620px;'>15th. March 2017</span>"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -11,18 +11,45 @@ output:
       in_header: header.html
 ---
 
-# Gliederung
+```{r, include=FALSE}
+library(plotly)
+```
 
-# Wieso Wörter als Vektoren darstellen?
 
-# GloVe Modell
+# Outline
 
-## Theorie
+## Outline
 
-- Wo startet man
-- Wo will man hin
-- Annahmen, Restriktionen etc. 
-- Welcher Algorithmus wird beim fitten verwendet?
+# Why Word Vectors?
+
+## Mathematical Representation of Words
+
+- Map of each word $i$ to a corresponding word vector $w_i \in \mathbb{R}^d$.
+- The word vector $w_i$ can be used to do further analyses e. g. clustering.
+- Of course we wan't to have useful word vectors $w_i$ (whatever that means).
+
+$\rightarrow$ GloVe is a model which constructs word vectors out of a given 
+corpus.
+
+## Goal of GloVe
+
+Model word semantic and analogies between words. Therefore, it is very important
+to constitute a linear structure of the word vector space.
+<!-- - Difference of vectors are very important here. -->
+
+<center>
+```{r, child="rmd_externals/plotly_word_vectors.Rmd"}
+```
+</center>
+
+# GloVe Model
+
+## Theory
+
+- Where to start
+- Where to go
+- Assumptions, restrictions etc. 
+- Which algorithm is used to fit the model?
 
 We perform GloVe fitting using AdaGrad - stochastic gradient descend with 
 per-feature adaptive learning rate. Also, fitting is done in fully parallel 
@@ -30,36 +57,84 @@ and asynchronous manner ( see Hogwild! paper ), so it can benefit from machines
 with multiple cores. In my tests I achieved almost 8x speedup on 8 core machine 
 on the discribed above wikipedia dataset.
 
-- Welche hyperparameter werden empfohlen (steht in paper)
+- Which hyperparameter are recommended (see paper)
 
-## Evaluierung
+## Evaluation
 
-- "Cosine Similarity" erklären
-- Was kann man noch machen?
+- Explain "Cosine Similarity" (Example with two vectors in 2d)
+- Further evaluation with questions-words file (men to king like women to ?)
 
-# `R` Implementierung `text2vec`
+# `R` Implementation `text2vec`
 
 ## `text2vec`
 
-- Implementierung `R6`, `Rcpp` (`C++`), `RcppParallel` (moderne + sauber)
-- Wichtigste Befehle erklären
-- Leider nicht sehr gut gemaintained
+- implementation `R6`, `Rcpp` (`C++`), `RcppParallel` (modern + clean)
+- Explain important commands
+- Lack of maintainance
 
-# Daten und Usecase
+# Data and Usecase
 
-## Daten
+## Data
 
-- Man brauch fucking viele Wörter (riesen Corpus, Wikipedia). Mega Hussle.
+- Be careful with the language: 
 
-- Man könnte andere sources nehmen, z. B. Statistik Sachbücher um Statistik
-  Vokabular zu lernen
+<center>
+
+| German term list             | English term list         |
+| ---------------------------- | ------------------------- |
+| Wassermolek�l                | hydrogen                  | 
+| Wasserstoff                  | hydrogen-bonding          |
+| Wasserstoffatom              |                           |
+| Wasserstoffbindung           |                           |
+| Wasserstoffbr�ckenbildung    |                           | 
+| Wasserstoffbr�ckenbindung    |                           |
+| Wasserstoffhalogenid         |                           |
+| Wasserstoffverbindung        |                           |
+
+<p class="caption">
+Copied from Grammar & Corpora 2009. Excerpt of the resulting English and 
+German term lists focusing on the term *hydrogen* (German: *Wasserstoff*).
+</p>
+
+<!-- https://books.google.de/books?id=PqHOU-cF674C&printsec=frontcover&hl=de#v=onepage&q&f=false -->
+
+</center>
+    
+&nbsp;&nbsp;&nbsp;&nbsp;For instance, German has much more rare words and 
+a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
+
+## Data
+
+- We need a lot of words to train the model.
+- Often crawled from the web. This is then mostly followed by a lot of 
+  preprocessing (regular expressions, filter stopwords etc.).
   
-- Was zum fitten sagen, welche hyperparameter (evtl. schon in Theorie und
-  referenzieren)
-  
-- Deutsch nicht so geil, zu viele Wörter die extrem selten vorkommen.
+<!-- - Stopwords from http://snowballstem.org -->
 
-- Stopwords from http://snowballstem.org
+But, how big should the corbus and the vocabular be to get good word vectors?
+
+## Data
+  
+Common sources for the corpus are:
+  
+- **Wikipedia Dump:** Wikpedia gives accesss to all articles collected within
+  one XML file (unzipped about 63 GB). <br><br>
+  $\rightarrow$ 6 billion tokens and 400 thousand word vocabulary
+  
+<!-- reduced simple wikipedia dump -->
+
+- **Common Crawl:** Published by Amazon Web Services through its Public Data 
+  Sets program in 2012. The data was crawled from the whole web and contains 
+  2.9 billion web pages and over 240 TB of data. <br><br>
+  $\rightarrow$ 820 billion tokens and 2.2 million word vocabulary
+  
+<!-- http://commoncrawl.org/connect/blog/ -->
+
+<!-- Say something about the resulting term count matrix --> 
+<!-- (size of vocabulary to the power of two).           --> 
+<!-- Expected size:                                      --> 
+<!--     - Wikipedia:    ~3.3 GB                         --> 
+<!--     - Common Crawl:  ~18 GB                         -->
 
 ## Usecase
 
@@ -70,7 +145,9 @@ on the discribed above wikipedia dataset.
 
 - `d3` Visualisierungen raus ballern (clustern, ...)
 
-# Ausblick
+# Outlook
+
+## Outlook
 
 - Clustern von Artikeln nach Wörtern
 
@@ -79,10 +156,6 @@ on the discribed above wikipedia dataset.
 
 ## Todos Visualization
 
-- Shiny App, die Dokumente l?dt und Darauf glove anwendet. Die Parameter sollen
-  verstellbar sein, Gr??eres Fenster etc. Die App speichert dann eine YAML Datei
-  ab, in welcher die Wortzusammenhänge drin sind.
-  
 - Nachdem man den Text ausgewertet hat sollen die W?rter analog zu
   [diesem Beispiel](https://bl.ocks.org/mbostock/1044242) visualisiert werden.
   Dabei sollen ?nnliche W?rter zusammen geclustert sein nach GloVe oder SVD oder
