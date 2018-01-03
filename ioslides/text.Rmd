@@ -1,7 +1,7 @@
 ---
 title: "GloVe: Global Vectors for Word Representation"
 subtitle: "Text Mining Seminar"
-author: "Daniel Schalk<span style='padding-left:620px;'>15th. March 2017</span>"
+author: "Daniel Schalk<span style='padding-left:620px;'>15th March 2017</span>"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -12,7 +12,11 @@ output:
 ---
 
 ```{r, include=FALSE}
+
+knitr::opts_chunk$set(collapse = TRUE)
+
 library(plotly)
+library(text2vec)
 ```
 
 
@@ -66,11 +70,59 @@ on the discribed above wikipedia dataset.
 
 # `R` Implementation `text2vec`
 
-## `text2vec`
+## text2vec: About
 
-- implementation `R6`, `Rcpp` (`C++`), `RcppParallel` (modern + clean)
-- Explain important commands
-- Lack of maintainance
+- Fast and modern `R` implementation using
+    - `R6`: Package for object oriented programming
+    - `Rcpp`: `C++` connection for high performance programming, in this case
+      counts this is very important in terms of memory.
+    - `RcppParallel`: `C++` feature to do parallelization.
+    
+- In some functions maintenance is not very good. Some functions need
+  further preparations or adaptions
+
+## Important Commands: Preprocessing
+
+- Create an iterator which separates by whitespaces:
+    ```{r}
+    space_tokenizer("Hello my name is")
+    ```
+
+- Create and prune vocabulary:
+    ```{r, eval=FALSE}
+    iterator   = itoken(tokens, progressbar = TRUE)
+    vocabulary = create_vocabulary(iterator)
+    vocabulary = prune_vocabulary(vocabulary, term_count_min = 10L)
+    ```
+
+- Map the words to indizes and create token count matrix:
+    ```{r, eval=FALSE}
+    vectorizer = vocab_vectorizer(vocab)
+    tcm = create_tcm(iterator, vectorizer, skip_grams_window = 20L)
+    ```
+
+## Important Commands: Train the Model
+
+`GloVe` or `GlobalVectors` are `R6` classes. First, it is necessary to create
+an new object of the class:
+
+```{r, eval=FALSE}
+# All specifica are setted here:
+glove = GlobalVectors$new(
+  word_vectors_size = 300,        # Dimension d of word vectors
+  vocabulary        = vocabulary, # Used vocabulary
+  learning_rate     = 0.03,       # Learning rate for Adagrad
+  alpha             = 3/4,
+  x_max             = 100
+)
+```
+
+The training and extraction of word vectors then is done by:
+
+```{r, eval=FALSE}
+glove$fit_transform(tcm, n_iter = 50) # Adagrad with 50 iterations
+word.vectors = glove$components       # Extract word vectors
+```
 
 # Data and Usecase
 
@@ -80,16 +132,16 @@ on the discribed above wikipedia dataset.
 
 <center>
 
-| German term list             | English term list         |
-| ---------------------------- | ------------------------- |
+| German term list              | English term list         |
+| ----------------------------- | ------------------------- |
 | Wassermolekuel                | hydrogen                  | 
-| Wasserstoff                  | hydrogen-bonding          |
-| Wasserstoffatom              |                           |
-| Wasserstoffbindung           |                           |
+| Wasserstoff                   | hydrogen-bonding          |
+| Wasserstoffatom               |                           |
+| Wasserstoffbindung            |                           |
 | Wasserstoffbrueckenbildung    |                           | 
 | Wasserstoffbrueckenbindung    |                           |
-| Wasserstoffhalogenid         |                           |
-| Wasserstoffverbindung        |                           |
+| Wasserstoffhalogenid          |                           |
+| Wasserstoffverbindung         |                           |
 
 <p class="caption">
 Copied from Grammar & Corpora 2009. Excerpt of the resulting English and 
@@ -106,6 +158,7 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 ## Data: The Corpus
 
 - We need a lot of words to train the model.
+
 - Often crawled from the web. This is mostly followed by a lot of 
   preprocessing (regular expressions, filter stopwords etc.).
   
@@ -117,7 +170,7 @@ But, how big should the corbus and the vocabular be to get good word vectors?
   
 Common sources for the corpus are:
   
-- **Wikipedia Dump:** Wikpedia gives accesss to all articles collected within
+- **Wikipedia Dump:** Wikpedia gives access to all articles collected within
   one XML file (unzipped about 63 GB). <br><br>
   $\rightarrow$ 6 billion tokens and 400 thousand word vocabulary
   
