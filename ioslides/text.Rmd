@@ -74,7 +74,7 @@ on the discribed above wikipedia dataset.
 
 # Data and Usecase
 
-## Data
+## Data: The Language
 
 - Be careful with the language: 
 
@@ -82,12 +82,12 @@ on the discribed above wikipedia dataset.
 
 | German term list             | English term list         |
 | ---------------------------- | ------------------------- |
-| Wassermolekül                | hydrogen                  | 
+| Wassermolekuel                | hydrogen                  | 
 | Wasserstoff                  | hydrogen-bonding          |
 | Wasserstoffatom              |                           |
 | Wasserstoffbindung           |                           |
-| Wasserstoffbrückenbildung    |                           | 
-| Wasserstoffbrückenbindung    |                           |
+| Wasserstoffbrueckenbildung    |                           | 
+| Wasserstoffbrueckenbindung    |                           |
 | Wasserstoffhalogenid         |                           |
 | Wasserstoffverbindung        |                           |
 
@@ -103,17 +103,17 @@ German term lists focusing on the term *hydrogen* (German: *Wasserstoff*).
 &nbsp;&nbsp;&nbsp;&nbsp;For instance, German has much more rare words and 
 a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 
-## Data
+## Data: The Corpus
 
 - We need a lot of words to train the model.
-- Often crawled from the web. This is then mostly followed by a lot of 
+- Often crawled from the web. This is mostly followed by a lot of 
   preprocessing (regular expressions, filter stopwords etc.).
   
 <!-- - Stopwords from http://snowballstem.org -->
 
 But, how big should the corbus and the vocabular be to get good word vectors?
 
-## Data
+## Data: Corpus Size
   
 Common sources for the corpus are:
   
