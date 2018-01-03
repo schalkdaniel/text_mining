@@ -232,3 +232,33 @@ table.rmdtable tr:nth-child(odd) {
 	text-align: left ;
 	margin-bottom: 10px;
 }
+
+
+
+.pun {
+  color: rgb(180, 180, 180) !important;
+}
+
+.pln {
+  color: #fff !important;
+}
+
+.kwd {
+  color: #EE9A49 !important;
+}
+
+.typ {
+  color: #87CEFF !important;
+}
+
+.com {
+  color: rgb(150, 150, 150) !important;
+}
+
+.lit {
+  color: #00BFFF !important;
+}
+
+.str {
+color: rgb(255, 165, 0) !important;
+}
