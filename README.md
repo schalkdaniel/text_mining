@@ -1,5 +1,7 @@
 # `text_mining`
 
+Project Page: https://schalkdaniel.github.io/text_mining/
+
 ## Purpose
 
 This repo contains everything I have used, created or take a look at for the 
