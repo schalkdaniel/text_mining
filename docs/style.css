@@ -1,0 +1,58 @@
+
+body {
+    background: rgb(112, 128, 144); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left top,  rgb(112, 128, 144), rgb(104, 131, 139)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right,   rgb(112, 128, 144), rgb(104, 131, 139)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, rgb(112, 128, 144), rgb(104, 131, 139)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right,   rgb(112, 128, 144), rgb(104, 131, 139)); /* Standard syntax */
+}
+
+img {
+    float: right;
+}
+
+/* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+	left: 0;
+    width: 100%; /* Full width */
+	border-bottom: 4px solid rgb(220, 220, 220);
+}
+
+/* Links inside the navbar */
+.navbar a {
+	font-family: Century Gothic;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+	background-color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar b {
+	font-family: Century Gothic;
+    float: right;
+    display: block;
+    color: #f2f2f2;
+	background-color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a:hover { 
+	color: #333;
+	font-weight: bold;
+    background-color: rgb(220, 220, 220);
+}
+
+content {
+	position: absolute;
+	top: 100px;
+	font-family: Century Gothic;
+	color: white;
+}
