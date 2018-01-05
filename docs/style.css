@@ -55,4 +55,31 @@ content {
 	top: 100px;
 	font-family: Century Gothic;
 	color: white;
+	width: 98%;
+}
+
+.wrap {
+    width: 960px;
+    height: 540px;
+    padding: 0;
+    overflow: hidden;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.frame {
+    width: 1280px;
+    height: 720px;
+    border: 0;
+    -ms-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    -o-transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+    
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
 }
