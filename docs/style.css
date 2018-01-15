@@ -46,7 +46,7 @@ a:hover {
     background-color: rgb(220, 220, 220);
 }
 
-.navbar b.ref {
+.navbar a.headerref {
 	font-family: Century Gothic;
     float: right;
     display: block;
@@ -57,7 +57,7 @@ a:hover {
     text-decoration: none;
 }
 
-b.ref:hover {
+a.headerref:hover {
 	color: #D1EEEE;
 	background: rgba(255, 255, 255, 0.1);
 }
