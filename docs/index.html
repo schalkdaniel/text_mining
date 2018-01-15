@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="style.css">
 
-
-
-
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="ioslides/text_files/htmlwidgets-0.9/htmlwidgets.js"></script>
 <script src="ioslides/text_files/plotly-binding-4.7.0/plotly.js"></script>
 <script src="ioslides/text_files/plotlyjs-1.27.1/plotly-latest.min.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+</head>
 
 <body>
 
@@ -43,7 +52,9 @@
 
 <h2>The Idea of GloVe</h2>
 
-<p>Trained word vectors in 3 dimensions for illustration.</p>
+<p>The creators of GloVe try to keep the linear structure of the word vector space. They intend to use this linearity to define similarities between words. If you take a look at the animation below you can see what this meant. For instance, if we think about which word behave to Germany like Paris to France, then we expect that our model "says" Berlin. If you take a look at the illustration you might recognize, that the purple points (France and Paris) seems to have the same structure to each other as the orange points (Germany and Berlin). It is possible to describe this analogies by calculating the vector \(w_{germany} + w_{paris} - w_{france}\). This new vector ideally should point to \(w_{berlin}\). We use \(w\) for <b>w</b>ords.</p>
+<p>Another point is, that we want related words closer to each other. Take a look at the two red bubbles. One bubble contains animals while the other one contains Italian cities. We can also think about much more dependencies just like singular and plural words and so on. But here we have a problem, at least in 3 dimensions. We are not able to model all those coherences by using a low dimension. Therefore, the dimension of a word vector is normally chosen very high (e.g. 500). </p>
+<p>Basically, the coherence between two words seems to be "stored" in the difference of those vectors. This is meant as in terms of keep the linear structure. If you now think that the example below is just made up to show the idea than I have to disappoint you. Actually, the animation was made by using 3 dimensional trained word vectors and even here we can see some correct dependencies.</p>
 
 <center>
 <div id="5506c782c4e" style="width:820px;height:492ffpx;" class="plotly html-widget"></div>
