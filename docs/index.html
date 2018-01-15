@@ -26,7 +26,9 @@
 
 <div class="content-noline">
 
-<h1>Text Mining</h1>
+<h1>Text Mining: GloVe</h1>
+
+<p>First of all, GloVe was invented by Jeffrey Pennington, Richard Socher and Christopher D. Manning. The original paper, which I have used as main reference, can be found <a class="text", href="https://nlp.stanford.edu/pubs/glove.pdf">here</a>.</p>
 
 <hr>
 
@@ -34,7 +36,8 @@
 
 <p>This project was part of a text mining course. The processing time was from October 2017 to March 2018. The course was outlined in 17 topics. Those topics starts easy with a brief survey of text mining and general classification methods followed by an introduction about some machine learning topics.</p>
 <p>After that introduction the text mining topics starts with text classification and text similarity followed by sentiment analysis. The next was my topic about GloVe. The last more advanced topics handles e.g. convolutional neural networks for sentence classification and general adversarial text to image synthesis. You can take a look at the full list of topics at the <a class="text" href="https://github.com/schalkdaniel/text_mining">GitHub Readme</a>.</p>
-<p>In this post I want to present the work I have investigated to explain GloVe. This starts with the general idea followed by the mathematics behind the model. After that I have presented the <code>R</code> package <code>text2vec</code> and some attempts of creating my own word embeddings using the full Wikipedia dump. Finally I show how to validate the word vectors by using my results.</p> 
+<p>In this post I want to present the work I have investigated to explain GloVe. This starts with the general idea followed by the mathematics behind the model. After that I have presented the <code>R</code> package <code>text2vec</code> and some attempts of creating my own word embeddings using the full Wikipedia dump. Finally I show how to validate the word vectors by using my results.</p>
+<p>The last thing to say here is: Have fun reading and exploring GloVe! If you have some comments or issues I am very happy about to receive those within the <a class="text", href="https://github.com/schalkdaniel/text_mining/issues">issue tracker of the repository</a>.</p>
 
 <hr>
 
@@ -55,7 +58,7 @@
 
 <h2>The Presentation</h2>
 
-<p>The most of the text I have written here comes from this presentation. Additionally, there is more mathematics explaining the model and more about the <code>R</code> package. Of course the presentation contains some other stuff I don't have mentioned here.</p>
+<p>The most of the text I have written here comes from this presentation. Additionally, there is more mathematics explaining the model and more about the <code>R</code> package. Of course the presentation contains some other stuff I don't have mentioned here. Nevertheless it is a presentation. Therefore, some images, code snippets or other content isn't as good explained as in this post. I think the post and the presentation complement each other quite well. </p>
 
 <div class="wrap">
   <iframe class="frame" src="ioslides/text.html" height="720" width="100%">
