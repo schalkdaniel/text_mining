@@ -189,6 +189,66 @@ Common sources for the corpus are:
 <!--     - Wikipedia:    ~3.3 GB                         --> 
 <!--     - Common Crawl:  ~18 GB                         -->
 
+## Validation: Metrics
+
+- Cosine Similarity:
+  \[
+  d_\mathrm{cosine}(x,y) = \mathrm{cos}(\angle (x, y)) = \frac{\langle x,y\rangle}{\|x\|_2\|y\|_2}
+  \]
+
+- Euclidean Distance:
+  \[
+  d_\mathrm{euklid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
+  \]
+
+In general we could use every metrik (norm) to evaluate the model. But the 
+cosine similarity seems to give the best results.
+
+## Validation: Cosine Similarity
+
+Problem of high dimension:
+https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf
+
+Explain whats the main result and show simulation and explain the consequences!
+
+
+## Validation: Questions Words File
+<!--
+https://github.com/nicholas-leonard/word2vec/blob/master/questions-words.txt
+-->
+
+<center>
+<iframe class="txt" src="../../additional_stuff/questions_words.txt"></iframe>
+</center>
+
+## Validation
+
+```{r, echo=FALSE, results='asis'}
+val.file = readLines("../../additional_stuff/questions_words.txt")
+
+categories.list = list()
+categories = val.file[grepl(":", val.file)]
+
+for (i in seq_along(categories)) {
+  if (i < length(categories)) {
+    categories.list[[substr(categories[i], 3, nchar(categories[i]))]] = val.file[(which(categories[i] == val.file) + 1):(which(categories[i + 1] == val.file) - 1)]  
+  } else {
+    categories.list[[substr(categories[i], 3, nchar(categories[i]))]] = val.file[(which(categories[i] == val.file) + 1):length(val.file)]
+  }
+}
+
+examples = data.frame(
+  "Category" = names(categories.list),
+  "Number of Test Lines" = unlist(lapply(categories.list, length)),
+  "Example" = unlist(lapply(categories.list, function (x) { return(x[1])}))
+)
+colnames(examples) = c("Category", "Number of Test Lines", "Example")
+
+cat("<center>")
+knitr::kable(examples, format = "pandoc", row.names = FALSE)
+cat("</center>")
+```
+
 ## Usecase
 
 - Ähnlichkeiten: Leicht anfangen, d. h. einfach in euklidischer Norm 

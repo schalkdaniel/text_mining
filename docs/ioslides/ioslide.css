@@ -262,3 +262,11 @@ table.rmdtable tr:nth-child(odd) {
 .str {
 color: rgb(255, 165, 0) !important;
 }
+
+
+
+iframe.txt {
+	width: 700px;
+	height: 200px;
+	background-color: rgba(255, 255, 255, 0.4);
+}
