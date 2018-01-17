@@ -54,13 +54,13 @@
   <script src="text_files/ioslides-13.5.1/js/slide-controller.js"></script>
   <script src="text_files/ioslides-13.5.1/js/slide-deck.js"></script>
   <script src="text_files/htmlwidgets-0.9/htmlwidgets.js"></script>
-  <script src="text_files/plotly-binding-4.7.0/plotly.js"></script>
+  <script src="text_files/plotly-binding-4.7.1/plotly.js"></script>
   <script src="text_files/typedarray-0.1/typedarray.min.js"></script>
   <script src="text_files/jquery-1.11.3/jquery.min.js"></script>
   <link href="text_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
   <script src="text_files/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-  <link href="text_files/plotlyjs-1.27.1/plotly-htmlwidgets.css" rel="stylesheet" />
-  <script src="text_files/plotlyjs-1.27.1/plotly-latest.min.js"></script>
+  <link href="text_files/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="text_files/plotlyjs-1.29.2/plotly-latest.min.js"></script>
 
   <style type="text/css">
 
@@ -107,13 +107,13 @@
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Outline</h2></hgroup><article  id="outline">
+<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Outline</h2></hgroup><article  id="outline">
 
-</article></slide><slide class=''><hgroup><h2>Outline</h2></hgroup><article  id="outline-1">
+</article></slide><slide class=""><hgroup><h2>Outline</h2></hgroup><article  id="outline-1">
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Why Word Vectors?</h2></hgroup><article  id="why-word-vectors">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Why Word Vectors?</h2></hgroup><article  id="why-word-vectors">
 
-</article></slide><slide class=''><hgroup><h2>Mathematical Representation of Words</h2></hgroup><article  id="mathematical-representation-of-words">
+</article></slide><slide class=""><hgroup><h2>Mathematical Representation of Words</h2></hgroup><article  id="mathematical-representation-of-words">
 
 <ul>
 <li>Map of each word \(i\) to a corresponding word vector \(w_i \in \mathbb{R}^d\).</li>
@@ -123,20 +123,20 @@
 
 <p>\(\rightarrow\) GloVe is a model which constructs word vectors out of a given corpus.</p>
 
-</article></slide><slide class=''><hgroup><h2>Goal of GloVe</h2></hgroup><article  id="goal-of-glove">
+</article></slide><slide class=""><hgroup><h2>Goal of GloVe</h2></hgroup><article  id="goal-of-glove">
 
 <p>Model word semantic and analogies between words. Therefore, it is very important to constitute a linear structure of the word vector space. <!-- - Difference of vectors are very important here. --></p>
 
 <center>
 
-<div id="5506c782c4e" style="width:720px;height:432px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="5506c782c4e">{"x":{"visdat":{"5502aa0661":["function () ","plotlyVisDat"]},"cur_data":"5502aa0661","attrs":{"5502aa0661":{"alpha":1,"sizes":[10,100],"x":[-0.192662939429283,0.00310734775848687,-0.0818405672907829,-0.124575987458229,0.00203429372049868,-0.229007393121719],"y":[0.731834948062897,1.35951673984528,1.0227769613266,1.36418104171753,1.44664418697357,1.05902516841888],"z":[0.186297029256821,-0.325228422880173,0.170561000704765,-0.321435034275055,-0.347879141569138,-0.294686198234558],"type":"scatter3d","mode":"markers+text","text":["berlin","london","paris","germany","france","britain"],"color":["2","3","4","2","4","3"],"colors":["#CD5B45","#BC8F8F","#8E388E"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":"none"},"5502aa0661.1":{"alpha":1,"sizes":[10,100],"x":[-0.400214612483978,0.155158400535583,-0.551183462142944,-0.0610131211578846,-0.042755912989378,0.0447503961622715,-0.470899939537048,-0.402773648500443,-0.0487528331577778,-0.356412202119827,0.611625552177429,0.408576637506485,0.122585885226727,-0.49473211],"y":[0.809867680072784,1.54770350456238,0.613207578659058,1.01436102390289,0.917889356613159,1.28852820396423,0.051154900342226,0.273715287446976,0.332228034734726,0.149566367268562,-0.438074022531509,-0.349100410938263,0.017778541892767,-0.09441595],"z":[-0.747694671154022,-0.449974983930588,-0.638655662536621,-0.0317355208098888,0.363278985023499,-0.00060063402634114,0.1646568775177,0.125182867050171,0.380007326602936,0.0959524735808372,0.0748170092701912,0.353504478931427,0.5331209897995,-0.14022741],"type":"scatter3d","mode":"markers+text","text":["men","king","women","queen","daughter","son","cat","dog","munich","bird","firenze","venezia","turin","bear"],"hoverinfo":"none","marker":{"color":"#00BFFF","opacity":0.4},"textfont":{"color":"rgba(130, 130, 130, 0.4)"}},"5502aa0661.2":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,-0.43120447503933],"y":[-0.256465297192335,0.095005151264441],"z":[0.320480826000373,0.0613912020371771],"type":"scatter3d","mode":"markers","hoverinfo":"none","marker":{"opacity":0.1,"size":[200,120],"color":"#800000","line":{"color":"#800000","width":3}}},"5502aa0661.3":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,0.611625552177429],"y":[-0.256465297192335,-0.438074022531509],"z":[0.320480826000373,0.0748170092701912],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"5502aa0661.4":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,0.122585885226727],"y":[-0.256465297192335,0.017778541892767],"z":[0.320480826000373,0.5331209897995],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"5502aa0661.5":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,0.408576637506485],"y":[-0.256465297192335,-0.349100410938263],"z":[0.320480826000373,0.353504478931427],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"5502aa0661.6":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.470899939537048],"y":[0.095005151264441,0.051154900342226],"z":[0.0613912020371771,0.1646568775177],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"5502aa0661.7":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.402773648500443],"y":[0.095005151264441,0.273715287446976],"z":[0.0613912020371771,0.125182867050171],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"5502aa0661.8":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.356412202119827],"y":[0.095005151264441,0.149566367268562],"z":[0.0613912020371771,0.0959524735808372],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"5502aa0661.9":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.49473211],"y":[0.095005151264441,-0.09441595],"z":[0.0613912020371771,-0.14022741],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"scene":{"xaxis":{"tickfont":{"family":"sans-serif","size":13,"color":"rgb(160, 160, 160)"},"title":"w1","color":"rgb(160, 160, 160)"},"yaxis":{"tickfont":{"family":"sans-serif","size":13,"color":"rgb(160, 160, 160)"},"title":"w2","color":"rgb(160, 160, 160)"},"zaxis":{"tickfont":{"family":"sans-serif","size":13,"color":"rgb(160, 160, 160)"},"title":"w3","color":"rgb(160, 160, 160)"}},"title":"","plot_bgcolor":"transparent","paper_bgcolor":"transparent","xaxis":{"domain":[0,1]},"yaxis":{"domain":[0,1]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false,"displayModeBar":false},"data":[{"x":[-0.192662939429283,-0.124575987458229],"y":[0.731834948062897,1.36418104171753],"z":[0.186297029256821,-0.321435034275055],"type":"scatter3d","mode":"markers+text","text":["berlin","germany"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":"none","name":"2","marker":{"fillcolor":"rgba(205,91,69,0.5)","color":"rgba(205,91,69,1)","line":{"color":"transparent"}},"frame":null},{"x":[0.00310734775848687,-0.229007393121719],"y":[1.35951673984528,1.05902516841888],"z":[-0.325228422880173,-0.294686198234558],"type":"scatter3d","mode":"markers+text","text":["london","britain"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":"none","name":"3","marker":{"fillcolor":"rgba(188,143,143,0.5)","color":"rgba(188,143,143,1)","line":{"color":"transparent"}},"frame":null},{"x":[-0.0818405672907829,0.00203429372049868],"y":[1.0227769613266,1.44664418697357],"z":[0.170561000704765,-0.347879141569138],"type":"scatter3d","mode":"markers+text","text":["paris","france"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":"none","name":"4","marker":{"fillcolor":"rgba(142,56,142,0.5)","color":"rgba(142,56,142,1)","line":{"color":"transparent"}},"frame":null},{"x":[-0.400214612483978,0.155158400535583,-0.551183462142944,-0.0610131211578846,-0.042755912989378,0.0447503961622715,-0.470899939537048,-0.402773648500443,-0.0487528331577778,-0.356412202119827,0.611625552177429,0.408576637506485,0.122585885226727,-0.49473211],"y":[0.809867680072784,1.54770350456238,0.613207578659058,1.01436102390289,0.917889356613159,1.28852820396423,0.051154900342226,0.273715287446976,0.332228034734726,0.149566367268562,-0.438074022531509,-0.349100410938263,0.017778541892767,-0.09441595],"z":[-0.747694671154022,-0.449974983930588,-0.638655662536621,-0.0317355208098888,0.363278985023499,-0.00060063402634114,0.1646568775177,0.125182867050171,0.380007326602936,0.0959524735808372,0.0748170092701912,0.353504478931427,0.5331209897995,-0.14022741],"type":"scatter3d","mode":"markers+text","text":["men","king","women","queen","daughter","son","cat","dog","munich","bird","firenze","venezia","turin","bear"],"hoverinfo":"none","marker":{"fillcolor":"rgba(214,39,40,1)","color":"#00BFFF","opacity":0.4,"line":{"color":"transparent"}},"textfont":{"color":"rgba(130, 130, 130, 0.4)"},"frame":null},{"x":[0.380929358303547,-0.43120447503933],"y":[-0.256465297192335,0.095005151264441],"z":[0.320480826000373,0.0613912020371771],"type":"scatter3d","mode":"markers","hoverinfo":"none","marker":{"fillcolor":"rgba(148,103,189,1)","color":"#800000","opacity":0.1,"size":[200,120],"line":{"color":"#800000","width":3}},"frame":null},{"x":[0.380929358303547,0.611625552177429],"y":[-0.256465297192335,-0.438074022531509],"z":[0.320480826000373,0.0748170092701912],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(140,86,75,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[0.380929358303547,0.122585885226727],"y":[-0.256465297192335,0.017778541892767],"z":[0.320480826000373,0.5331209897995],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(227,119,194,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[0.380929358303547,0.408576637506485],"y":[-0.256465297192335,-0.349100410938263],"z":[0.320480826000373,0.353504478931427],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(127,127,127,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.470899939537048],"y":[0.095005151264441,0.051154900342226],"z":[0.0613912020371771,0.1646568775177],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(188,189,34,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.402773648500443],"y":[0.095005151264441,0.273715287446976],"z":[0.0613912020371771,0.125182867050171],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(23,190,207,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.356412202119827],"y":[0.095005151264441,0.149566367268562],"z":[0.0613912020371771,0.0959524735808372],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(31,119,180,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.49473211],"y":[0.095005151264441,-0.09441595],"z":[0.0613912020371771,-0.14022741],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(255,127,14,1)","color":"#00BFFF","opacity":0.8},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
+<div id="2e70352f2a9f" style="width:720px;height:432px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="2e70352f2a9f">{"x":{"visdat":{"2e7077512497":["function () ","plotlyVisDat"]},"cur_data":"2e7077512497","attrs":{"2e7077512497":{"alpha":1,"sizes":[10,100],"x":[-0.192662939429283,0.00310734775848687,-0.0818405672907829,-0.124575987458229,0.00203429372049868,-0.229007393121719],"y":[0.731834948062897,1.35951673984528,1.0227769613266,1.36418104171753,1.44664418697357,1.05902516841888],"z":[0.186297029256821,-0.325228422880173,0.170561000704765,-0.321435034275055,-0.347879141569138,-0.294686198234558],"type":"scatter3d","mode":"markers+text","text":["berlin","london","paris","germany","france","britain"],"color":["2","3","4","2","4","3"],"colors":["#CD5B45","#BC8F8F","#8E388E"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":"none"},"2e7077512497.1":{"alpha":1,"sizes":[10,100],"x":[-0.400214612483978,0.155158400535583,-0.551183462142944,-0.0610131211578846,-0.042755912989378,0.0447503961622715,-0.470899939537048,-0.402773648500443,-0.0487528331577778,-0.356412202119827,0.611625552177429,0.408576637506485,0.122585885226727,-0.49473211],"y":[0.809867680072784,1.54770350456238,0.613207578659058,1.01436102390289,0.917889356613159,1.28852820396423,0.051154900342226,0.273715287446976,0.332228034734726,0.149566367268562,-0.438074022531509,-0.349100410938263,0.017778541892767,-0.09441595],"z":[-0.747694671154022,-0.449974983930588,-0.638655662536621,-0.0317355208098888,0.363278985023499,-0.00060063402634114,0.1646568775177,0.125182867050171,0.380007326602936,0.0959524735808372,0.0748170092701912,0.353504478931427,0.5331209897995,-0.14022741],"type":"scatter3d","mode":"markers+text","text":["men","king","women","queen","daughter","son","cat","dog","munich","bird","firenze","venezia","turin","bear"],"hoverinfo":"none","marker":{"color":"#00BFFF","opacity":0.4},"textfont":{"color":"rgba(130, 130, 130, 0.4)"}},"2e7077512497.2":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,-0.43120447503933],"y":[-0.256465297192335,0.095005151264441],"z":[0.320480826000373,0.0613912020371771],"type":"scatter3d","mode":"markers","hoverinfo":"none","marker":{"opacity":0.1,"size":[200,120],"color":"#800000","line":{"color":"#800000","width":3}}},"2e7077512497.3":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,0.611625552177429],"y":[-0.256465297192335,-0.438074022531509],"z":[0.320480826000373,0.0748170092701912],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"2e7077512497.4":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,0.122585885226727],"y":[-0.256465297192335,0.017778541892767],"z":[0.320480826000373,0.5331209897995],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"2e7077512497.5":{"alpha":1,"sizes":[10,100],"x":[0.380929358303547,0.408576637506485],"y":[-0.256465297192335,-0.349100410938263],"z":[0.320480826000373,0.353504478931427],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"2e7077512497.6":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.470899939537048],"y":[0.095005151264441,0.051154900342226],"z":[0.0613912020371771,0.1646568775177],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"2e7077512497.7":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.402773648500443],"y":[0.095005151264441,0.273715287446976],"z":[0.0613912020371771,0.125182867050171],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"2e7077512497.8":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.356412202119827],"y":[0.095005151264441,0.149566367268562],"z":[0.0613912020371771,0.0959524735808372],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}},"2e7077512497.9":{"alpha":1,"sizes":[10,100],"x":[-0.43120447503933,-0.49473211],"y":[0.095005151264441,-0.09441595],"z":[0.0613912020371771,-0.14022741],"type":"scatter3d","mode":"lines","line":{"color":"#00BFFF","opacity":0.8}}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"scene":{"xaxis":{"tickfont":{"family":"sans-serif","size":13,"color":"rgb(160, 160, 160)"},"title":"w1","color":"rgb(160, 160, 160)"},"yaxis":{"tickfont":{"family":"sans-serif","size":13,"color":"rgb(160, 160, 160)"},"title":"w2","color":"rgb(160, 160, 160)"},"zaxis":{"tickfont":{"family":"sans-serif","size":13,"color":"rgb(160, 160, 160)"},"title":"w3","color":"rgb(160, 160, 160)"}},"title":"","plot_bgcolor":"transparent","paper_bgcolor":"transparent","xaxis":{"domain":[0,1]},"yaxis":{"domain":[0,1]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false,"displayModeBar":false},"data":[{"x":[-0.192662939429283,-0.124575987458229],"y":[0.731834948062897,1.36418104171753],"z":[0.186297029256821,-0.321435034275055],"type":"scatter3d","mode":"markers+text","text":["berlin","germany"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":["none","none"],"name":"2","marker":{"fillcolor":"rgba(205,91,69,0.5)","color":"rgba(205,91,69,1)","line":{"color":"transparent"}},"frame":null},{"x":[0.00310734775848687,-0.229007393121719],"y":[1.35951673984528,1.05902516841888],"z":[-0.325228422880173,-0.294686198234558],"type":"scatter3d","mode":"markers+text","text":["london","britain"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":["none","none"],"name":"3","marker":{"fillcolor":"rgba(188,143,143,0.5)","color":"rgba(188,143,143,1)","line":{"color":"transparent"}},"frame":null},{"x":[-0.0818405672907829,0.00203429372049868],"y":[1.0227769613266,1.44664418697357],"z":[0.170561000704765,-0.347879141569138],"type":"scatter3d","mode":"markers+text","text":["paris","france"],"textfont":{"color":"rgba(220, 220, 220, 1)"},"hoverinfo":["none","none"],"name":"4","marker":{"fillcolor":"rgba(142,56,142,0.5)","color":"rgba(142,56,142,1)","line":{"color":"transparent"}},"frame":null},{"x":[-0.400214612483978,0.155158400535583,-0.551183462142944,-0.0610131211578846,-0.042755912989378,0.0447503961622715,-0.470899939537048,-0.402773648500443,-0.0487528331577778,-0.356412202119827,0.611625552177429,0.408576637506485,0.122585885226727,-0.49473211],"y":[0.809867680072784,1.54770350456238,0.613207578659058,1.01436102390289,0.917889356613159,1.28852820396423,0.051154900342226,0.273715287446976,0.332228034734726,0.149566367268562,-0.438074022531509,-0.349100410938263,0.017778541892767,-0.09441595],"z":[-0.747694671154022,-0.449974983930588,-0.638655662536621,-0.0317355208098888,0.363278985023499,-0.00060063402634114,0.1646568775177,0.125182867050171,0.380007326602936,0.0959524735808372,0.0748170092701912,0.353504478931427,0.5331209897995,-0.14022741],"type":"scatter3d","mode":"markers+text","text":["men","king","women","queen","daughter","son","cat","dog","munich","bird","firenze","venezia","turin","bear"],"hoverinfo":["none","none","none","none","none","none","none","none","none","none","none","none","none","none"],"marker":{"fillcolor":"rgba(214,39,40,1)","color":"#00BFFF","opacity":0.4,"line":{"color":"transparent"}},"textfont":{"color":"rgba(130, 130, 130, 0.4)"},"frame":null},{"x":[0.380929358303547,-0.43120447503933],"y":[-0.256465297192335,0.095005151264441],"z":[0.320480826000373,0.0613912020371771],"type":"scatter3d","mode":"markers","hoverinfo":["none","none"],"marker":{"fillcolor":"rgba(148,103,189,1)","color":"#800000","opacity":0.1,"size":[200,120],"line":{"color":"#800000","width":3}},"frame":null},{"x":[0.380929358303547,0.611625552177429],"y":[-0.256465297192335,-0.438074022531509],"z":[0.320480826000373,0.0748170092701912],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(140,86,75,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[0.380929358303547,0.122585885226727],"y":[-0.256465297192335,0.017778541892767],"z":[0.320480826000373,0.5331209897995],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(227,119,194,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[0.380929358303547,0.408576637506485],"y":[-0.256465297192335,-0.349100410938263],"z":[0.320480826000373,0.353504478931427],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(127,127,127,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.470899939537048],"y":[0.095005151264441,0.051154900342226],"z":[0.0613912020371771,0.1646568775177],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(188,189,34,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.402773648500443],"y":[0.095005151264441,0.273715287446976],"z":[0.0613912020371771,0.125182867050171],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(23,190,207,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.356412202119827],"y":[0.095005151264441,0.149566367268562],"z":[0.0613912020371771,0.0959524735808372],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(31,119,180,1)","color":"#00BFFF","opacity":0.8},"frame":null},{"x":[-0.43120447503933,-0.49473211],"y":[0.095005151264441,-0.09441595],"z":[0.0613912020371771,-0.14022741],"type":"scatter3d","mode":"lines","line":{"fillcolor":"rgba(255,127,14,1)","color":"#00BFFF","opacity":0.8},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
 
 </center>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>GloVe Model</h2></hgroup><article  id="glove-model">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>GloVe Model</h2></hgroup><article  id="glove-model">
 
-</article></slide><slide class=''><hgroup><h2>Theory</h2></hgroup><article  id="theory">
+</article></slide><slide class=""><hgroup><h2>Theory</h2></hgroup><article  id="theory">
 
 <ul>
 <li>Where to start</li>
@@ -151,16 +151,16 @@
 <li>Which hyperparameter are recommended (see paper)</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Evaluation</h2></hgroup><article  id="evaluation">
+</article></slide><slide class=""><hgroup><h2>Evaluation</h2></hgroup><article  id="evaluation">
 
 <ul>
 <li>Explain &quot;Cosine Similarity&quot; (Example with two vectors in 2d)</li>
 <li>Further evaluation with questions-words file (men to king like women to ?)</li>
 </ul>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2><code>R</code> Implementation <code>text2vec</code></h2></hgroup><article  id="r-implementation-text2vec">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2><code>R</code> Implementation <code>text2vec</code></h2></hgroup><article  id="r-implementation-text2vec">
 
-</article></slide><slide class=''><hgroup><h2>text2vec: About</h2></hgroup><article  id="text2vec-about">
+</article></slide><slide class=""><hgroup><h2>text2vec: About</h2></hgroup><article  id="text2vec-about">
 
 <ul>
 <li>Fast and modern <code>R</code> implementation using
@@ -173,7 +173,7 @@
 <li>In some functions maintenance is not very good. Some functions need further preparations or adaptions</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Important Commands: Preprocessing</h2></hgroup><article  id="important-commands-preprocessing">
+</article></slide><slide class=""><hgroup><h2>Important Commands: Preprocessing</h2></hgroup><article  id="important-commands-preprocessing">
 
 <ul>
 <li><p>Create an iterator which separates by whitespaces:</p>
@@ -192,7 +192,7 @@ vocabulary = prune_vocabulary(vocabulary, term_count_min = 10L)</pre></li>
 tcm = create_tcm(iterator, vectorizer, skip_grams_window = 20L)</pre></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Important Commands: Train the Model</h2></hgroup><article  id="important-commands-train-the-model">
+</article></slide><slide class=""><hgroup><h2>Important Commands: Train the Model</h2></hgroup><article  id="important-commands-train-the-model">
 
 <p><code>GloVe</code> or <code>GlobalVectors</code> are <code>R6</code> classes. First, it is necessary to create an new object of the class:</p>
 
@@ -210,9 +210,9 @@ glove = GlobalVectors$new(
 <pre class = 'prettyprint lang-r'>glove$fit_transform(tcm, n_iter = 50) # Adagrad with 50 iterations
 word.vectors = glove$components       # Extract word vectors</pre>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Data and Usecase</h2></hgroup><article  id="data-and-usecase">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Data and Usecase</h2></hgroup><article  id="data-and-usecase">
 
-</article></slide><slide class=''><hgroup><h2>Data: The Language</h2></hgroup><article  id="data-the-language">
+</article></slide><slide class=""><hgroup><h2>Data: The Language</h2></hgroup><article  id="data-the-language">
 
 <ul>
 <li>Be careful with the language:</li>
@@ -271,7 +271,7 @@ Copied from Grammar &amp; Corpora 2009. Excerpt of the resulting English and Ger
 
 <p>    For instance, German has much more rare words and a bigger variety (harder     for modelling) than English.</p>
 
-</article></slide><slide class=''><hgroup><h2>Data: The Corpus</h2></hgroup><article  id="data-the-corpus">
+</article></slide><slide class=""><hgroup><h2>Data: The Corpus</h2></hgroup><article  id="data-the-corpus">
 
 <ul>
 <li><p>We need a lot of words to train the model.</p></li>
@@ -282,7 +282,7 @@ Copied from Grammar &amp; Corpora 2009. Excerpt of the resulting English and Ger
 
 <p>But, how big should the corbus and the vocabular be to get good word vectors?</p>
 
-</article></slide><slide class=''><hgroup><h2>Data: Corpus Size</h2></hgroup><article  id="data-corpus-size">
+</article></slide><slide class=""><hgroup><h2>Data: Corpus Size</h2></hgroup><article  id="data-corpus-size">
 
 <p>Common sources for the corpus are:</p>
 
@@ -308,7 +308,124 @@ Copied from Grammar &amp; Corpora 2009. Excerpt of the resulting English and Ger
 
 <!--     - Common Crawl:  ~18 GB                         -->
 
-</article></slide><slide class=''><hgroup><h2>Usecase</h2></hgroup><article  id="usecase">
+</article></slide><slide class=""><hgroup><h2>Validation: Metrics</h2></hgroup><article  id="validation-metrics">
+
+<ul>
+<li><p>Cosine Similarity: \[
+  d_\mathrm{cosine}(x,y) = \mathrm{cos}(\angle (x, y)) = \frac{\langle x,y\rangle}{\|x\|_2\|y\|_2}
+  \]</p></li>
+<li><p>Euclidean Distance: \[
+  d_\mathrm{euklid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
+  \]</p></li>
+</ul>
+
+<p>In general we could use every metrik (norm) to evaluate the model. But the cosine similarity seems to give the best results.</p>
+
+</article></slide><slide class=""><hgroup><h2>Validation: Cosine Similarity</h2></hgroup><article  id="validation-cosine-similarity">
+
+<p>Problem of high dimension: <a href='https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf' title=''>https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf</a></p>
+
+<p>Explain whats the main result and show simulation and explain the consequences!</p>
+
+</article></slide><slide class=""><hgroup><h2>Validation: Questions Words File</h2></hgroup><article  id="validation-questions-words-file">
+
+<!--
+https://github.com/nicholas-leonard/word2vec/blob/master/questions-words.txt
+-->
+
+<center>
+
+<iframe class="txt" src="../../additional_stuff/questions_words.txt">
+
+</iframe>
+
+</center>
+
+</article></slide><slide class=""><hgroup><h2>Validation</h2></hgroup><article  id="validation">
+
+<center>
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Category</th>
+<th align="right">Number of Test Lines</th>
+<th align="left">Example</th>
+</tr>
+<tr class="odd">
+<td align="left">capital-common-countries</td>
+<td align="right">506</td>
+<td align="left">Athens Greece Baghdad Iraq</td>
+</tr>
+<tr class="even">
+<td align="left">capital-world</td>
+<td align="right">4524</td>
+<td align="left">Abuja Nigeria Accra Ghana</td>
+</tr>
+<tr class="odd">
+<td align="left">currency</td>
+<td align="right">866</td>
+<td align="left">Algeria dinar Angola kwanza</td>
+</tr>
+<tr class="even">
+<td align="left">city-in-state</td>
+<td align="right">2467</td>
+<td align="left">Chicago Illinois Houston Texas</td>
+</tr>
+<tr class="odd">
+<td align="left">family</td>
+<td align="right">506</td>
+<td align="left">boy girl brother sister</td>
+</tr>
+<tr class="even">
+<td align="left">gram1-adjective-to-adverb</td>
+<td align="right">992</td>
+<td align="left">amazing amazingly apparent apparently</td>
+</tr>
+<tr class="odd">
+<td align="left">gram2-opposite</td>
+<td align="right">812</td>
+<td align="left">acceptable unacceptable aware unaware</td>
+</tr>
+<tr class="even">
+<td align="left">gram3-comparative</td>
+<td align="right">1332</td>
+<td align="left">bad worse big bigger</td>
+</tr>
+<tr class="odd">
+<td align="left">gram4-superlative</td>
+<td align="right">1122</td>
+<td align="left">bad worst big biggest</td>
+</tr>
+<tr class="even">
+<td align="left">gram5-present-participle</td>
+<td align="right">1056</td>
+<td align="left">code coding dance dancing</td>
+</tr>
+<tr class="odd">
+<td align="left">gram6-nationality-adjective</td>
+<td align="right">1599</td>
+<td align="left">Albania Albanian Argentina Argentinean</td>
+</tr>
+<tr class="even">
+<td align="left">gram7-past-tense</td>
+<td align="right">1560</td>
+<td align="left">dancing danced decreasing decreased</td>
+</tr>
+<tr class="odd">
+<td align="left">gram8-plural</td>
+<td align="right">1332</td>
+<td align="left">banana bananas bird birds</td>
+</tr>
+<tr class="even">
+<td align="left">gram9-plural-verbs</td>
+<td align="right">870</td>
+<td align="left">decrease decreases describe describes</td>
+</tr>
+</table>
+
+</center>
+
+</article></slide><slide class=""><hgroup><h2>Usecase</h2></hgroup><article  id="usecase">
 
 <ul>
 <li><p>Ähnlichkeiten: Leicht anfangen, d. h. einfach in euklidischer Norm illustrieren mit Bildern</p></li>
@@ -316,25 +433,25 @@ Copied from Grammar &amp; Corpora 2009. Excerpt of the resulting English and Ger
 <li><p><code>d3</code> Visualisierungen raus ballern (clustern, &#8230;)</p></li>
 </ul>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Outlook</h2></hgroup><article  id="outlook">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Outlook</h2></hgroup><article  id="outlook">
 
-</article></slide><slide class=''><hgroup><h2>Outlook</h2></hgroup><article  id="outlook-1">
+</article></slide><slide class=""><hgroup><h2>Outlook</h2></hgroup><article  id="outlook-1">
 
 <ul>
 <li>Clustern von Artikeln nach Wörtern</li>
 </ul>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Ideas</h2></hgroup><article  id="ideas">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Ideas</h2></hgroup><article  id="ideas">
 
-</article></slide><slide class=''><hgroup><h2>Todos Visualization</h2></hgroup><article  id="todos-visualization">
+</article></slide><slide class=""><hgroup><h2>Todos Visualization</h2></hgroup><article  id="todos-visualization">
 
 <ul>
 <li>Nachdem man den Text ausgewertet hat sollen die W?rter analog zu <a href='https://bl.ocks.org/mbostock/1044242' title=''>diesem Beispiel</a> visualisiert werden. Dabei sollen ?nnliche W?rter zusammen geclustert sein nach GloVe oder SVD oder sonst was. Geht man dann auf ein Wort sollen die &quot;most frequent words&quot; in dem Kontext zu dem Wort auf dem die Maus ist angezeigt werden.</li>
 </ul>
 
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2><i class="fa fa-sitemap"></i> Class System</h2></hgroup><article  id="class-system">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2><i class="fa fa-sitemap"></i> Class System</h2></hgroup><article  id="class-system">
 
-</article></slide><slide class=''><hgroup><h2><i class="fa fa-sitemap"></i> 2 Approaches</h2></hgroup><article  id="approaches">
+</article></slide><slide class=""><hgroup><h2><i class="fa fa-sitemap"></i> 2 Approaches</h2></hgroup><article  id="approaches">
 
 <div class="cols">
 <div class="box1">
