@@ -28,12 +28,17 @@ library(text2vec)
 
 ## Mathematical Representation of Words
 
-- Map of each word $i$ to a corresponding word vector $w_i \in \mathbb{R}^d$.
+- Map of each word $i$ to a corresponding word vector $w_i \in \mathbb{R}^d$ 
+  (word embedding).
 - The word vector $w_i$ can be used to do further analyses e. g. clustering.
+
+<!-- We are not able to do e.g. clustering without having any numeric     -->
+<!-- vector which represents the target                                   -->
+
 - Of course we wan't to have useful word vectors $w_i$ (whatever that means).
 
 $\rightarrow$ GloVe is a model which constructs word vectors out of a given 
-corpus.
+corpus .
 
 ## Goal of GloVe
 
@@ -48,11 +53,125 @@ to constitute a linear structure of the word vector space.
 
 # GloVe Model
 
-## Theory
+## Theory: word-word co-occurence Matrix
 
-- Where to start
-- Where to go
-- Assumptions, restrictions etc. 
+Base of the model is the word-word co-occurenece matrix 
+$X \in \mathbb{R}^{|V| \times |V|}$, where $|V|$ is the number of different 
+words which occurs within a given corpus. In $X$ every entry
+$X_{ij}$ describes how often word $j$ occurs in context of word $i$ with a given
+window size. Therefore we have the following properties:
+
+- $X_i = \sum_k X_{ik}$: Number of words which occur in the context of $i$.
+
+- $P_{ij} = P(j | i) = X_{ij} / X_i$: "Probability" of word $j$ occurs in 
+  context of $i$.
+  
+- The ratio $P_{ik} / P_{jk}$ describes if word $k$ is more related to ...
+    - ... word $i$ if  $P_{ik} / P_{jk} > 1$
+    - ... word $j$ if $P_{ik} / P_{jk} < 1$
+    - ... or similary related if $P_{ik} / P_{jk} \approx 1$
+    
+<!-- Idea: Words which are related to each other occur more often together -->
+<!--       Cat is an animal, dog is an animal, bear is an animal, ...      -->
+
+## Example: word-word co-occurenece Matrix 
+
+**Corpus:** 
+
+<center style="padding-top:5px;padding-bottom:10px;">
+A D C E A D F E B A C E D $\ \Rightarrow\ |V| = 5$
+</center>
+
+**Window size:** 
+
+<center style="padding-top:5px;padding-bottom:10px;">
+2 (the 2 words of the either side) 
+</center>
+
+**word-word co-occurenece matrix:**
+
+\[
+\begin{array}{c|ccccc}
+         & \text{A} & \text{B} & \text{C} & \text{D} & \text{E} \\
+\hline
+\text{A} &     0    &     1    &     3    &     2    &     3  \\
+\text{B} &     1    &     0    &     1    &     0    &     1  \\
+\text{C} &     3    &     1    &     0    &     2    &     2  \\
+\text{D} &     2    &     0    &     2    &     0    &     4  \\
+\text{E} &     3    &     1    &     2    &     4    &     0
+\end{array} \ \ \Rightarrow\ \ P_\text{AD} = X_\text{AD} / X_\text{A} = \frac{2}{9}
+\]
+
+<!-- In $X$ we now have some word vectors as columns. Why shouldn't we use them
+as word vectors?-->
+
+## Where to Start?
+
+Remember: We want to create word vectors $w_i \in \mathbb{R}^d$ and we want to
+use the ratio $P_{ik} / P_{jk}$ since the ratio is more appropriate to take 
+words into context.
+
+**The Idea:**
+
+\[
+F(w_i, w_j, \tilde{w}_k) = \frac{P_{ik}}{P_{jk}}
+\]
+
+with word vectors $w_i, w_j$ and context vector $\tilde{w}_k$. $F$ is unknown
+at this stage but can be any function.
+
+We now parameterize every word vectors, therefore we have $d \cdot |V|$ 
+parameter to estimate to get word vectors.
+
+But how should we estimate those parameters without a specific function $F$?
+
+## How does $F$ looks like?
+
+1. Reduce number of possible outputs of $F$ by taking $w_i - w_j$ instead of 
+   two vectors $w_i$ and $w_j$:
+   \[
+   F(w_i - w_j, \tilde{w}_k) = \frac{P_{ik}}{P_{jk}}
+   \]
+
+2. We want to keep the linear structure between the word vectors and context
+   vector:
+   \[
+   F\left((w_i - w_j)^T\tilde{w}_k\right) = \frac{P_{ik}}{P_{jk}}
+   \]
+   
+<!-- Analogie zum lm oder glm mit linearem Prädiktor. Man modelliert eine -->
+<!-- Linearkombination, wodurch in gewissermaßen die interne Stuktur -->
+<!-- vorgegeben ist -->
+   
+3. Keep exchange symmetrie. We want be able to exchange word vectors $w$ with
+   context vectors $\tilde{w}$ without getting different results: \
+   $\rightarrow\$ not given at this stage
+   
+## How does $F$ looks like?
+
+To obtain the exchange symmetrie we need to apply two "tricks":
+
+1. We restrict $F$ to be a homomophism between $(\mathbb{R}, f) = (\mathbb{R}, +)$ 
+   and $(\mathbb{R}_+, g) = (\mathbb{R}_+, \cdot )$. That means we expect $F$
+   to fulfill:
+   \[
+   F(f(a, b)) = F(a + b) = F(a)F(b) = g(F(a), F(b))
+   \]
+   With $a = w_i^T\tilde{w}_k$ and $b = -w_j^T\tilde{w}_k$. \
+   We notice, that the upper equation implies a functional equation which have
+   just one solution: 
+   \[
+   F = \exp_a
+   \]
+   
+## How does $F$ looks like?
+
+To obtain the exchange symmetrie we need to apply two "tricks":
+
+2. 
+
+## Algorithm
+
 - Which algorithm is used to fit the model?
 
 We perform GloVe fitting using AdaGrad - stochastic gradient descend with 
@@ -68,7 +187,7 @@ on the discribed above wikipedia dataset.
 - Explain "Cosine Similarity" (Example with two vectors in 2d)
 - Further evaluation with questions-words file (men to king like women to ?)
 
-# `R` Implementation `text2vec`
+# `R` Package `text2vec`
 
 ## text2vec: About
 
