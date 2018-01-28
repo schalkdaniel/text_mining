@@ -35,7 +35,8 @@ sampleHypercube = function (dim = 3, nsim = 100)
 }
 
 dims = c(3, 5, 10, 100, 500, 1000, 5000)
-run.sim = 50
+# dims = unique(round(seq(2, 5000, length.out = 30)))
+run.sim = 20
 
 ratios = matrix(NA_real_, nrow = length(dims), ncol = run.sim)
 
@@ -67,4 +68,5 @@ df.ratios = df.ratios %>%
 ggplot(df.ratios, aes(Dimension, Ratios)) + 
   theme_tufte(ticks=FALSE) +
   geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 3)
+
 

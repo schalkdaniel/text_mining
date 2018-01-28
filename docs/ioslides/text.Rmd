@@ -139,17 +139,17 @@ But how should we estimate those parameters without a specific function $F$?
    F\left((w_i - w_j)^T\tilde{w}_k\right) = \frac{P_{ik}}{P_{jk}}
    \]
    
+3. Keep exchange symmetrie. We want be able to exchange word vectors $w$ with
+   context vectors $\tilde{w}$ without getting different results: \
+   $\rightarrow$ not given at this stage
+   
 <!-- Analogie zum lm oder glm mit linearem Prädiktor. Man modelliert eine -->
 <!-- Linearkombination, wodurch in gewissermaßen die interne Stuktur -->
 <!-- vorgegeben ist -->
    
-3. Keep exchange symmetrie. We want be able to exchange word vectors $w$ with
-   context vectors $\tilde{w}$ without getting different results: \
-   $\rightarrow\$ not given at this stage
-   
 ## How does $F$ looks like?
 
-To obtain the exchange symmetrie we need to apply two "tricks":
+To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 
 1. We restrict $F$ to be a homomophism between $(\mathbb{R}, f) = (\mathbb{R}, +)$ 
    and $(\mathbb{R}_+, g) = (\mathbb{R}_+, \cdot )$. That means we expect $F$
@@ -166,26 +166,158 @@ To obtain the exchange symmetrie we need to apply two "tricks":
    
 ## How does $F$ looks like?
 
-To obtain the exchange symmetrie we need to apply two "tricks":
+To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 
-2. 
+1. We choose $a = \exp(1)$, therefore $F = \exp$. 
+   \[
+   F\left((w_i - w_j)^T\tilde{w}_k\right) = \exp\left((w_i - w_j)^T\tilde{w}_k\right) = \frac{\exp(w_i^T\tilde{w}_k)}{\exp(w_j^T\tilde{w}_k)} = \frac{P_{ik}}{P_{jk}} \\
+   \Rightarrow\ \exp(w_i^T\tilde{w}_k) = P_{ik} = \frac{X_{ik}}{X_i} \\
+   \Leftrightarrow\ w_i^T\tilde{w}_k = \log(X_{ik}) - \log(X_i) \\
+   \Leftrightarrow\ w_i^T\tilde{w}_k + \log(X_i) = \log(X_{ik})
+   \]
+   
+## How does $F$ looks like?
 
-## Algorithm
+To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 
-- Which algorithm is used to fit the model?
+<ol start="2">
+<li>
+   Since $\log(X_i)$ is independent of $k$ we can put this in a bias term. This
+   bias term we can decompose into a term $b_i$ from $w_i$ and one term 
+   $\tilde{b}_k$ from $\tilde{w}_k$:
+   \[
+   \Rightarrow\ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik})
+   \]
+   This is now an model equation which we can use for training the word vectors.
+   We also note, that we have transformed the unsupervised task into a 
+   supervised task which we know how to handle.
+</li>
+</ol>
 
+## Model Equation and Loss Function
+
+A problem appears for $X_{ik} = 0$. This is definetily the case since $X$ is 
+a sparce matrix. We don't want to drop that property due to very convenient
+memory handling. Therefore, we use an additive shift in the logarithm:
+\[
+\log(X_{ik})\ \rightarrow\ \log(X_{ik} + 1)
+\]
+This maintains the sparsity: 
+\[
+X_{ik} = 0\ \Rightarrow\ \log(X_{ik} + 1) = \log(1) = 0
+\]
+The final objective which we use for training is
+\[
+w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik} + 1)
+\]
+
+## Model Equation and Loss Function
+
+To estimate the word vectors GloVe uses a weighted least squares appraoch:
+\[
+J = \sum\limits_{i=1}^{|V|}\sum\limits_{j=1}^{|V|}f(X_{ij})\left(x_i^T\tilde{w}_j + b_i + \tilde{b}_j - \log(X_{ij} + 1)\right)^2
+\]
+Pennington et. al. proposed as weight function:
+\[
+f(x) = \left\{
+\begin{array}{ccc}
+(x / x_\mathrm{max})^\alpha, & x < x_\mathrm{max} \\
+1, & x \geq x_\mathrm{max}
+\end{array}
+\right.
+\]
+
+Selecting this function also introduces two new hyperparameters $\alpha$ and 
+$x_\mathrm{max}$. The normal way to find good values for $\alpha$ and 
+$x_\mathrm{max}$ would be to use a tuning method . The problem now is that 
+for all tuning methods we need to evaluate the model. Since we want to model an
+unsupervised task evaluating the model isn't straightforward.
+
+<!-- Of course we can try to find lower $J$'s by tuning alpha and x_max.   -->
+<!-- But fitting the log counts very good does not necessarily yields good -->
+<!-- word vectors which fulfill the desired properties                     -->
+
+<!--
+<center>
+```{r, child="rmd_externals/plotly_weight_function.Rmd"}
+```
+</center>
+-->
+
+## Algorithm used for Fitting
+
+Basically, GloVe uses a gradient descend technique to minimize the objective 
+$J$. Nevertheless, using ordinary gradient descend would be way too expensive
+in practise. Therefore some adoptions:
+
+- Individual learning rate in each iteration.
+
+- Adaption of the learning rate to the parameters, performing larger updates 
+  for infrequent and smaller updates for frequent parameters
+
+- Well-suited for sparse data, improve robustness of (stochastic) gradient 
+  descend
+  
+- For GloVe, infrequent words require much larger updates than frequent ones
+
+$\rightarrow$ This adaptions leads to a new algorithm called **AdaGrad**
+
+<!--
 We perform GloVe fitting using AdaGrad - stochastic gradient descend with 
 per-feature adaptive learning rate. Also, fitting is done in fully parallel 
 and asynchronous manner ( see Hogwild! paper ), so it can benefit from machines 
 with multiple cores. In my tests I achieved almost 8x speedup on 8 core machine 
 on the discribed above wikipedia dataset.
+-->
 
-- Which hyperparameter are recommended (see paper)
 
-## Evaluation
+## Evaluation: Metrics
 
-- Explain "Cosine Similarity" (Example with two vectors in 2d)
-- Further evaluation with questions-words file (men to king like women to ?)
+We need something to measure the distance between vectors:
+
+- **Cosine Similarity**
+  \[
+  d_\mathrm{cosine}(x,y) = \mathrm{cos}(\angle (x, y)) = \frac{\langle x,y\rangle}{\|x\|_2\|y\|_2}
+  \]
+
+- **Euclidean Distance**
+  \[
+  d_\mathrm{euklid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
+  \]
+
+In general we could use every metrik (norm) to evaluate the model. But the 
+cosine similarity is more robust in terms of curse of dimensionality.
+
+## Evaluation: p-Norm in high Dimensions
+
+<!--
+Problem of high dimension:
+https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf
+
+Explain whats the main result and show simulation and explain the consequences!
+-->
+CC. Aggarawal et. al. have shown, that in high dimensions the ratio of the 
+maximal norm divided by the minimal norm of $n$ points $x_1, \dots, x_n$ 
+converges in probability to 1 for increasing dimension $d$:
+\[
+\underset{{d\rightarrow\infty}}{\mathrm{p~lim}}\ \frac{\mathrm{max}_k \|x_k\|_2}{\mathrm{min}_k \|x_k\|_2} = 1
+\]
+
+$\Rightarrow$ Points are centered on the surface of a hypersphere.
+
+## Evaluation: p-Norm in high Dimensions
+
+This can be simulated by setting different dimensions e.g. 3, 5, 10, 100, 500, 
+1000, 5000. For each dimension do:
+
+1. Draw $n$ points from a distribution which samples of a distribution (e.g. 
+   from hypercube) which returns an $d$ dimensional vector.
+   
+2. Calculate the minimal and maximal euclidean distance of the $n$ points.
+
+3. Calculate the ratio of the maximal and minimal points.
+
+This can be repeated some times.
 
 # `R` Package `text2vec`
 
@@ -308,28 +440,6 @@ Common sources for the corpus are:
 <!--     - Wikipedia:    ~3.3 GB                         --> 
 <!--     - Common Crawl:  ~18 GB                         -->
 
-## Validation: Metrics
-
-- Cosine Similarity:
-  \[
-  d_\mathrm{cosine}(x,y) = \mathrm{cos}(\angle (x, y)) = \frac{\langle x,y\rangle}{\|x\|_2\|y\|_2}
-  \]
-
-- Euclidean Distance:
-  \[
-  d_\mathrm{euklid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
-  \]
-
-In general we could use every metrik (norm) to evaluate the model. But the 
-cosine similarity seems to give the best results.
-
-## Validation: Cosine Similarity
-
-Problem of high dimension:
-https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf
-
-Explain whats the main result and show simulation and explain the consequences!
-
 
 ## Validation: Questions Words File
 <!--
@@ -367,6 +477,14 @@ cat("<center>")
 knitr::kable(examples, format = "pandoc", row.names = FALSE)
 cat("</center>")
 ```
+
+## Validation
+
+- Now tuning is "possible" for a given task specified in the questions words file
+- Penningten et al have tuned the model and came to good values (just empirical
+  without a proove):
+    - $\alpha = 0.75$
+    - $x_\mathrm{max} = 100$ (does just have a weakly influence on performance)
 
 ## Usecase
 
