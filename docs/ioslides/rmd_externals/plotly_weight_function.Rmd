@@ -1,0 +1,83 @@
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(plotly)
+
+x = seq(0, 400, length.out = 1000)
+myfun = function (x, alpha, x_max)
+{
+  return (ifelse (x < x_max, (x / x_max)^alpha, 1));
+}
+
+# create data
+aval = list()
+
+steps.calc = 20
+alphas = seq(0, 1, length.out = steps.calc)
+
+for(step in seq_len(steps.calc)){
+  aval[[step]] = list(visible = FALSE,
+    name = paste0('alpha = ', round(alphas[step], 4)),
+    x    = x,
+    y    = myfun(x, alphas[step], 100))
+}
+aval[3][[1]]$visible = TRUE
+
+# create steps and plot all traces
+steps <- list()
+p <- plot_ly()
+
+k = 1
+
+for (i in seq_len(steps.calc)) {
+  p = add_lines(p, 
+    x = aval[i][[1]]$x,  
+    y = aval[i][[1]]$y, 
+    visible = aval[i][[1]]$visible, 
+    name = aval[i][[1]]$name, 
+    type = 'scatter', 
+    mode = 'lines', 
+    hoverinfo = 'name', 
+    line=list(color='00CED1'), 
+    showlegend = FALSE)
+  
+  step = list(args = list('visible', rep(FALSE, length(aval))),
+    label = round(alphas[i], 2), 
+    method = 'restyle')
+  step$args[[2]][i] = TRUE  
+  steps[[i]] = step
+}  
+
+font = list(
+  family = "sans-serif",
+  size = 13,
+  color = "rgb(160, 160, 160)"
+)
+xlabel = list(
+  tickfont = font,
+  title = "Number of Counts",
+  color = "rgb(160, 160, 160)"
+)
+ylabel = list(
+  tickfont = font,
+  title = "Alpha",
+  color = "rgb(160, 160, 160)"
+)
+
+# add slider control to plot
+p <- p %>%
+  layout(
+    sliders = list(list(active = 3,
+      currentvalue = list(prefix = "Alpha: "),
+      steps = steps))) %>%
+  layout(showlegend = FALSE,
+    xaxis = xlabel,
+    yaxis = ylabel,
+    title = "",
+    plot_bgcolor   = "transparent",
+    paper_bgcolor  = "transparent") %>%
+  config(displayModeBar = FALSE)
+
+p
+
+
+
+```
