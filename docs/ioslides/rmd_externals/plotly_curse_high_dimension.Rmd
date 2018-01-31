@@ -1,3 +1,4 @@
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 metrikOwn = function (x, y, method = "cosine", p = 2)
 {
   if (method == "cosine") {
@@ -69,13 +70,13 @@ for (i in seq_along(dims)) {
 #   theme_tufte(ticks=FALSE) +
 #   geom_tufteboxplot(median.type = "line", whisker.type = 'line', hoffset = 0, width = 3)
 
-cols = paste0("rgb(", seq(0, 0, length.out = nrow(ratios)), ", ", 
-  seq(191, 199, length.out = nrow(ratios)), ", ",
-  seq(255, 140, length.out = nrow(ratios)), ")")
+cols = paste0("rgb(", seq(0, 238, length.out = nrow(ratios)), ", ", 
+  seq(191, 154, length.out = nrow(ratios)), ", ",
+  seq(255, 0, length.out = nrow(ratios)), ")")
 
-cols.alpha = paste0("rgba(", seq(0, 0, length.out = nrow(ratios)), ", ",
-  seq(191, 199, length.out = nrow(ratios)), ", ",
-  seq(255, 140, length.out = nrow(ratios)), ", 0.4)")
+cols.alpha = paste0("rgba(", seq(0, 238, length.out = nrow(ratios)), ", ",
+  seq(191, 154, length.out = nrow(ratios)), ", ",
+  seq(255, 0, length.out = nrow(ratios)), ", 0.4)")
 
 font = list(
   family = "sans-serif",
@@ -134,3 +135,6 @@ p = plot_ly(type = 'box')  %>%
 
 
 p
+
+
+```
