@@ -118,7 +118,7 @@ F(w_i, w_j, \tilde{w}_k) = \frac{P_{ik}}{P_{jk}}
 \]
 
 with word vectors $w_i, w_j$ and context vector $\tilde{w}_k$. $F$ is unknown
-at this stage but can be any function.
+at this stage and basically can be any function.
 
 We now parameterize every word vectors, therefore we have $d \cdot |V|$ 
 parameter to estimate to get word vectors.
@@ -155,7 +155,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    and $(\mathbb{R}_+, g) = (\mathbb{R}_+, \cdot )$. That means we expect $F$
    to fulfill:
    \[
-   F(f(a, b)) = F(a + b) = F(a)F(b) = g(F(a), F(b))
+   F(a + b) = \underbrace{F(f(a, b)) = g(F(a), F(b))}_{\text{Definition of homomorphism}} = F(a)F(b)
    \]
    With $a = w_i^T\tilde{w}_k$ and $b = -w_j^T\tilde{w}_k$. \
    We notice, that the upper equation implies a functional equation which have
@@ -175,6 +175,8 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    \Leftrightarrow\ w_i^T\tilde{w}_k = \log(X_{ik}) - \log(X_i) \\
    \Leftrightarrow\ w_i^T\tilde{w}_k + \log(X_i) = \log(X_{ik})
    \]
+   How we handle the case where $X_{ik} = 0$ and therefore no $\log$ is defined
+   comes later.
    
 ## How does $F$ looks like?
 
@@ -183,7 +185,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 <ol start="2">
 <li>
    Since $\log(X_i)$ is independent of $k$ we can put this in a bias term. This
-   bias term we can decompose into a term $b_i$ from $w_i$ and one term 
+   bias term can decomposed into a term $b_i$ from $w_i$ and one term 
    $\tilde{b}_k$ from $\tilde{w}_k$:
    \[
    \Rightarrow\ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik})
@@ -197,7 +199,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 ## Model Equation and Loss Function
 
 A problem appears for $X_{ik} = 0$. This is definetily the case since $X$ is 
-a sparce matrix. We don't want to drop that property due to very convenient
+a sparce matrix. We don't want to drop the sparsity due to very convenient
 memory handling. Therefore, we use an additive shift in the logarithm:
 \[
 \log(X_{ik})\ \rightarrow\ \log(X_{ik} + 1)
@@ -227,11 +229,11 @@ f(x) = \left\{
 \right.
 \]
 
-Selecting this function also introduces two new hyperparameters $\alpha$ and 
+Using this function also introduces two new hyperparameters $\alpha$ and 
 $x_\mathrm{max}$. The normal way to find good values for $\alpha$ and 
 $x_\mathrm{max}$ would be to use a tuning method . The problem now is that 
-for all tuning methods we need to evaluate the model. Since we want to model an
-unsupervised task evaluating the model isn't straightforward.
+for all tuning methods we need to evaluate the model. Since we want to handle an
+unsupervised task evaluating isn't straightforward.
 
 <!-- Of course we can try to find lower $J$'s by tuning alpha and x_max.   -->
 <!-- But fitting the log counts very good does not necessarily yields good -->
@@ -253,7 +255,7 @@ in practise. Therefore some adoptions:
 - Individual learning rate in each iteration.
 
 - Adaption of the learning rate to the parameters, performing larger updates 
-  for infrequent and smaller updates for frequent parameters
+  for infrequent and smaller updates for frequent parameter
 
 - Well-suited for sparse data, improve robustness of (stochastic) gradient 
   descend
@@ -270,6 +272,7 @@ with multiple cores. In my tests I achieved almost 8x speedup on 8 core machine
 on the discribed above wikipedia dataset.
 -->
 
+# Evaluating GloVe
 
 ## Evaluation: Metrics
 
@@ -318,6 +321,89 @@ This can be simulated by setting different dimensions e.g. 3, 5, 10, 100, 500,
 3. Calculate the ratio of the maximal and minimal points.
 
 This can be repeated some times.
+
+## Evaluation: p-Norm in high Dimensions
+
+<center>
+```{r, child="rmd_externals/plotly_curse_high_dimension.Rmd"}
+```
+</center>
+
+## Evaluation: Semantic and Analogies
+
+One thing we now can do is to ask for semantic and analogies between words. 
+Something like:
+\[
+\mathrm{paris\ behaves\ to\ france\ like\ berlin\ to\ ?} \\
+\mathrm{animal\ behaves\ to\ animals\ like\ people\ to\ ?} \\
+\mathrm{i\ behaves\ to\ j\ like\ k\ to\ l} 
+\]
+Therefore, we have $3$ given word vectors $w_i$, $w_j$ and $w_k$. To get the 
+desired fourth word $l$ we use the linearity of the word vector space:
+\[
+w_l \approx w_j - w_i + w_k
+\]
+Furthermore, we obtain $\widehat{l}$ from our model and a given metric 
+$d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by computing:
+\[
+\widehat{l} = \underset{l \in V}{\mathrm{arg~min}}\ d(w_j - w_i + w_k, w_l)
+\]
+
+## Evaluation: Questions Words File
+
+It is obvious that is is not effecient to try this for every possible 
+combination and label the result with true or falso to get the overall 
+precision. Luckily, some poor guys does exactly that and creates a question
+words file which contains about 19000 semantic analogies:
+
+<!--
+https://github.com/nicholas-leonard/word2vec/blob/master/questions-words.txt
+-->
+
+<center>
+<iframe class="txt" src="../../additional_stuff/questions_words.txt"></iframe>
+</center>
+
+## Evaluation: Question Words File
+
+```{r, echo=FALSE, results='asis'}
+val.file = readLines("../../additional_stuff/questions_words.txt")
+
+categories.list = list()
+categories = val.file[grepl(":", val.file)]
+
+for (i in seq_along(categories)) {
+  if (i < length(categories)) {
+    categories.list[[substr(categories[i], 3, nchar(categories[i]))]] = val.file[(which(categories[i] == val.file) + 1):(which(categories[i + 1] == val.file) - 1)]  
+  } else {
+    categories.list[[substr(categories[i], 3, nchar(categories[i]))]] = val.file[(which(categories[i] == val.file) + 1):length(val.file)]
+  }
+}
+
+examples = data.frame(
+  "Category" = names(categories.list),
+  "Number of Test Lines" = unlist(lapply(categories.list, length)),
+  "Example" = unlist(lapply(categories.list, function (x) { return(x[1])}))
+)
+colnames(examples) = c("Category", "Number of Test Lines", "Example")
+
+cat("<center>")
+knitr::kable(examples, format = "pandoc", row.names = FALSE)
+cat("</center>")
+```
+
+## Evaluation: Hyperparamter Tuning
+
+- Now tuning is "possible" for a given task specified in the questions words 
+  file
+
+- Penningten et al have tuned the model and came to good values (just empirical
+  without a proove):
+    - $\alpha = 0.75$
+    - $x_\mathrm{max} = 100$ (does just have a weakly influence on performance)
+    
+- Note that we are dependent on this file and can just test on this file. If 
+  we want to test other properties of the model we need other files.
 
 # `R` Package `text2vec`
 
@@ -441,50 +527,7 @@ Common sources for the corpus are:
 <!--     - Common Crawl:  ~18 GB                         -->
 
 
-## Validation: Questions Words File
-<!--
-https://github.com/nicholas-leonard/word2vec/blob/master/questions-words.txt
--->
 
-<center>
-<iframe class="txt" src="../../additional_stuff/questions_words.txt"></iframe>
-</center>
-
-## Validation
-
-```{r, echo=FALSE, results='asis'}
-val.file = readLines("../../additional_stuff/questions_words.txt")
-
-categories.list = list()
-categories = val.file[grepl(":", val.file)]
-
-for (i in seq_along(categories)) {
-  if (i < length(categories)) {
-    categories.list[[substr(categories[i], 3, nchar(categories[i]))]] = val.file[(which(categories[i] == val.file) + 1):(which(categories[i + 1] == val.file) - 1)]  
-  } else {
-    categories.list[[substr(categories[i], 3, nchar(categories[i]))]] = val.file[(which(categories[i] == val.file) + 1):length(val.file)]
-  }
-}
-
-examples = data.frame(
-  "Category" = names(categories.list),
-  "Number of Test Lines" = unlist(lapply(categories.list, length)),
-  "Example" = unlist(lapply(categories.list, function (x) { return(x[1])}))
-)
-colnames(examples) = c("Category", "Number of Test Lines", "Example")
-
-cat("<center>")
-knitr::kable(examples, format = "pandoc", row.names = FALSE)
-cat("</center>")
-```
-
-## Validation
-
-- Now tuning is "possible" for a given task specified in the questions words file
-- Penningten et al have tuned the model and came to good values (just empirical
-  without a proove):
-    - $\alpha = 0.75$
-    - $x_\mathrm{max} = 100$ (does just have a weakly influence on performance)
 
 ## Usecase
 
