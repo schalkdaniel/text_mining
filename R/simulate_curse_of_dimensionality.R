@@ -50,7 +50,7 @@ for (i in seq_along(dims)) {
       metrikOwn(x, 0, method = "euclidean")
     })
     
-    ratios[i, j] = (max(dists) - min(dists)) / min(dists)
+    ratios[i, j] = (max(dists)) / min(dists)
   }
 }
 
