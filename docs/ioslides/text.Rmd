@@ -175,8 +175,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    \Leftrightarrow\ w_i^T\tilde{w}_k = \log(X_{ik}) - \log(X_i) \\
    \Leftrightarrow\ w_i^T\tilde{w}_k + \log(X_i) = \log(X_{ik})
    \]
-   How we handle the case where $X_{ik} = 0$ and therefore no $\log$ is defined
-   comes later.
+   But: How to handle $X_{ik} = 0$? This comes later.
    
 ## How does $F$ looks like?
 
@@ -185,7 +184,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 <ol start="2">
 <li>
    Since $\log(X_i)$ is independent of $k$ we can put this in a bias term. This
-   bias term can decomposed into a term $b_i$ from $w_i$ and one term 
+   bias term can decomposed into a term $b_i$ from $w_i$ and 
    $\tilde{b}_k$ from $\tilde{w}_k$:
    \[
    \Rightarrow\ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik})
@@ -199,7 +198,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 ## Model Equation and Loss Function
 
 A problem appears for $X_{ik} = 0$. This is definetily the case since $X$ is 
-a sparce matrix. We don't want to drop the sparsity due to very convenient
+a sparce matrix. We don't want to drop the sparsity due to convenient
 memory handling. Therefore, we use an additive shift in the logarithm:
 \[
 \log(X_{ik})\ \rightarrow\ \log(X_{ik} + 1)
@@ -230,8 +229,8 @@ f(x) = \left\{
 \]
 
 Using this function also introduces two new hyperparameters $\alpha$ and 
-$x_\mathrm{max}$. The normal way to find good values for $\alpha$ and 
-$x_\mathrm{max}$ would be to use a tuning method . The problem now is that 
+$x_\mathrm{max}$. The ordinary way to find good values for $\alpha$ and 
+$x_\mathrm{max}$ would be to use a tuning method. The problem now is that 
 for all tuning methods we need to evaluate the model. Since we want to handle an
 unsupervised task evaluating isn't straightforward.
 
@@ -300,14 +299,18 @@ https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf
 Explain whats the main result and show simulation and explain the consequences!
 -->
 CC. Aggarawal et. al. have shown, that in high dimensions the ratio of the 
-maximal norm divided by the minimal norm of $n$ points $x_1, \dots, x_n$ 
-converges in probability to 1 for increasing dimension $d$:
+maximal norm divided by the minimal norm of $n$ points $x_1, \dots, x_n$
+which are randomly drawn converges in probability to 1 for increasing
+dimension $d$:
 \[
 \underset{{d\rightarrow\infty}}{\mathrm{p~lim}}\ \frac{\mathrm{max}_k \|x_k\|_2}{\mathrm{min}_k \|x_k\|_2} = 1
 \]
 
-$\Rightarrow$ Points are centered on the surface of a hypersphere.
+$\Rightarrow$ Points are concentrated on the surface of a hypersphere 
+using the euclidean norm.
 
+The same holds for every $p$-Norm.
+<!--
 ## Evaluation: p-Norm in high Dimensions
 
 This can be simulated by setting different dimensions e.g. 3, 5, 10, 100, 500, 
@@ -321,6 +324,7 @@ This can be simulated by setting different dimensions e.g. 3, 5, 10, 100, 500,
 3. Calculate the ratio of the maximal and minimal points.
 
 This can be repeated some times.
+-->
 
 ## Evaluation: p-Norm in high Dimensions
 
@@ -333,11 +337,13 @@ This can be repeated some times.
 
 One thing we now can do is to ask for semantic and analogies between words. 
 Something like:
+<font size="3">
 \[
 \mathrm{paris\ behaves\ to\ france\ like\ berlin\ to\ ?} \\
 \mathrm{animal\ behaves\ to\ animals\ like\ people\ to\ ?} \\
 \mathrm{i\ behaves\ to\ j\ like\ k\ to\ l} 
 \]
+</font>
 Therefore, we have $3$ given word vectors $w_i$, $w_j$ and $w_k$. To get the 
 desired fourth word $l$ we use the linearity of the word vector space:
 \[
