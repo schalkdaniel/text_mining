@@ -186,6 +186,18 @@ th {
   text-align: center; 
 }
 
+th.own { 
+
+  /* Hintergrund Farbe des "header" */
+  background: rgba(255, 165, 0, 0.8) !important; 
+    
+  padding: 5px !important; 
+  border: 1px solid #FFA500; 
+  text-align: center; 
+
+  font-size: 16px;
+}
+
 td { 
 
   /* Abstand zu den Zellr?ndern in jeder Richtung */
@@ -202,7 +214,43 @@ td {
   color: rgb(200, 200, 200) !important;
 }
 
+td.own { 
+
+  /* Abstand zu den Zellr?ndern in jeder Richtung */
+  padding: 5px !important; 
+  
+  /* Dicke Art und Farbe der Trennlinien */
+  border: 0px solid #FFA500 !important; 
+  
+  /* Textausrichtung innerhalb der Zellen */
+  text-align: center; 
+  
+  font-weight: normal !important;
+  
+  color: rgb(200, 200, 200) !important;
+
+  font-size: 16px !important;
+}
+
 td:hover { 
+
+  /* Abstand zu den Zellr?ndern in jeder Richtung */
+  padding: 5px !important; 
+  
+  /* Dicke Art und Farbe der Trennlinien */
+  border: 0px solid #FFA500 !important; 
+  
+  /* Textausrichtung innerhalb der Zellen */
+  text-align: center; 
+  
+  font-weight: normal !important;
+  
+  color: rgb(255, 255, 255) !important;
+
+  font-size: 16px !important;
+}
+
+td.own:hover { 
 
   /* Abstand zu den Zellr?ndern in jeder Richtung */
   padding: 5px !important; 
