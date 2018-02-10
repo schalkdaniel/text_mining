@@ -509,21 +509,21 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 
 But, how big should the corbus and the vocabular be to get good word vectors?
 
-## Data: Corpus Size
-  
-Common sources for the corpus are:
+## Data: Common Sources
   
 - **Wikipedia Dump + Gigaword 5:** Wikpedia gives access to all articles 
-  collected within one XML file (unzipped about 63 GB). Manning et. al. combines
-  this with Gigaword 5, an archive of newswire text data<br><br>
+  collected within one XML file (unzipped about 63 GB). Pennington et. al. 
+  combines this with Gigaword 5, an archive of newswire text data. <br><br>
   $\rightarrow$ 6 billion tokens and 400 thousand word vocabulary
-  
-<!-- reduced simple wikipedia dump -->
 
 - **Common Crawl:** Published by Amazon Web Services through its Public Data 
   Sets program in 2012. The data was crawled from the whole web and contains 
   2.9 billion web pages and over 240 TB of data. <br><br>
+  $\rightarrow$ 42 billion tokens and 1.9 million word vocabulary or <br>
   $\rightarrow$ 820 billion tokens and 2.2 million word vocabulary
+  
+- **Twitter:** Pennington et. al. crawled 2 billion tweets. <br><br>
+  $\rightarrow$ 27 billion tokens and 1.2 million word vocabulary
   
 <!-- http://commoncrawl.org/connect/blog/ -->
 

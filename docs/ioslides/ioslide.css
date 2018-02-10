@@ -195,7 +195,7 @@ th.own {
   border: 1px solid #FFA500; 
   text-align: center; 
 
-  font-size: 16px;
+  font-size: 15px !important;
 }
 
 td { 
@@ -229,7 +229,7 @@ td.own {
   
   color: rgb(200, 200, 200) !important;
 
-  font-size: 16px !important;
+  font-size: 15px !important;
 }
 
 td:hover { 
@@ -246,8 +246,6 @@ td:hover {
   font-weight: normal !important;
   
   color: rgb(255, 255, 255) !important;
-
-  font-size: 16px !important;
 }
 
 td.own:hover { 
@@ -264,6 +262,8 @@ td.own:hover {
   font-weight: normal !important;
   
   color: rgb(255, 255, 255) !important;
+  
+  font-size: 15px !important;
 }
 
 table.rmdtable tr:nth-child(odd) {
