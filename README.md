@@ -13,7 +13,6 @@ This repository conatins:
 
 - `ioslides` for the presentation
 - code which I have written
-- some other stuff like fancy visualization or a web crawler
 - paper and references I have used
 - the report written by me
 
