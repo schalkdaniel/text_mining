@@ -1,0 +1,97 @@
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(plotly)
+
+# Values:
+# -------
+
+own_wv               = data.frame(accuracy = c(0.2, 0.3, 0.4, 0.5, 0.6, 0.7), dim = c(25, 50, 100, 200, 300, 500))
+wiki_gigaword_pre_wv = data.frame(accuracy = c(0.4645, 0.6271, 0.6934, 0.7157), dim = c(50, 100, 200, 300))
+common_crawl_pre_wv  = data.frame(accuracy = 0.7472, dim = 300)
+twitter_pre_wv       = data.frame(accuracy = c(0.1212, 0.2744, 0.4358, 0.5385), dim = c(25, 50, 100, 200))
+
+# Plot:
+# -------
+
+font = list(
+  family = "sans-serif",
+  size = 13,
+  color = "rgb(160, 160, 160)"
+)
+xlabel = list(
+  tickfont = font,
+  title = "Dimension",
+  color = "rgb(160, 160, 160)"
+)
+ylabel = list(
+  tickfont = font,
+  title = "Accuracy",
+  color = "rgb(160, 160, 160)"
+)
+
+legend = list(
+  font = list(
+    family = "sans-serif",
+    size = 12,
+    color = "rgb(160, 160, 160)")
+  # bgcolor = "#E2E2E2",
+  # bordercolor = "#FFFFFF",
+  # borderwidth = 2
+)
+
+plot_ly(
+  data = own_wv, 
+  x = ~dim, 
+  y = ~accuracy, 
+  name = 'Own Word Vectors', 
+  type = 'scatter', 
+  mode = 'lines+markers',
+  line = list(color = 'rgb(205, 12, 24)', width = 4),
+  marker = list(size = 12,
+    color = 'rgba(205, 12, 24, 0.5)',
+    line = list(color = 'rgba(205, 12, 24, 1)',
+      width = 3))
+) %>%
+  add_trace(
+    data = wiki_gigaword_pre_wv, 
+    x = ~dim, 
+    y = ~accuracy, 
+    name = 'Wikipedia + Gigaword 5', 
+    line = list(color = 'rgb(0, 135, 139)', width = 4),
+    marker = list(size = 12,
+      color = 'rgba(0, 135, 139, 0.5)',
+      line = list(color = 'rgba(0, 135, 139, 1)',
+        width = 3))
+  ) %>%
+  add_trace(
+    data = common_crawl_pre_wv, 
+    x = ~dim, 
+    y = ~accuracy, 
+    name = 'Common Crawl', 
+    line = list(color = 'rgb(154, 205, 50)', width = 4),
+    marker = list(size = 12,
+      color = 'rgba(154, 205, 50, 0.5)',
+      line = list(color = 'rgba(154, 205, 50, 1)',
+        width = 3))
+  ) %>%
+  add_trace(
+    data = twitter_pre_wv, 
+    x = ~dim, 
+    y = ~accuracy, 
+    name = 'Twitter', 
+    line = list(color = 'rgb(205, 133, 0)', width = 4),
+    marker = list(size = 12,
+      color = 'rgba(205, 133, 0, 0.5)',
+      line = list(color = 'rgba(205, 133, 0, 1)',
+        width = 3))
+  ) %>%
+  # Layout
+  layout(
+    legend = legend,
+    xaxis = xlabel,
+    yaxis = ylabel,
+    # title = "Accuracy depending on Dimension and Corpus",
+    plot_bgcolor   = "transparent",
+    paper_bgcolor  = "transparent") %>%
+  config(displayModeBar = FALSE)
+
+```

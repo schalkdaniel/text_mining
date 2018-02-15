@@ -467,7 +467,7 @@ glove$fit_transform(tcm, n_iter = 50) # Adagrad with 50 iterations
 word.vectors = glove$components       # Extract word vectors
 ```
 
-# Data and Usecase
+# Data
 
 ## Data: The Language
 
@@ -505,9 +505,11 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 - Often crawled from the web. This is mostly followed by a lot of 
   preprocessing (regular expressions, filtering stopwords etc.).
   
-<!-- - Stopwords from http://snowballstem.org -->
+- Does different corpora imply a different quality of the word vectors?
+  
+- How big should the corbus and the vocabular be to get good word vectors?
 
-But, how big should the corbus and the vocabular be to get good word vectors?
+<!-- - Stopwords from http://snowballstem.org -->
 
 ## Data: Common Sources
   
@@ -542,25 +544,39 @@ Own word vectors fitted on the wikipedia dump:
 ```{r, child="tables/table_eval_own.html"}
 ```
 
-## Own Word Vectors
-
 ## Pre-Trained Word Vectors
 
 ```{r, child="tables/table_eval_pre_trained.html"}
 ```
 
-## Pre-Trained Word Vectors
+## Accuracy of Word Vectors
+
+<center>
+```{r, child="rmd_externals/plotly_precision.Rmd"}
+```
+</center>
 
 
 
 
 
+<!--
+# Usecase
 
-
-
-## Usecase
+## Usecase: The Task
 
 - `d3` Visualisierungen raus ballern (clustern, ...)
+-->
+
+# Conclusion
+
+## Conclusion
+
+
+
+- Accuracy of word analogy task depends not only on the dimension, but 
+  also on the corpus
+
 
 # Outlook
 
@@ -568,7 +584,7 @@ Own word vectors fitted on the wikipedia dump:
 
 - Clustern von Artikeln nach Wörtern
 
-
+<!--
 # Ideas
 
 ## Todos Visualization
@@ -617,3 +633,4 @@ Own word vectors fitted on the wikipedia dump:
   </ul>
   </div>
 </div>
+-->
