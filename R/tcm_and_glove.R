@@ -21,6 +21,7 @@ if (vocab.was.created) {
     word_vectors_size = 300, 
     vocabulary        = pruned.vocab, 
     x_max             = 100, 
+    alpha             = 0.75,
     learning_rate     = 0.05, 
     shuffle           = 42L
   )
