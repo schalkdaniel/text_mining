@@ -81,7 +81,7 @@ source ("R/word_analogy_task.R")
 #
 
 # Adjust this path to your word vector:
-word.vector.file = "C:/Users/schal/Downloads/glove.6B/glove.6B.50d.txt"
+word.vector.file = "glove.6B/glove.6B.50d.txt"
 
 # Prepare pre-trained word vectors:
 source ("R/prepare_pre_trained_vectors.R")
