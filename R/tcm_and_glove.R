@@ -6,7 +6,7 @@
 #                                                                              #
 # ============================================================================ #
 
-if (vocab.was.created) {
+if (vocab.was.created && exists("glove.dim")) {
   
   # Train GloVe:
   # ------------
@@ -18,7 +18,7 @@ if (vocab.was.created) {
   tcm = text2vec::create_tcm(it, vectorizer, skip_grams_window = 20L)
   
   glove = text2vec::GlobalVectors$new(
-    word_vectors_size = 300, 
+    word_vectors_size = glove.dim, 
     vocabulary        = pruned.vocab, 
     x_max             = 100, 
     alpha             = 0.75,
@@ -29,7 +29,7 @@ if (vocab.was.created) {
   # glove$fit doesn't work. Use fit_transform instead:
   glove$fit_transform(
     x               = tcm, 
-    n_iter          = 50, 
+    n_iter          = if (glove.dim < 300) { 50 } else { 100 }, 
     n_threads       = parallel::detectCores()
   )
   

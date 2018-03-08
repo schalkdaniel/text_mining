@@ -1,7 +1,7 @@
 ---
 title: "GloVe: Global Vectors for Word Representation"
 subtitle: "Text Mining Seminar"
-author: "Daniel Schalk<span style='padding-left:620px;'>15th March 2017</span>"
+author: "Daniel Schalk<span style='padding-left:510px;'>15th and 16th March 2017</span>"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -30,7 +30,8 @@ library(text2vec)
 
 - Map of each word $i$ to a corresponding word vector $w_i \in \mathbb{R}^d$ 
   (word embedding).
-- The word vector $w_i$ can be used to do further analyses e. g. clustering.
+- The word vector $w_i$ can be used to do further analyses e. g. clustering or
+  as input for more sophisticated text mining models.
 
 <!-- We are not able to do e.g. clustering without having any numeric     -->
 <!-- vector which represents the target                                   -->
@@ -42,8 +43,8 @@ corpus .
 
 ## Goal of GloVe
 
-Model word semantic and analogies between words. Therefore, it is very important
-to constitute a linear structure of the word vector space.
+Model word **semantic** and **analogies** between words. Therefore, it is very 
+important to constitute a linear structure of the word vector space.
 <!-- - Difference of vectors are very important here. -->
 
 <center>
@@ -79,7 +80,7 @@ window size. Therefore we have the following properties:
 **Corpus:** 
 
 <center style="padding-top:5px;padding-bottom:10px;">
-A D C E A D F E B A C E D $\ \Rightarrow\ |V| = 5$
+A D C E A D E B A C E D $\ \Rightarrow\ |V| = 5$
 </center>
 
 **Window size:** 
@@ -141,7 +142,7 @@ But how should we estimate those parameters without a specific function $F$?
    
 3. Keep exchange symmetrie. We want be able to exchange word vectors $w$ with
    context vectors $\tilde{w}$ without getting different results: \
-   $\rightarrow$ not given at this stage
+   $\rightarrow$ Not given at this stage.
    
 <!-- Analogie zum lm oder glm mit linearem Prädiktor. Man modelliert eine -->
 <!-- Linearkombination, wodurch in gewissermaßen die interne Stuktur -->
@@ -158,7 +159,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    F(a + b) = \underbrace{F(f(a, b)) = g(F(a), F(b))}_{\text{Definition of homomorphism}} = F(a)F(b)
    \]
    With $a = w_i^T\tilde{w}_k$ and $b = -w_j^T\tilde{w}_k$. \
-   We notice, that the upper equation implies a functional equation which have
+   We notice, that the upper equation implies a functional equation which has
    just one solution: 
    \[
    F = \exp_a
@@ -175,7 +176,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    \Leftrightarrow\ w_i^T\tilde{w}_k = \log(X_{ik}) - \log(X_i) \\
    \Leftrightarrow\ w_i^T\tilde{w}_k + \log(X_i) = \log(X_{ik})
    \]
-   But: How to handle $X_{ik} = 0$? This comes later.
+   But: How to handle $X_{ik} = 0$? We handle this later.
    
 ## How does $F$ looks like?
 
@@ -184,7 +185,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 <ol start="2">
 <li>
    Since $\log(X_i)$ is independent of $k$ we can put this in a bias term. This
-   bias term can decomposed into a term $b_i$ from $w_i$ and 
+   bias term can be decomposed into a term $b_i$ from $w_i$ and 
    $\tilde{b}_k$ from $\tilde{w}_k$:
    \[
    \Rightarrow\ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik})
@@ -195,7 +196,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 </li>
 </ol>
 
-## Model Equation and Loss Function
+## Model Equation
 
 A problem appears for $X_{ik} = 0$. This is definetily the case since $X$ is 
 a sparce matrix. We don't want to drop the sparsity due to convenient
@@ -207,12 +208,12 @@ This maintains the sparsity:
 \[
 X_{ik} = 0\ \Rightarrow\ \log(X_{ik} + 1) = \log(1) = 0
 \]
-The final objective which we use for training is
+The final model equation which we use for training is
 \[
 w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik} + 1)
 \]
 
-## Model Equation and Loss Function
+## Empirical Risk
 
 To estimate the word vectors GloVe uses a weighted least squares appraoch:
 \[
@@ -261,7 +262,7 @@ in practise. Therefore some adoptions:
   
 - For GloVe, infrequent words require much larger updates than frequent ones
 
-$\rightarrow$ This adaptions leads to a new algorithm called **AdaGrad**
+$\rightarrow$ **AdaGrad** meets these requirements.
 
 <!--
 We perform GloVe fitting using AdaGrad - stochastic gradient descend with 
@@ -298,7 +299,7 @@ https://pdfs.semanticscholar.org/f9af/c4590ac7288e722bc154cbfd73be1f575b58.pdf
 
 Explain whats the main result and show simulation and explain the consequences!
 -->
-CC. Aggarawal et. al. have shown, that in high dimensions the ratio of the 
+Aggarawal et. al. have shown, that in high dimensions the ratio of the 
 maximal norm divided by the minimal norm of $n$ points $x_1, \dots, x_n$
 which are randomly drawn converges in probability to 1 for increasing
 dimension $d$:
@@ -335,7 +336,7 @@ This can be repeated some times.
 
 ## Evaluation: Semantic and Analogies
 
-One thing we now can do is to ask for semantic and analogies between words. 
+One thing we now can do is to ask for semantic analogies between words. 
 Something like:
 <font size="3">
 \[
@@ -357,8 +358,7 @@ $d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by computing:
 
 ## Evaluation: Questions Words File
 
-It is obvious that it is not effecient to try this for every possible 
-combination. To evaluate trained word vectors, Mikolov et al. provide a word
+To evaluate trained word vectors, Mikolov et al. provide a word
 similarity task. This task is given within a question words file which
 contains about 19544 semantic analogies:
 
@@ -411,6 +411,7 @@ cat("</center>")
 - Note that we are dependent on this file and can just test on this file. If 
   we want to test other properties of the model we need other files.
 
+<!--
 # `R` Package `text2vec`
 
 ## text2vec: About
@@ -467,7 +468,9 @@ glove$fit_transform(tcm, n_iter = 50) # Adagrad with 50 iterations
 word.vectors = glove$components       # Extract word vectors
 ```
 
-# Data
+-->
+
+# About the Data
 
 ## Data: The Language
 
@@ -536,6 +539,24 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 <!--     - Common Crawl:  ~18 GB                         -->
 
 # Evaluation of real Word Vectors
+
+## Training Word Vectors
+
+Train word vectors using ...
+
+- ... the `R` package `text2vec`.
+
+- ... the full wikipedia dump with first 7 million words out of 21 million
+  (due to memory consumptions).
+  
+- ... the same settings as Pennington et. al.:
+    - $\alpha = 0.75$
+    - $x_\mathrm{max} = 100$
+    - Learning rate of $0.05$
+    - $\mathrm{Number\ of\ iterations} = \left\{\begin{array}{cc}
+        50 & \text{if} \ d < 300 \\
+        100 & \text{otherwise}
+      \end{array}\right.$.
 
 ## Own Word Vectors
 

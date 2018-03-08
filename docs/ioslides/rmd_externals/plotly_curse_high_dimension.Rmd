@@ -94,6 +94,7 @@ ylabel = list(
   color = "rgb(160, 160, 160)"
 )
 
+
 library(plotly)
 
 p = plot_ly(type = 'box')  %>%
@@ -126,15 +127,18 @@ p = plot_ly(type = 'box')  %>%
     line = list(color = cols[7]),
     name = paste0("d = ", dims[7]), hoverinfo = "none") %>%
   layout(showlegend = FALSE,
+    title = "Simulation of p-Norm in high Dimensions",
+    titlefont = list(
+      family = "sans-serif",
+      size   = 16,
+      color = "rgb(160, 160, 160)"
+    ),
     xaxis = xlabel,
     yaxis = ylabel,
-    title = "",
     plot_bgcolor   = "transparent",
     paper_bgcolor  = "transparent") %>%
   config(displayModeBar = FALSE)
 
 
 p
-
-
 ```

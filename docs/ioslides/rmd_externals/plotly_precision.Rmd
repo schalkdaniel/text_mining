@@ -4,7 +4,7 @@ library(plotly)
 # Values:
 # -------
 
-own_wv               = data.frame(accuracy = c(0.2, 0.3, 0.4, 0.5, 0.6, 0.7), dim = c(25, 50, 100, 200, 300, 500))
+own_wv               = data.frame(accuracy = c(0.1992, 0.3469, 0.4, 0.5, 0.5300, 0.7), dim = c(25, 50, 100, 200, 300, 500))
 wiki_gigaword_pre_wv = data.frame(accuracy = c(0.4645, 0.6271, 0.6934, 0.7157), dim = c(50, 100, 200, 300))
 common_crawl_pre_wv  = data.frame(accuracy = 0.7472, dim = 300)
 twitter_pre_wv       = data.frame(accuracy = c(0.1212, 0.2744, 0.4358, 0.5385), dim = c(25, 50, 100, 200))
@@ -89,7 +89,12 @@ plot_ly(
     legend = legend,
     xaxis = xlabel,
     yaxis = ylabel,
-    # title = "Accuracy depending on Dimension and Corpus",
+    title = "Comparison of trained Word vectors depending<br>on dimension and corpus",
+    titlefont = list(
+      family = "sans-serif",
+      size   = 16,
+      color = "rgb(160, 160, 160)"
+    ),
     plot_bgcolor   = "transparent",
     paper_bgcolor  = "transparent") %>%
   config(displayModeBar = FALSE)

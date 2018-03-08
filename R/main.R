@@ -40,7 +40,7 @@ source ("R/create_vocabulary.R")
 # =====================================
 
 # The following script creates the term count matrix and trains GloVe:
-
+glove.dim = 300
 source ("R/tcm_and_glove.R")
 
 
