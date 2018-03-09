@@ -51,6 +51,29 @@ INFO [2018-03-08 20:48:40] gram8-plural: correct 806 out of 1332, accuracy = 0.6
 INFO [2018-03-08 20:49:17] gram9-plural-verbs: correct 236 out of 870, accuracy = 0.2713
 INFO [2018-03-08 20:49:17] OVERALL ACCURACY = 0.3469
 
+
+# 100d:
+# -----------------------------
+
+INFO [2018-03-09 13:48:49] 19323 full questions found out of 19544 total
+
+INFO [2018-03-09 13:49:08] capital-common-countries: correct 437 out of 506, accuracy = 0.8636
+INFO [2018-03-09 13:52:21] capital-world: correct 2107 out of 4524, accuracy = 0.4657
+INFO [2018-03-09 13:52:58] currency: correct 15 out of 866, accuracy = 0.0173
+INFO [2018-03-09 13:54:51] city-in-state: correct 974 out of 2324, accuracy = 0.4191
+INFO [2018-03-09 13:55:08] family: correct 313 out of 506, accuracy = 0.6186
+INFO [2018-03-09 13:55:40] gram1-adjective-to-adverb: correct 199 out of 992, accuracy = 0.2006
+INFO [2018-03-09 13:56:16] gram2-opposite: correct 97 out of 812, accuracy = 0.1195
+INFO [2018-03-09 13:57:26] gram3-comparative: correct 843 out of 1332, accuracy = 0.6329
+INFO [2018-03-09 13:58:18] gram4-superlative: correct 319 out of 1122, accuracy = 0.2843
+INFO [2018-03-09 13:58:53] gram5-present-participle: correct 442 out of 1056, accuracy = 0.4186
+INFO [2018-03-09 14:00:14] gram6-nationality-adjective: correct 1225 out of 1521, accuracy = 0.8054
+INFO [2018-03-09 14:01:34] gram7-past-tense: correct 719 out of 1560, accuracy = 0.4609
+INFO [2018-03-09 14:02:44] gram8-plural: correct 1008 out of 1332, accuracy = 0.7568
+INFO [2018-03-09 14:03:22] gram9-plural-verbs: correct 361 out of 870, accuracy = 0.4149
+INFO [2018-03-09 14:03:22] OVERALL ACCURACY = 0.4688
+
+
 # 300d:
 # -----------------------------
 

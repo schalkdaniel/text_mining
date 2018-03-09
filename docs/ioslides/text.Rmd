@@ -546,8 +546,8 @@ Train word vectors using ...
 
 - ... the `R` package `text2vec`.
 
-- ... the full wikipedia dump with first 7 million words out of 21 million
-  (due to memory consumptions).
+- ... the full wikipedia dump with first 453.77 million words (16 %, due to 
+  memory consumptions).
   
 - ... the same settings as Pennington et. al.:
     - $\alpha = 0.75$
