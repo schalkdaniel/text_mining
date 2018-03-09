@@ -36,7 +36,7 @@ library(text2vec)
 <!-- We are not able to do e.g. clustering without having any numeric     -->
 <!-- vector which represents the target                                   -->
 
-- Of course we wan't to have useful word vectors $w_i$ (whatever that means).
+- Of course we want to have useful word vectors $w_i$ (whatever that means).
 
 $\rightarrow$ GloVe is a model which constructs word vectors out of a given 
 corpus .
@@ -56,7 +56,7 @@ important to constitute a linear structure of the word vector space.
 
 ## Theory: word-word co-occurence Matrix
 
-Base of the model is the word-word co-occurenece matrix 
+Base of the model is the word-word co-occurrence matrix 
 $X \in \mathbb{R}^{|V| \times |V|}$, where $|V|$ is the number of different 
 words which occurs within a given corpus. In $X$ every entry
 $X_{ij}$ describes how often word $j$ occurs in context of word $i$ with a given
@@ -70,7 +70,7 @@ window size. Therefore we have the following properties:
 - The ratio $P_{ik} / P_{jk}$ describes if word $k$ is more related to ...
     - ... word $i$ if  $P_{ik} / P_{jk} > 1$
     - ... word $j$ if $P_{ik} / P_{jk} < 1$
-    - ... or similary related if $P_{ik} / P_{jk} \approx 1$
+    - ... or similar related if $P_{ik} / P_{jk} \approx 1$
     
 <!-- Idea: Words which are related to each other occur more often together -->
 <!--       Cat is an animal, dog is an animal, bear is an animal, ...      -->
@@ -140,7 +140,7 @@ But how should we estimate those parameters without a specific function $F$?
    F\left((w_i - w_j)^T\tilde{w}_k\right) = \frac{P_{ik}}{P_{jk}}
    \]
    
-3. Keep exchange symmetrie. We want be able to exchange word vectors $w$ with
+3. Keep exchange symmetry. We want be able to exchange word vectors $w$ with
    context vectors $\tilde{w}$ without getting different results: \
    $\rightarrow$ Not given at this stage.
    
@@ -150,7 +150,7 @@ But how should we estimate those parameters without a specific function $F$?
    
 ## How does $F$ looks like?
 
-To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
+To find $F$ and obtain the exchange symmetry we need to apply two "tricks":
 
 1. We restrict $F$ to be a homomophism between $(\mathbb{R}, f) = (\mathbb{R}, +)$ 
    and $(\mathbb{R}_+, g) = (\mathbb{R}_+, \cdot )$. That means we expect $F$
@@ -167,7 +167,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    
 ## How does $F$ looks like?
 
-To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
+To find $F$ and obtain the exchange symmetry we need to apply two "tricks":
 
 1. We choose $a = \exp(1)$, therefore $F = \exp$. 
    \[
@@ -180,7 +180,7 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
    
 ## How does $F$ looks like?
 
-To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
+To find $F$ and obtain the exchange symmetry we need to apply two "tricks":
 
 <ol start="2">
 <li>
@@ -198,8 +198,8 @@ To find $F$ and obtain the exchange symmetrie we need to apply two "tricks":
 
 ## Model Equation
 
-A problem appears for $X_{ik} = 0$. This is definetily the case since $X$ is 
-a sparce matrix. We don't want to drop the sparsity due to convenient
+A problem appears for $X_{ik} = 0$. This is definitely the case since $X$ is 
+a sparse matrix. We don't want to drop the sparsity due to convenient
 memory handling. Therefore, we use an additive shift in the logarithm:
 \[
 \log(X_{ik})\ \rightarrow\ \log(X_{ik} + 1)
@@ -215,7 +215,7 @@ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik} + 1)
 
 ## Empirical Risk
 
-To estimate the word vectors GloVe uses a weighted least squares appraoch:
+To estimate the word vectors GloVe uses a weighted least squares approach:
 \[
 J = \sum\limits_{i=1}^{|V|}\sum\limits_{j=1}^{|V|}f(X_{ij})\left(x_i^T\tilde{w}_j + b_i + \tilde{b}_j - \log(X_{ij} + 1)\right)^2
 \]
@@ -250,7 +250,7 @@ unsupervised task evaluating isn't straightforward.
 
 Basically, GloVe uses a gradient descend technique to minimize the objective 
 $J$. Nevertheless, using ordinary gradient descend would be way too expensive
-in practise. Therefore some adoptions:
+in practice. Therefore some adoptions:
 
 - Individual learning rate in each iteration.
 
@@ -288,7 +288,7 @@ We need something to measure the distance between vectors:
   d_\mathrm{euklid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
   \]
 
-In general we could use every metrik (norm) to evaluate the model. But the 
+In general we could use every metric (norm) to evaluate the model. But the 
 cosine similarity is more robust in terms of curse of dimensionality.
 
 ## Evaluation: p-Norm in high Dimensions
@@ -307,7 +307,7 @@ dimension $d$:
 \underset{{d\rightarrow\infty}}{\mathrm{p~lim}}\ \frac{\mathrm{max}_k \|x_k\|_2}{\mathrm{min}_k \|x_k\|_2} = 1
 \]
 
-$\Rightarrow$ Points are concentrated on the surface of a hypersphere 
+$\Rightarrow$ Points are concentrated on the surface of a hyper sphere 
 using the euclidean norm.
 
 The same holds for every $p$-Norm.
@@ -403,8 +403,8 @@ cat("</center>")
 - Now tuning is "possible" for a given task specified in the questions words 
   file
 
-- Penningten et al have tuned the model and came to good values (just empirical
-  without a proove):
+- Pennington et. al. have tuned the model and came to good values (just empirical
+  without a proof):
     - $\alpha = 0.75$
     - $x_\mathrm{max} = 100$ (does just have a weakly influence on performance)
     
@@ -506,17 +506,17 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 - We need a lot of words to train the model.
 
 - Often crawled from the web. This is mostly followed by a lot of 
-  preprocessing (regular expressions, filtering stopwords etc.).
+  preprocessing (regular expressions, filtering stop words etc.).
   
 - Does different corpora imply a different quality of the word vectors?
   
-- How big should the corbus and the vocabular be to get good word vectors?
+- How big should the corpus and the vocabular be to get good word vectors?
 
 <!-- - Stopwords from http://snowballstem.org -->
 
 ## Data: Common Sources
   
-- **Wikipedia Dump + Gigaword 5:** Wikpedia gives access to all articles 
+- **Wikipedia Dump + Gigaword 5:** Wikipedia gives access to all articles 
   collected within one XML file (unzipped about 63 GB). Pennington et. al. 
   combines this with Gigaword 5, an archive of newswire text data. <br><br>
   $\rightarrow$ 6 billion tokens and 400 thousand word vocabulary
@@ -546,8 +546,8 @@ Train word vectors using ...
 
 - ... the `R` package `text2vec`.
 
-- ... the full wikipedia dump with first 453.77 million words (16 %, due to 
-  memory consumptions).
+- ... the full Wikipedia dump with first 453.77 million words (16 %, due to 
+  memory consumption).
   
 - ... the same settings as Pennington et. al.:
     - $\alpha = 0.75$
@@ -560,7 +560,7 @@ Train word vectors using ...
 
 ## Own Word Vectors
 
-Own word vectors fitted on the wikipedia dump:
+Own word vectors fitted on the Wikipedia dump:
 
 ```{r, child="tables/table_eval_own.html"}
 ```
