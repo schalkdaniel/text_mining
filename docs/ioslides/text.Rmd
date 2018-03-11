@@ -544,12 +544,12 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 
 Train word vectors using ...
 
-- ... the `R` package `text2vec`.
+- the `R` package `text2vec`.
 
-- ... the full Wikipedia dump with first 453.77 million words (16 %, due to 
+- the full Wikipedia dump with first 453.77 million words (16 %, due to 
   memory consumption).
   
-- ... the same settings as Pennington et. al.:
+- the same settings as Pennington et. al.:
     - $\alpha = 0.75$
     - $x_\mathrm{max} = 100$
     - Learning rate of $0.05$
@@ -597,11 +597,13 @@ Own word vectors fitted on the Wikipedia dump:
 
 - Accuracy of word analogy task depends not only on the dimension, but 
   also on the corpus
+  
+- Using server or pcs with huge computing power!
 
 
 # Outlook
 
-## Outlook
+## Outlook: 
 
 - Clustern von Artikeln nach Wörtern
 
