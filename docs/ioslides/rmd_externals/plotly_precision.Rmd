@@ -4,7 +4,7 @@ library(plotly)
 # Values:
 # -------
 
-own_wv               = data.frame(accuracy = c(0.1992, 0.3469, 0.4688, 0.5, 0.5300, 0.7), dim = c(25, 50, 100, 200, 300, 500))
+own_wv               = data.frame(accuracy = c(0.1992, 0.3469, 0.4688, 0.4979, 0.5300), dim = c(25, 50, 100, 200, 300))
 wiki_gigaword_pre_wv = data.frame(accuracy = c(0.4645, 0.6271, 0.6934, 0.7157), dim = c(50, 100, 200, 300))
 common_crawl_pre_wv  = data.frame(accuracy = 0.7472, dim = 300)
 twitter_pre_wv       = data.frame(accuracy = c(0.1212, 0.2744, 0.4358, 0.5385), dim = c(25, 50, 100, 200))
