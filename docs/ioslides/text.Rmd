@@ -578,16 +578,17 @@ Own word vectors fitted on the Wikipedia dump:
 </center>
 
 
+# Outlook
+
+## Outlook: Text Clustering 
+
+- One way to continue using Glove is to use it as word embedding for 
+  further applications.
+  
+- An example is text clustering:
+    1. 
 
 
-
-<!--
-# Usecase
-
-## Usecase: The Task
-
-- `d3` Visualisierungen raus ballern (clustern, ...)
--->
 
 # Conclusion
 
@@ -599,13 +600,6 @@ Own word vectors fitted on the Wikipedia dump:
   also on the corpus
   
 - Using server or pcs with huge computing power!
-
-
-# Outlook
-
-## Outlook: 
-
-- Clustern von Artikeln nach Wörtern
 
 <!--
 # Ideas
