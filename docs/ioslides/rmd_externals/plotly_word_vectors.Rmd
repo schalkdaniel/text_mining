@@ -83,7 +83,9 @@ plot_ly() %>%
             hoverinfo = "none",
             marker = list(
               opacity = 0.1,
-              size = c(200, 120), 
+              size = c(200, 120),
+              sizemode = "diameter",
+              sizeref = 0,
               color = "#800000",
               line  = list(color = "#800000",
                            width = 3)
