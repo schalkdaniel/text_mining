@@ -12,26 +12,21 @@ My topic for the seminar is: **GloVe**
 This repository conatins:
 
 - `ioslides` for the presentation
-- code which I have written
-- some other stuff like fancy visualization or a web crawler
+- code which I have written (`C++` and `R`)
 - paper and references I have used
 - the report written by me
 
-### references
+### References
 
 - [Pennington et al.](https://www.aclweb.org/anthology/D14-1162)
-- Wikipedia
-- Common Crawl
+- [Mirkov et al.](http://www.aclweb.org/anthology/D15-1036)
+- [Aggarwal et al.](https://bib.dbvis.de/uploadedFiles/155.pdf)
 - Grammar & Corpora 2009
-- text2vec vignette
+- [text2vec](https://CRAN.R-project.org/package=text2vec)
 
 ## ToDos
 
-- get into the topic
-- create fancy visualization (maybe with `d3.js`, should work perfectly with `ioslides`)
-- create the presentation with `ioslides`
 - write the report 
-- clean list of references and references within the text
 
 ## Topics
 
