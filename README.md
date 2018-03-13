@@ -1,6 +1,6 @@
 # `text_mining`
 
-Project Page: https://schalkdaniel.github.io/text_mining/
+To see the main results I highily recommend to take a look at the project page: https://schalkdaniel.github.io/text_mining/
 
 ## Purpose
 
