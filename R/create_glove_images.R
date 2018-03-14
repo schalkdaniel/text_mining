@@ -1,19 +1,22 @@
+# ============================================================================ #
+#             Create Images Using GloVe for Text Classification                #
+# ============================================================================ #
 
-# 
+
 # readPreTrainedWordVectors = function (file)
 # {
 #   word.lines = readr::read_lines(file = word.vector.file)
-#   
+# 
 #   words = lapply(X = word.lines, FUN = function (line) {
 #     strsplit(line, " ")[[1]][1]
 #   })
 #   vectors = lapply(X = word.lines, FUN = function (line) {
 #     as.numeric(strsplit(line, " ")[[1]][-1])
 #   })
-#   
+# 
 #   word.vectors = t(as.matrix(as.data.frame(vectors)))
 #   row.names(word.vectors) = words
-#   
+# 
 #   return (word.vectors)
 # }
 
@@ -22,12 +25,16 @@ gloveImage = function (word.vectors, text, nmax = 100, ...)
   available.words = rownames(word.vectors)
   
   special.chars = c("[.]", ",", "?", "!", as.character(0:9), "'", "?", "\\$",
-    "%", "/", "\\(", "\\)", "=", "'", "-", "?", ";", ":")
+    "%", "/", "\\(", "\\)", "=", "'", "-", "?", ";", ":", "\\n")
   
   selection = text
   
   for (char in special.chars) {
-    selection = gsub(char, "", selection)
+    if (char == "\\n") {
+      selection = gsub(char, " ", selection)
+    } else {
+      selection = gsub(char, "", selection)
+    }
   }
   
   words = tolower(unlist(strsplit(x = selection, split = " ")))
@@ -86,14 +93,7 @@ gloveImage = function (word.vectors, text, nmax = 100, ...)
   )
 }
 
-
-
-
-
-
-
-
-# word.vector.file = "C:/Users/schal/Desktop/glove_images/glove.6B.300d.txt"
+# word.vector.file = "C:/Users/schal/Downloads/glove.6B/glove.6B.300d.txt"
 # 
 # word.vectors = readPreTrainedWordVectors(word.vector.file)
 # 

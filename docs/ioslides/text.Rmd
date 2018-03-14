@@ -1,7 +1,7 @@
 ---
 title: "GloVe: Global Vectors for Word Representation"
 subtitle: "Text Mining Seminar"
-author: "Daniel Schalk<span style='padding-left:510px;'>15th and 16th March 2017</span>"
+author: "Daniel Schalk<span style='padding-left:510px;'>15th and 16th March 2018</span>"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -64,7 +64,8 @@ corpus.
 
 Model word **semantic** and **analogies** between words. Therefore, it is very 
 important to constitute a linear structure of the word vector space. The 
-following graphic was created using 3 dimensional word vectors:
+following graphic was created using 3 dimensional word vectors trained with
+GloVe:
 <!-- - Difference of vectors are very important here. -->
 
 <center>
@@ -163,7 +164,9 @@ at this stage and basically can be any function.
 We now parameterize every word vectors, therefore we have $d \cdot |V|$ 
 parameter to estimate to get word vectors.
 
+<!--
 But how should we estimate those parameters without a specific function $F$?
+-->
 
 ## How does $F$ looks like?
 
@@ -258,7 +261,7 @@ To estimate the word vectors GloVe uses a weighted least squares approach:
 \[
 J = \sum\limits_{i=1}^{|V|}\sum\limits_{j=1}^{|V|}f(X_{ij})\left(x_i^T\tilde{w}_j + b_i + \tilde{b}_j - \log(X_{ij} + 1)\right)^2
 \]
-Pennington et. al. proposed as weight function:
+[@pennington2014glove] proposed as weight function:
 \[
 f(x) = \left\{
 \begin{array}{ccc}
@@ -393,7 +396,7 @@ w_l \approx w_j - w_i + w_k
 Furthermore, we obtain $\widehat{l}$ from our model and a given metric 
 $d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by computing:
 \[
-\widehat{l} = \underset{l \in V}{\mathrm{arg~min}}\ d(w_j - w_i + w_k, w_l)
+\widehat{l} = \underset{l \in V}{\mathrm{arg~max}}\ d_\mathrm{cosine}(w_j - w_i + w_k, w_l)
 \]
 
 ## Evaluation: Questions Words File
@@ -625,13 +628,63 @@ Own word vectors fitted on the Wikipedia dump:
 
 # Outlook
 
-## Outlook: Text Clustering 
+## Outlook: Text Classification
 
-- One way to continue using Glove is to use it as word embedding for 
-  further applications.
+- An example is text classification for which word embeddings can be used to 
+  map text to an image: <br><br>
+  **1st Step:** Imagine the following word vectors obtained by GloVe:
+  \[
+  \begin{array}{c|ccc}
+    A & 0.1 & 0.2 & 0.1 \\
+    B & 0.2 & 0.5 & 0.3 \\
+    C & 0.9 & 0.7 & 0.3 \\
+    D & 0.4 & 0.8 & 0.1
+  \end{array} \ \ \Rightarrow \ \ w_i \in \mathbb{R}^3, \ d = 3
+  \]
   
-- An example is text clustering:
-    1. 
+
+## Outlook: Text Classification 
+
+- An example is text classification for which word embeddings can be used to 
+  map text to an image: <br><br>
+  **2nd Step:** Now we have a given text:
+  \[
+  \mathrm{A\ B\ A\ D\ B\ C}
+  \]
+    
+    
+## Outlook: Text Classification 
+
+- An example is text classification for which word embeddings can be used to 
+  map text to an image: <br><br>
+  **3rd Step:**  Next, each word in the text is mapped to the corresponding
+  word vector to obtain a matrix for the given text:
+  \[
+  \begin{array}{cccccc}
+  \mathrm{A} & \mathrm{B} & \mathrm{A} & \mathrm{D} & \mathrm{B} & \mathrm{C} \\
+  \downarrow & \downarrow & \downarrow & \downarrow & \downarrow & \downarrow \\
+  0.1 & 0.2 & 0.1 & 0.4 & 0.2 & 0.9 \\
+  0.2 & 0.5 & 0.2 & 0.8 & 0.5 & 0.7 \\
+  0.1 & 0.3 & 0.1 & 0.1 & 0.3 & 0.3
+  \end{array}
+  \]
+  
+
+## Outlook: Text Classification 
+
+- An example is text classification for which word embeddings can be used to 
+  map text to an image: <br> <br>
+  **4th Step:** This matrix can be used to create an image out of the 
+  given text by translating the matrix to an image:
+
+<br>
+
+<center>
+<img width="800px" src="images/stupid_image.png" />
+</center>
+
+
+## Outlook: Text Classification
 
 <center>
 <img width="800px" src="images/text_images.png" />
@@ -650,8 +703,8 @@ Own word vectors fitted on the Wikipedia dump:
 - But accuracy of word analogy task depends not only on the dimension, but 
   also on the corpus.
 
-- Using servers or pcs with huge computing power due to the need of huge 
-  corpora!
+- Use servers or pcs with huge computing power to train GloVe due to 
+  the need of huge corpora an computing time!
 
 
 # References
