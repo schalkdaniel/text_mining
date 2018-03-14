@@ -91,3 +91,68 @@ source ("R/evaluate_single_words.R")
 
 # Evaluate the analogy task:
 source ("R/word_analogy_task.R")
+
+# Create Image for text classification:
+# -----------------------------------------
+
+source("R/create_glove_images.R")
+
+# Use Intro from 'Elements of Statistical Learning' with first 500 words:
+my.txt = "The field of Statistics is constantly challenged by the problems that science
+and industry brings to its door. In the early days, these problems often came
+from agricultural and industrial experiments and were relatively small in
+scope. With the advent of computers and the information age, statistical
+problems have exploded both in size and complexity. Challenges in the
+areas of data storage, organization and searching have led to the new field
+of “data mining”; statistical and computational problems in biology and
+medicine have created “bioinformatics.” Vast amounts of data are being
+generated in many fields, and the statistician’s job is to make sense of it
+all: to extract important patterns and trends, and understand “what the
+data says.” We call this learning from data.
+The challenges in learning from data have led to a revolution in the statistical
+sciences. Since computation plays such a key role, it is not surprising
+that much of this new development has been done by researchers in other
+fields such as computer science and engineering.
+The learning problems that we consider can be roughly categorized as
+either supervised or unsupervised. In supervised learning, the goal is to predict
+the value of an outcome measure based on a number of input measures;
+in unsupervised learning, there is no outcome measure, and the goal is to
+describe the associations and patterns among a set of input measures.
+xii Preface to the First Edition
+This book is our attempt to bring together many of the important new
+ideas in learning, and explain them in a statistical framework. While some
+mathematical details are needed, we emphasize the methods and their conceptual
+underpinnings rather than their theoretical properties. As a result,
+we hope that this book will appeal not just to statisticians but also to
+researchers and practitioners in a wide variety of fields.
+Just as we have learned a great deal from researchers outside of the field
+of statistics, our statistical viewpoint may help others to better understand
+different aspects of learning:
+There is no true interpretation of anything; interpretation is a
+vehicle in the service of human comprehension. The value of
+interpretation is in enabling others to fruitfully think about an
+idea.
+–Andreas Buja
+We would like to acknowledge the contribution of many people to the
+conception and completion of this book. David Andrews, Leo Breiman,
+Andreas Buja, John Chambers, Bradley Efron, Geoffrey Hinton, Werner
+Stuetzle, and John Tukey have greatly influenced our careers. Balasubramanian
+Narasimhan gave us advice and help on many computational
+problems, and maintained an excellent computing environment. Shin-Ho
+Bang helped in the production of a number of the figures. Lee Wilkinson
+gave valuable tips on color production. Ilana Belitskaya, Eva Cantoni, Maya
+Gupta, Michael Jordan, Shanti Gopatam, Radford Neal, Jorge Picazo, Bogdan
+Popescu, Olivier Renaud, Saharon Rosset, John Storey, Ji Zhu, Mu
+Zhu, two reviewers and many students read parts of the manuscript and
+offered helpful suggestions. John Kimmel was supportive, patient and helpful
+at every phase; MaryAnn Brickner and Frank Ganz headed a superb
+production team at Springer. Trevor Hastie would like to thank the statistics
+department at the University of Cape Town for their hospitality during
+the final stages of this book. We gratefully acknowledge NSF and NIH for
+their support of this work. Finally, we would like to thank our families and
+our parents for their love and support."
+
+
+
+gloveImage(word.vectors = word.vectors, text = my.txt, nmax = 300L)
+
