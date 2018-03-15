@@ -194,7 +194,7 @@ But how should we estimate those parameters without a specific function $F$?
 
 To find $F$ and obtain the exchange symmetry we need to apply two "tricks":
 
-1. We restrict $F$ to be a homomophism between $(\mathbb{R}, f) = (\mathbb{R}, +)$ 
+1. We restrict $F$ to be a homomorphism between $(\mathbb{R}, f) = (\mathbb{R}, +)$ 
    and $(\mathbb{R}_+, g) = (\mathbb{R}_+, \cdot )$. That means we expect $F$
    to fulfill:
    \[
@@ -297,12 +297,12 @@ in practice. Therefore some adoptions:
 - Individual learning rate in each iteration.
 
 - Adaption of the learning rate to the parameters, performing larger updates 
-  for infrequent and smaller updates for frequent parameter
+  for infrequent and smaller updates for frequent parameter.
 
 - Well-suited for sparse data, improve robustness of (stochastic) gradient 
-  descend
+  descent.
   
-- For GloVe, infrequent words require much larger updates than frequent ones
+- For GloVe, infrequent words require much larger updates than frequent ones.
 
 $\rightarrow$ **AdaGrad** meets these requirements.
 
@@ -320,17 +320,17 @@ on the discribed above wikipedia dataset.
 
 We need something to measure the distance between vectors:
 
-- **Cosine Similarity**
-  \[
-  d_\mathrm{cosine}(x,y) = \mathrm{cos}(\angle (x, y)) = \frac{\langle x,y\rangle}{\|x\|_2\|y\|_2}
-  \]
-
 - **Euclidean Distance**
   \[
-  d_\mathrm{euklid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
+  d_\mathrm{euclid}(x,y) = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}
   \]
 
-In general we could use every metric (norm) to evaluate the model. But the 
+- **Cosine Distance**
+  \[
+  d_\mathrm{cosine}(x,y) = 1 - \mathrm{cos}(\angle (x, y)) = 1 - \underbrace{\frac{\langle x,y\rangle}{\|x\|_2\|y\|_2}}_{\mathrm{Cosine\ Similarity}}
+  \]
+
+In general we could use every metric to evaluate the model. But the 
 cosine similarity is more robust in terms of curse of dimensionality.
 
 ## Evaluation: p-Norm in high Dimensions
@@ -396,7 +396,7 @@ w_l \approx w_j - w_i + w_k
 Furthermore, we obtain $\widehat{l}$ from our model and a given metric 
 $d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by computing:
 \[
-\widehat{l} = \underset{l \in V}{\mathrm{arg~max}}\ d_\mathrm{cosine}(w_j - w_i + w_k, w_l)
+\widehat{l} = \underset{l \in V}{\mathrm{arg~min}}\ d(w_j - w_i + w_k, w_l)
 \]
 
 ## Evaluation: Questions Words File
@@ -554,9 +554,9 @@ a bigger variety (harder &nbsp;&nbsp;&nbsp;&nbsp;for modelling) than English.
 - Often crawled from the web. This is mostly followed by a lot of 
   preprocessing (regular expressions, filtering stop words etc.).
   
-- Does different corpora imply a different quality of the word vectors?
-  
 - How big should the corpus and the vocabular be to get good word vectors?
+  
+- Does different corpora imply a different quality of the word vectors?
 
 <!-- - Stopwords from http://snowballstem.org -->
 
@@ -642,6 +642,8 @@ Own word vectors fitted on the Wikipedia dump:
   \end{array} \ \ \Rightarrow \ \ w_i \in \mathbb{R}^3, \ d = 3
   \]
   
+Note that word vectors created by GloVe are organized as rows within the matrix
+where the rownames displays the vocabulary of available words.
 
 ## Outlook: Text Classification 
 
@@ -685,6 +687,10 @@ Own word vectors fitted on the Wikipedia dump:
 
 
 ## Outlook: Text Classification
+
+The following images were generated from the introduction of Principia 
+Mathematica by Sir Isaac Newton and Elements of Statistical Learning, 
+as well as from Sonnet 18 by William Shakespear:
 
 <center>
 <img width="800px" src="images/text_images.png" />
