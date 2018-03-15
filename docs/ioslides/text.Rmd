@@ -15,8 +15,10 @@ csl: american-statistical-association.csl
 
 ```{r, include=FALSE}
 
-knitr::opts_chunk$set(collapse = TRUE)
+shiny.ip = "http://127.0.0.1:6637"
 
+knitr::opts_chunk$set(collapse = TRUE)
+# root = rprojroot::find_root(rprojroot::is_git_root)
 library(plotly)
 library(text2vec)
 ```
@@ -314,6 +316,14 @@ with multiple cores. In my tests I achieved almost 8x speedup on 8 core machine
 on the discribed above wikipedia dataset.
 -->
 
+## What to do with Word Vectors? 
+
+<!-- Adjust IP to the local shiny app -->
+
+<center>
+<iframe style="border:none;" src=`r shiny.ip` width="800" height="500"></iframe>
+</center>
+
 # Evaluating GloVe
 
 ## Evaluation: Metrics
@@ -412,13 +422,13 @@ https://github.com/nicholas-leonard/word2vec/blob/master/questions-words.txt
 <br>
 
 <center>
-<iframe class="txt" src="../../additional_stuff/questions_words.txt"></iframe>
+<iframe class="txt" src="additional_stuff/questions_words.txt"></iframe>
 </center>
 
 ## Evaluation: Question Words File
 
 ```{r, echo=FALSE, results='asis'}
-val.file = readLines("../../additional_stuff/questions_words.txt")
+val.file = readLines("additional_stuff/questions_words.txt")
 
 categories.list = list()
 categories = val.file[grepl(":", val.file)]
