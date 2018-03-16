@@ -15,7 +15,7 @@ csl: american-statistical-association.csl
 
 ```{r, include=FALSE}
 
-shiny.ip = "http://127.0.0.1:6637"
+shiny.ip = "http://127.0.0.1:8877"
 
 knitr::opts_chunk$set(collapse = TRUE)
 # root = rprojroot::find_root(rprojroot::is_git_root)
@@ -261,7 +261,7 @@ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik} + 1)
 
 To estimate the word vectors GloVe uses a weighted least squares approach:
 \[
-J = \sum\limits_{i=1}^{|V|}\sum\limits_{j=1}^{|V|}f(X_{ij})\left(x_i^T\tilde{w}_j + b_i + \tilde{b}_j - \log(X_{ij} + 1)\right)^2
+J = \sum\limits_{i=1}^{|V|}\sum\limits_{j=1}^{|V|}f(X_{ij})\left(w_i^T\tilde{w}_j + b_i + \tilde{b}_j - \log(X_{ij} + 1)\right)^2
 \]
 [@pennington2014glove] proposed as weight function:
 \[
