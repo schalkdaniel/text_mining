@@ -57,7 +57,7 @@ evaluateGloveOwn = function (word.vectors, a, b = NA, c = NA, norm,
   return (invisible(head(sort(dists, decreasing = FALSE), print.words)))
 }
 
-load("C:/Users/schal/Downloads/glove.6B/wv_test.RData")
+load("C:/Users/schal/OneDrive/github_repos/text_mining/docs/ioslides/shiny_app/glove_word_cloud/wv_test.RData")
 
 n.words = 30L
 cols = rgb(

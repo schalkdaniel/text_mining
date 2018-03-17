@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 *.Rproj
+*.RData
 
 text8
