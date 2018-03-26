@@ -1,2 +1,68 @@
 \chapter{About the Data}\label{ch:data}
 
+\section{The Language}
+
+Be careful with the language: 
+
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{ l | l }
+\hline
+\textbf{German term list} & \textbf{English term list} \\
+\hline\hline
+Wassermolekuel                & hydrogen                  \\ \hline
+Wasserstoff                   & hydrogen-bonding          \\ \hline
+Wasserstoffatom               &                           \\ \hline
+Wasserstoffbindung            &                           \\ \hline
+Wasserstoffbrueckenbildung    &                           \\ \hline
+Wasserstoffbrueckenbindung    &                           \\ \hline
+Wasserstoffhalogenid          &                           \\ \hline
+Wasserstoffverbindung         &                           \\ \hline
+\end{tabular}
+\caption[Term list comparison between German and English]{
+         Copied from Grammar \& Corpora 2009 \cite{konopka2011grammar}. Excerpt of 
+         the resulting English and German term lists focusing on the term 
+         \textit{hydrogen} (German: \textit{Wasserstoff}).}
+\label{tab:ger-vs-eng-terms}
+\end{center}
+\end{table}
+
+For instance, German has much more rare words and a bigger variety (harder 
+for modelling) than English.
+
+\section{Common Sources}
+
+\begin{itemize}
+  \item 
+    We need a lot of words to train the model.
+
+  \item 
+    Often crawled from the web. This is mostly followed by a lot of 
+    preprocessing (regular expressions, filtering stop words etc.).
+  
+  \item 
+    How big should the corpus and the vocabular be to get good word vectors?
+  
+  \item 
+    Does different corpora imply a different quality of the word vectors?
+\end{itemize}
+
+\begin{itemize}
+  \item 
+    \textbf{Wikipedia Dump + Gigaword 5:} Wikipedia gives access to all articles 
+    collected within one XML file (unzipped about 63 GB). \cite{pennington2014glove} 
+    combines this with Gigaword 5, an archive of newswire text data. \\ \\
+    $\rightarrow$ 6 billion tokens and 400 thousand word vocabulary
+
+  \item 
+    \textbf{Common Crawl:} Published by Amazon Web Services through its Public Data 
+    Sets program in 2012. The data was crawled from the whole web and contains 
+    2.9 billion web pages and over 240 TB of data. \\ \\
+    $\rightarrow$ 42 billion tokens and 1.9 million word vocabulary or \\
+    $\rightarrow$ 820 billion tokens and 2.2 million word vocabulary
+  
+  \item 
+    \textbf{Twitter:} \cite{pennington2014glove} crawled 2 billion tweets. \\ \\
+    $\rightarrow$ 27 billion tokens and 1.2 million word vocabulary
+\end{itemize}
+  
