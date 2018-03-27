@@ -2,4 +2,81 @@
 
 \section{Outlook}
 
+\textbf{Text Classification}
+
+An example is text classification for which word embeddings can be used to 
+map text to an image:
+
+\begin{enumerate}
+  \item 
+    Imagine the following word vectors obtained by GloVe:
+    \[
+    \begin{array}{c|ccc}
+      A & 0.1 & 0.2 & 0.1 \\
+      B & 0.2 & 0.5 & 0.3 \\
+      C & 0.9 & 0.7 & 0.3 \\
+      D & 0.4 & 0.8 & 0.1
+    \end{array} \ \ \Rightarrow \ \ w_i \in \mathbb{R}^3, \ d = 3
+    \]
+    Note that word vectors created by GloVe are organized as rows within the matrix
+    where the rownames displays the vocabulary of available words.
+
+  \item 
+     Now we have a given text:
+    \[
+    \mathrm{A\ B\ A\ D\ B\ C}
+    \]    
+
+  \item  
+    Next, each word in the text is mapped to the corresponding
+    word vector to obtain a matrix for the given text:
+    \[
+    \begin{array}{cccccc}
+    \mathrm{A} & \mathrm{B} & \mathrm{A} & \mathrm{D} & \mathrm{B} & \mathrm{C} \\
+    \downarrow & \downarrow & \downarrow & \downarrow & \downarrow & \downarrow \\
+    0.1 & 0.2 & 0.1 & 0.4 & 0.2 & 0.9 \\
+    0.2 & 0.5 & 0.2 & 0.8 & 0.5 & 0.7 \\
+    0.1 & 0.3 & 0.1 & 0.1 & 0.3 & 0.3
+    \end{array}
+    \]
+  
+  \item 
+    This matrix can be used to create an image out of the 
+    given text by translating the matrix to an image:
+
+{\Huge IMAGE}
+%<center>
+%<img width="800px" src="images/stupid_image.png" />
+%</center>
+\end{enumerate}
+
+
+
+The following images were generated from the introduction of Principia 
+Mathematica by Sir Isaac Newton and Elements of Statistical Learning, 
+as well as from Sonnet 18 by William Shakespear:
+
+{\Huge IMAGE}
+%<center>
+%<img width="800px" src="images/text_images.png" />
+%</center>
+
+
 \section{Conclusion}
+
+\begin{itemize}
+  \item 
+    With GloVe it is possible to create meaningful word embeddings.
+
+  \item 
+    \cite{pennington2014glove} compared several models on the word analogy task, 
+    whereas GloVe outperforms the others.
+  
+  \item 
+    But accuracy of word analogy task depends not only on the dimension, but 
+    also on the corpus.
+
+  \item 
+    Use servers or pcs with huge computing power to train GloVe due to 
+    the need of huge corpora an computing time!
+\end{itemize}
