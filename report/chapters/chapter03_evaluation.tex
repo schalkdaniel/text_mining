@@ -2,7 +2,7 @@
 
 \section{Evaluation Metrics}
 
-We need something to measure the distance between vectors:
+We need to measure the distance between vectors to define similarity between word vectors and therefore analogies between words:
 
 \begin{itemize}
   \item 
@@ -22,7 +22,12 @@ We need something to measure the distance between vectors:
 In general we could use every metric to evaluate the model. But the 
 cosine similarity is more robust in terms of curse of dimensionality.
 
-{\Huge Images of word cloud and description (cosine similarity, which wv etc.}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{images/word_clouds.png} 
+\caption[Different word clouds illustrating similarities.]{Different word clouds for the words python, bayern, university and physics. The bigger the words, the smaller the cosine distance. The images are taken from an shiny application programmed for this seminar using pre trained word vectors from \cite{pennington2014glove} using the wikipedia dump (see chapter \ref{ch:data}).}
+\label{fig:wc}
+\end{figure}
 
 \section{p-Norm in high Dimensions}
 

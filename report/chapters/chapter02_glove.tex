@@ -1,25 +1,25 @@
 \chapter{GloVe Model}\label{ch:glove}
 
-\section{Terminology}
-
-\begin{table}[!ht]
-  \begin{center}      
-      \begin{tabular}{l|c|m{6cm}}
-          \hline
-          \textbf{Notation} & \textbf{Symbol} & \parbox{6cm}{\centering\textbf{Description}} \\
-          \hline\hline
-          Vocabulary & $V$ & Set of unique words of the given corpus\\ \hline
-          Word vector & $w\ (w_i)$ & Word vector (of corresponding word $i$)\\ \hline
-          Context vector & $\tilde{w}\ (\tilde{w}_i)$ & Context vector (of corresponding word $i$)\\ \hline
-          Dimension   & $d$ & Dimension of word vectors $w$\\ \hline
-          Word-word co-occurence matrix & $X \in \mathbb{R}^{|V| \times |V|}$ & Matrix of context counts $X_{ij}$\\ \hline
-          Loss function & & \\ \hline
-          Empirical risk & & \\ \hline
-      \end{tabular}
-  \end{center}
-\caption{Overview about the used terminology.}
-\label{tab:terminology}
-\end{table}
+%\section{Terminology}
+%
+%\begin{table}[!ht]
+%  \begin{center}      
+%      \begin{tabular}{l|c|m{6cm}}
+%          \hline
+%          \textbf{Notation} & \textbf{Symbol} & \parbox{6cm}{\centering\textbf{Description}} \\
+%          \hline\hline
+%          Vocabulary & $V$ & Set of unique words of the given corpus\\ \hline
+%          Word vector & $w\ (w_i)$ & Word vector (of corresponding word $i$)\\ \hline
+%          Context vector & $\tilde{w}\ (\tilde{w}_i)$ & Context vector (of corresponding word $i$)\\ \hline
+%          Dimension   & $d$ & Dimension of word vectors $w$\\ \hline
+%          Word-word co-occurence matrix & $X \in \mathbb{R}^{|V| \times |V|}$ & Matrix of context counts $X_{ij}$\\ \hline
+%          Loss function & & \\ \hline
+%          Empirical risk & & \\ \hline
+%      \end{tabular}
+%  \end{center}
+%\caption{Overview about the used terminology.}
+%\label{tab:terminology}
+%\end{table}
 
 \section{Word-Word Co-Occurence Matrix}
 
@@ -61,7 +61,7 @@ A D C E A D \textcolor{orange}{E B} \textcolor{red}{A} \textcolor{orange}{C E} D
 \phantom{A D C E A D E B A C E D} $\ \Rightarrow$ D occurs 2 times in context of A: $X_{AD} = 2$
 \end{center}
 
-Finally, we can do this for every word combination of $(i, j) \in V \times V$ and calculate the 
+Finally, we do this for every word combination of $(i, j) \in V \times V$ and calculate the 
 ratio $P_{AD}$:
 
 \begin{center}
@@ -80,7 +80,7 @@ $X = $
 
 \textbf{Sidenote:} \\
 
-Some packages (like \texttt{R}'s \texttt{text2vec}) have the option to give a weight vector
+Some packages (like \texttt{R}'s \texttt{text2vec}) have an option to give a weight vector
 with as many weights as the window size. It is then common to weight context words closer to 
 the inspected word higher than words which aren't that close.
 
@@ -114,7 +114,7 @@ it is important to choose a function $F$ which is able to hold the linear
 structure. For instance we can choose $F$ to be a neural net. But that wouldn't 
 guarantee that $F$ keeps the linear structure. \\
 
-We now parameterize every word vectors, therefore we have $d \cdot |V|$ 
+We now parameterize every word vector, therefore we have $d \cdot |V|$ 
 parameter to estimate to get word vectors. But how should we estimate those parameters 
 without a specific function $F$? There are several steps to come up with a solution
 which fulfilles the desierd behaviour:
@@ -161,7 +161,6 @@ which fulfilles the desierd behaviour:
           \Leftrightarrow\ &w_i^T\tilde{w}_k = \log(X_{ik}) - \log(X_i) \\
           \Leftrightarrow\ &w_i^T\tilde{w}_k + \log(X_i) = \log(X_{ik})
           \end{align*}
-          But: How to handle $X_{ik} = 0$? We handle this later.
    
         \item
           Since $\log(X_i)$ is independent of $k$ we can put this in a bias term. This
@@ -182,7 +181,7 @@ Point 2. looks a bit like the model equation of a generalized linear model (glm)
 with linear predictor $(x_i - w_j)^T\tilde{w}_k$, response function $F$ and response 
 $P_{ik} / P_{jk}$. The glm takes a linear structure and transforms the output on an
 interval of plausible values. This also holds for GloVe by using a homomorphism as $F$
-which preserves the structure between the two used algebraic structures. Therefore, it 
+which preserves the structure between the two algebraic structures. Therefore, it 
 is possible to keep the linearity of the used vector space $\mathbb{R}^d$. \\
 
 \textbf{Model Equation} \\
@@ -204,13 +203,11 @@ w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik} + 1)
 
 \textbf{Empirical Risk} \\
 
-{\Huge Kurz Loss funktion erwähnen!}
-
 To estimate the word vectors GloVe uses a weighted least squares approach:
 \[
 J = \sum\limits_{i=1}^{|V|}\sum\limits_{j=1}^{|V|}f(X_{ij})\left(w_i^T\tilde{w}_j + b_i + \tilde{b}_j - \log(X_{ij} + 1)\right)^2
 \]
-\cite{pennington2014glove} proposed as weight function:
+\cite{pennington2014glove} proposed as weight function (illustrated in figure \ref{fig:wf}):
 \[
 f(x) = \left\{
 \begin{array}{ccc}
@@ -220,12 +217,16 @@ f(x) = \left\{
 \right.
 \]
 
-{\Huge Plotten wie funktion aussieht!}
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.8]{images/weight_fun.pdf} 
+\caption[Weight function used in GloVe.]{Illustration of the weight function $f(x)$ for different $\alpha$ values.}
+\label{fig:wf}
+\end{figure}
 
 Using this function also introduces two new hyperparameters $\alpha$ and 
 $x_\mathrm{max}$. The ordinary way to find good values for $\alpha$ and 
-$x_\mathrm{max}$ would be to use a tuning method. The problem now is that 
-for all tuning methods we need to evaluate the model. Since we want to handle an
+$x_\mathrm{max}$ would be to use a tuning method. The problem now is that the common tuning methods requires that the model can be evaluated. Since we handle an
 unsupervised task evaluating isn't straightforward. \\
 
 \textbf{Algorithm used for Fitting} \\
@@ -233,7 +234,7 @@ unsupervised task evaluating isn't straightforward. \\
 Basically, GloVe uses a gradient descend technique to minimize the objective 
 $J$. Nevertheless, using ordinary gradient descend would be way too expensive
 in practice. A more appropriate gradient based method is used here called adaptive 
-gradient descent (AdaGrad). A short description of the most important points of 
+gradient descent (AdaGrad). A short description of the most important properties of 
 AdaGrad transferred to text mining are:
 
 \begin{itemize}
