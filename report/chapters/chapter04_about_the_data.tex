@@ -2,7 +2,10 @@
 
 \section{The Language}
 
-Be careful with the language: 
+Be careful with the language. For instance, German has much more rare words and a
+bigger variety (harder for modelling) than English since more words become more 
+rare. Table \ref{tab:ger-vs-eng-terms} shows an example of comparing related words 
+in both languages focusing on the term hydrogen.
 
 \begin{table}[!h]
 \begin{center}
@@ -27,25 +30,30 @@ Wasserstoffverbindung         &                           \\ \hline
 \end{center}
 \end{table}
 
-For instance, German has much more rare words and a bigger variety (harder 
-for modelling) than English.
 
-\section{Common Sources}
 
-\begin{itemize}
-  \item 
-    We need a lot of words to train the model.
+\section{Common Sources}\label{sec:common-sources}
 
-  \item 
-    Often crawled from the web. This is mostly followed by a lot of 
-    preprocessing (regular expressions, filtering stop words etc.).
-  
+To train word embeddings we need a lot of words to train those models. GloVe makes
+no difference. Common sources have multiple billion words an a total size of 
+multiple gigabytes. To get that huge amount of words the common way is to crawl
+from the internet. This is mostly followed by a lot of preprocessing such as 
+removing regular expressions (HTML syntax) or filtering stop words (very common
+words as the or this). \\
+
+This also imply two question which has been asked:
+\begin{enumerate}
   \item 
     How big should the corpus and the vocabular be to get good word vectors?
   
   \item 
     Does different corpora imply a different quality of the word vectors?
-\end{itemize}
+\end{enumerate}
+
+We want to answer the first one now while the second one will be answered in 
+section \ref{ch:real_wv}. The most common sources for word embeddings are the
+following (tokens all words within the corpus while the vocabulary 
+describes the number of unique words $|V|$):
 
 \begin{itemize}
   \item 

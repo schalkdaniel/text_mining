@@ -25,7 +25,7 @@ cosine similarity is more robust in terms of curse of dimensionality.
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.5]{images/word_clouds.png} 
-\caption[Different word clouds illustrating similarities.]{Different word clouds for the words python, bayern, university and physics. The bigger the words, the smaller the cosine distance. The images are taken from an shiny application programmed for this seminar using pre trained word vectors from \cite{pennington2014glove} using the wikipedia dump (see chapter \ref{ch:data}).}
+\caption[Different word clouds illustrating similarities.]{Different word clouds for the words python, bayern, university and physics. The bigger the words, the smaller the cosine distance. The images are taken from an shiny application programmed for this seminar using pre trained word vectors from \cite{pennington2014glove} using the wikipedia dump (see section \ref{ch:data}).}
 \label{fig:wc}
 \end{figure}
 
@@ -38,33 +38,44 @@ dimension $d$:
 \[
 \underset{{d\rightarrow\infty}}{\mathrm{p~lim}}\ \frac{\mathrm{max}_k \|x_k\|_2}{\mathrm{min}_k \|x_k\|_2} = 1
 \]
-
-$\Rightarrow$ Points are concentrated on the surface of a hyper sphere 
-using the euclidean norm.
-
-The same holds for every $p$-Norm.
+This means if we use the euclidean norm, in high dimensions points are almost surely concentrated on the surface of a hyper sphere. The same holds for every $p$-Norm.
+Figure \ref{fig:p-norm} shows an simulation of the $p$-Norm in high dimension.
 
 
-{\Huge Image of p norm in high dimension}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\textwidth]{images/p_norm_hd.png} 
+\caption[Curse of dimensionality simulation.]{Simulating the curse of dimensionality
+         by drawing 100 points of a uniform distribution on a hypercube and 
+         calculating the ratio of the longest and the shortest vector. This is 
+         repeated 50 times for each of the dimensions 3, 5, 10, 100, 500, 
+         1000 and 5000.}
+\label{fig:p-norm}
+\end{figure}
 
-\section{Semantic and Analogies}
 
-One thing we now can do is to ask for semantic analogies between words. 
+\section{Semantic and Analogies}\label{sec:sem-ana}
+
+One thing we can do now is to ask for semantic analogies between words. 
 Something like:
 
-\[
-\mathrm{paris\ behaves\ to\ france\ like\ berlin\ to\ ?} \\
-\mathrm{animal\ behaves\ to\ animals\ like\ people\ to\ ?} \\
-\mathrm{i\ behaves\ to\ j\ like\ k\ to\ l} 
-\]
+\begin{align*}
+\mathrm{paris\ behaves\ to\ france\ }&\mathrm{like\ berlin\ to\ ?} \\
+\mathrm{animal\ behaves\ to\ animals\ }&\mathrm{like\ people\ to\ ?} \\
+\mathrm{i\ behaves\ to\ j\ }&\mathrm{like\ k\ to\ l} 
+\end{align*}
 
 Therefore, we have $3$ given word vectors $w_i$, $w_j$ and $w_k$. To get the 
 desired fourth word $l$ we use the linearity of the word vector space:
 \[
 w_l \approx w_j - w_i + w_k
 \]
-Furthermore, we obtain $\widehat{l}$ from our model and a given metric 
-$d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by computing:
+We can explain this linear combination by remembering the introduction where
+we explained, that the context of words (e.~g.~is capital) is memorised within
+the difference of words. We now add this context to the desired word to obtain
+the corresponding context word. Furthermore, we obtain $\widehat{l}$ from our 
+model and a given metric $d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by
+computing:
 \[
 \widehat{l} = \underset{l \in V}{\mathrm{arg~min}}\ d(w_j - w_i + w_k, w_l)
 \]
@@ -74,7 +85,8 @@ $d(w_i, w_j)$ (mostly $d = d_\mathrm{cosine}$) by computing:
 
 To evaluate trained word vectors, \cite{mikolov2013efficient} provide a word
 similarity task. This task is given within a question words file which
-contains about 19544 semantic analogies:
+contains about 19544 semantic analogies. The following list shows the first
+10 tasks:
 
 \begin{Shaded}
 \begin{verbatim}
@@ -92,8 +104,12 @@ Athens Greece Helsinki Finland
 \end{verbatim}
 \end{Shaded}
 
+Basically, this 19544 tasks are separated into 14 categories. Table \ref{tab:qwfile}
+shows all the categories, how much tasks each category has and an example for each
+category.
+
 \begin{center}
-\begin{table}
+\begin{table}[!h]
 \begin{tabular}{ l | R{2.5cm} | l }
 \hline
 \textbf{Category} & \textbf{Number of Test Lines} & \textbf{Example}\\
@@ -134,19 +150,25 @@ gram9-plural-verbs & 870 & decrease decreases describe describes\\
 
 \section{Hyperparamter Tuning}
 
-\begin{itemize}
-  \item 
-    Now tuning is \enquote{possible} for a given task specified in the questions words file.
+Having such a question words file can now be used to evaluating word embeddings.
+Therefore, each of the 19544 words are evaluated as explained in section 
+\ref{sec:sem-ana}. If the estimated word matches the fourth word the corresponding 
+line gets a 1, if not than a 0. Finally, to get a score how good our word embedding
+is we average over all these zeros and ones to obtain the accuracy.\\
 
-  \item 
-    \cite{pennington2014glove} have tuned the model and came to good values (just 
-    empirical without a proof):
-    \begin{itemize}
-      \item $\alpha = 0.75$
-      \item $x_\mathrm{max} = 100$ (does just have a weakly influence on performance)
-    \end{itemize}
-    
-  \item 
-    Note that we are dependent on this file and can just test on this file. If 
-    we want to test other properties of the model we need other files.
+We remember, that creating word embeddings is an unsupervised task. But using a
+question word file makes it possible to compare different word embeddings and therefore make tuning possible. Nevertheless, this tuning highly depends on the 
+question words file and fits the task which is captured there. If we want to 
+test other properties of the embeddings, then we need another file capturing 
+this property.\\
+
+\cite{pennington2014glove} have tuned the model and state out that good values for 
+the hyperparameters are:
+\begin{itemize}
+  \item $\alpha = 0.75$
+  \item $x_\mathrm{max} = 100$ (does just have a weakly influence on performance)
 \end{itemize}
+
+    
+
+
