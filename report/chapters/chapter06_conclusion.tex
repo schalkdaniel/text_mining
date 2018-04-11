@@ -2,10 +2,8 @@
 
 \section{Outlook}
 
-\textbf{Text Classification}
-
-An example is text classification for which word embeddings can be used to 
-map text to an image:
+An example to use word embeddings for more advanced tasks is text classification. 
+The idea is to map a collection of words given by a text to an image:
 
 \begin{enumerate}
   \item 
@@ -44,23 +42,35 @@ map text to an image:
     This matrix can be used to create an image out of the 
     given text by translating the matrix to an image:
 
-{\Huge IMAGE}
-%<center>
-%<img width="800px" src="images/stupid_image.png" />
-%</center>
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/image_classif.png} 
+\caption[Example of the text to image procedure.]{Explanation of the mapping 
+         between text and image.}
+\label{fig:text-classif}
+\end{figure}
 \end{enumerate}
 
 
 
-The following images were generated from the introduction of Principia 
-Mathematica by Sir Isaac Newton and Elements of Statistical Learning, 
-as well as from Sonnet 18 by William Shakespear:
+The images in figure \ref{fig:text-classif-images} were generated from the
+introduction of Principia Mathematica by Sir Isaac Newton and Elements of 
+Statistical Learning, as well as from Sonnet 18 by William Shakespear. \\
 
-{\Huge IMAGE}
-%<center>
-%<img width="800px" src="images/text_images.png" />
-%</center>
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth]{images/text_images.png} 
+\caption[Specific text representation via images.]{Creating images for text using 
+         the introduction of Principia Mathematica by Sir Isaac Newton and 
+         Elements of Statistical Learning, as well as from Sonnet 18 by William 
+         Shakespear. The red bars are missing words filled up to 150 words since 
+         image classifier expect a fixed number of pixels.}
+\label{fig:text-classif-images}
+\end{figure}
 
+The next step would be to run an image classifier (e.~g.~a CNN) on the images
+and an label. This classifier could find differences by analysing specific patterns
+or maybe the color intensity.
 
 \section{Conclusion}
 

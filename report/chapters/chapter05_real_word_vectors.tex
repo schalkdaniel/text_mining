@@ -2,39 +2,44 @@
 
 \section{Training Word Vectors}
 
-Train word vectors using \dots
-
+Within the scope of this seminar we have trained own word vectors using GloVe from  
+the \texttt{R} package \texttt{text2vec} (see \cite{text2vec}). The word vectors 
+are trained on the full Wikipedia dump using the first 453.77 (16 \%) million words. 
+We were not able to use the full corpus due to memory consumptions. For the training
+we have used the same setting as \cite{pennington2014glove}:
 \begin{itemize}
-  \item 
-    \dots the `R` package `text2vec` [@text2vec].
-
-  \item 
-    \dots the full Wikipedia dump with first 453.77 million words (16 %, due to 
-    memory consumption).
-  
-  \item 
-    \dots the same settings as \cite{pennington2014glove}:
-    \begin{itemize}
-      \item $\alpha = 0.75$
-      \item $x_\mathrm{max} = 100$
-      \item Learning rate of $0.05$
-      \item $\mathrm{Number\ of\ iterations} = \left\{\begin{array}{cc}
-            50 & \text{if} \ d < 300 \\
-            100 & \text{otherwise}
-            \end{array}\right.$.
-    \end{itemize}
-
-  \item 
-    \dots a more advanced text pre processing (stopwords etc.).
+  \item $\alpha = 0.75$
+  \item $x_\mathrm{max} = 100$
+  \item Learning rate of $0.05$
+  \item $\mathrm{Number\ of\ iterations} = \left\{\begin{array}{cc}
+         50 & \text{if} \ d < 300 \\
+         100 & \text{otherwise}
+         \end{array}\right.$.
 \end{itemize}
 
 \section{Trained Word Vectors}
 
-\subsection{Own Word Vectors}
+To answer the second question of section \ref{sec:common-sources} we now focus on
+real word embeddings. Therefore we use two different types:
+\begin{itemize}
+  \item
+    Own word vectors which are trained as explained above.
+    
+  \item
+    Pre trained word vectors by \cite{pennington2014glove}. Those word vectors
+    can be downloaded from their homepage \url{https://nlp.stanford.edu/projects/glove/}
+\end{itemize}
 
-Own word vectors fitted on the Wikipedia dump:
+The following two subsections shows tables of own word vectors and pre trained 
+word vectors. Those word vectors are evaluated using the word similarity task
+described in section \ref{ch:eval}. Finally, to get a better understanding of 
+the dependency of the corpora and the quality of word vectors we take a look 
+at figure \ref{fig:eval-wv}.
 
-\begin{table}
+\newpage
+\subsection{Table of Own Word Vectors}
+
+\begin{table}[!h]
 \begin{tabular}{l|R{2.5cm}|r|r|r|r|r}
 \hline
 \textbf{Category}	             & \textbf{Number of Test Lines}	& \textbf{25 d}	  & \textbf{50 d}	  & \textbf{100 d} 	& \textbf{200 d}	  & \textbf{300 d} \\
@@ -55,15 +60,13 @@ gram8-plural	                 & 1332	                          & 0.3326	        
 gram9-plural-verbs	           & 870	                          & 0.1793	        & 0.2713 	        & 0.4149	& 0.4977	& 0.5402\\ \hline
 \textbf{Accuracy} & & \textbf{0.1992} & \textbf{0.3469} & \textbf{0.4688} & \textbf{0.4989}	& \textbf{0.5300}\\ \hline
 \end{tabular}
-\caption{Accuracy of own word vectors.}
+\caption{Accuracy of own word vectors using GloVe.}
 \end{table}
 
-\subsection{Pre-Trained Word Vectors}
-
-{\Huge Wo kann man die runterladen}
+\subsection{Table of Pre-Trained Word Vectors}
 
 \begin{landscape}
-\begin{table}
+\begin{table}[!h]
 \begin{tabular}{l|R{2.5cm}|r|r|r|r|R{2.5cm}|r|r|r|r}
 \hline
 & & \multicolumn{4}{c|}{\textbf{Wikipedia + Gigaword 5}} & \multicolumn{1}{C{2.5cm}|}{\textbf{Common Crawl}} & \multicolumn{4}{c}{\textbf{Twitter}} \\
@@ -84,10 +87,29 @@ gram8-plural & 1332 & 0.5901 & 0.7162 & 0.7718 & 0.7785 & 0.8401 & 0.2020 & 0.49
 gram9-plural-verbs & 870 & 0.3805 & 0.5839 & 0.5954 & 0.5851 & 0.6425 & 0.1885 & 0.4034 & 0.5460 & 0.5241 \\ \hline
 \textbf{Accuracy} &  & \textbf{0.4645} & \textbf{0.6271} & \textbf{0.6934} & \textbf{0.7157} & \textbf{0.7472} & \textbf{0.1212} & \textbf{0.2744} & \textbf{0.4358} & \textbf{0.5385} \\ \hline
 \end{tabular}
-\caption{Accuracy of pre trained word vectors.}
+\caption{Accuracy of pre trained word vectors using GloVe.}
 \end{table}
 \end{landscape}
 
 \subsection{Accuracy of Word Vectors}
 
-{\Huge Berliner mit precision}
+As we can see in figure \ref{fig:eval-wv} the quality of word vectors depends on the
+size of the corpus but also on the quality. If we try to explain why the 
+pre trained word vectors of the Wikipedia + Common Crawl corpus have a higher 
+accuracy as the word vectors of the twitter corpus we may think of the way the
+text is created. For instance, the Wikipedia articles should have a higher quality
+in terms of grammar and linguistic than the tweets. \\
+
+Another interesting comparison are the twitter word vectors and the own word vectors
+which are trained on much less data. The own word vectors are good in lower 
+dimension and are overtaken from dimension 200. The difference here is the huge
+amount of words. The Twitter corpus has about 54 times more words to train the 
+vectors. This difference seems to have especially an impact on higher dimensions.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.9\textwidth]{images/eval_wv.png} 
+\caption[Comparison of different word vectors.]{Comparison of the overall accuracy 
+         of own word vectors and pre trained word vectors for different dimensions.}
+\label{fig:eval-wv}
+\end{figure}
