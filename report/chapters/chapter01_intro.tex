@@ -7,8 +7,8 @@ fact is that we want to learn from text without having labels. Hence, we have an
 task. \\
 
 Word vectors should be able to represent the human understanding of text in a very 
-basic way. That means that word vectors should be able to display the analogy of different 
-words as well as general semantic questions. How this is achieved shows image \ref{fig:wv}. 
+basic way. This means that word vectors should be able to display the analogy of different 
+words as well as general semantic similarities. The idea, of how this is achieved shows image \ref{fig:wv}. 
 
 \begin{figure}[!h]
 \centering
@@ -17,7 +17,7 @@ words as well as general semantic questions. How this is achieved shows image \r
          the difference of word vectors. For instance, the \enquote{is capital} context is
          represented by the difference between \enquote{france and paris} or 
          \enquote{germany and berlin} which looks very similar. Nevertheless, 
-         the \enquote{britian and london} difference looks very different. Hence, a high
+         the \enquote{britian and london} difference is very different. Hence, a high
          dimension is used for word vectors (e.~g.~300 or 500). Additionally, we want that 
          the word vectors build cluster to related words (e.~g.~italian cities or animals).}
 \label{fig:wv}
@@ -29,8 +29,8 @@ to evaluating given word vectors in section \ref{ch:eval} which is quite interes
 since we handle an unsupervised task. After that we take a short look at the data 
 and common sources for text corpora in section \ref{ch:data}. \\
 
-Then we know how to evaluate word vectors and have an idea about the data. With that 
-knowledge we may ask how the dimension or different data 
+After we know how to evaluate word vectors and have an idea about the data, 
+we may ask how the dimension or different data 
 sources influences the quality of the word vectors. This is discussed shortly in section
 \ref{ch:real_wv}. After that we give an outlook on how GloVe embeddings can be used for
 further text classification techniques followed from a small conclusion in section

@@ -21,6 +21,8 @@ We need to measure the distance between vectors to define similarity between wor
 
 In general we could use every metric to evaluate the model. But the 
 cosine similarity is more robust in terms of curse of dimensionality.
+Figure \ref{fig:wc} illustrates the similarity between words using the
+cosine distance applied on pre trained word vectors.
 
 \begin{figure}[!h]
 \centering
@@ -53,6 +55,8 @@ Figure \ref{fig:p-norm} shows an simulation of the $p$-Norm in high dimension.
 \label{fig:p-norm}
 \end{figure}
 
+Since we want to map the words to a high dimensional vector using any $p$-Norm can lead
+to issues. Therefore, the cosine distance is often used in text mining.
 
 \section{Semantic and Analogies}\label{sec:sem-ana}
 
@@ -159,7 +163,7 @@ is we average over all these zeros and ones to obtain the accuracy.\\
 We remember, that creating word embeddings is an unsupervised task. But using a
 question word file makes it possible to compare different word embeddings and therefore make tuning possible. Nevertheless, this tuning highly depends on the 
 question words file and fits the task which is captured there. If we want to 
-test other properties of the embeddings, then we need another file capturing 
+test other properties of the embedding, then we need another file capturing 
 this property.\\
 
 \cite{pennington2014glove} have tuned the model and state out that good values for 
