@@ -107,7 +107,7 @@ using the ratio, and map $F$ to that ratio:
 F(w_i, w_j, \tilde{w}_k) = \frac{P_{ik}}{P_{jk}}
 \]
 
-Here $w_i, w_j$ are context vectors while $\tilde{w}_k$ is the context vector. 
+Here $w_i, w_j$ are word vectors while $\tilde{w}_k$ is the context vector. 
 $F$ is unknown at this stage and basically can be any function. But we remember
 that we want to keep the linear structure of the vector space $\mathbb{R}^d$. So 
 it is important to choose a function $F$ which is able to hold the linear 
@@ -177,7 +177,7 @@ which fulfilles the desierd behaviour:
 
 \textbf{Sidenote:} \\
 
-Point 2. looks a bit like the model equation of a generalized linear model (glm) 
+Point 2 looks a bit like the model equation of a generalized linear model (glm) 
 with linear predictor $(x_i - w_j)^T\tilde{w}_k$, response function $F$ and response 
 $P_{ik} / P_{jk}$. The glm takes a linear structure and transforms the output on an
 interval of plausible values. This also holds for GloVe by using a homomorphism as $F$
@@ -201,6 +201,8 @@ The final model equation which we use for training is
 w_i^T\tilde{w}_k + b_i + \tilde{b}_k = \log(X_{ik} + 1)
 \]
 
+\newpage
+
 \textbf{Empirical Risk} \\
 
 To estimate the word vectors GloVe uses a weighted least squares approach:
@@ -220,7 +222,8 @@ f(x) = \left\{
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.8]{images/weight_fun.pdf} 
-\caption[Weight function used in GloVe.]{Illustration of the weight function $f(x)$ for different $\alpha$ values.}
+\caption[Weight function used in GloVe.]{Illustration of the weight function $f(x)$ for different $\alpha$ values.
+        and fixed $x_\mathrm{max} = 100$.}
 \label{fig:wf}
 \end{figure}
 
